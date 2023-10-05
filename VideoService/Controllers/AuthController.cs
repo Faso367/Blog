@@ -99,7 +99,7 @@ namespace VideoService.Controllers
             // Заполняем в Model данные о новом пользователе
             var user = new IdentityUser
             {
-                UserName = vm.Username,
+                UserName = vm.UserName,
                 Email = vm.Email,
                 //PasswordHash = vm.PasswordHash
             };

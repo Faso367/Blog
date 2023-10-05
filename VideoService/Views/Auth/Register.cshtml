@@ -3,30 +3,35 @@
 @{
 }
 
-<form class="sign-in-form" asp-controller="Auth" asp-action="Register" method="post">
-    <div>
-        <label>Имя пользователя</label>
-        <input asp-for="Username" />
-        <!--При возвращении пустого View выведет сообщени об обязательном заполнении-->
-        <span asp-validation-for="Username"></span>
+<link href="~/css/Register.css" rel="stylesheet" />
+<div class="register-body">
+    <div class="ramka">
+        <div class="form-wrapper">
+            <div class="h1-wrapper">Регистрация</div>
+
+            <form class="sign-in-form" asp-controller="Auth" asp-action="Register" method="post">
+                <div class="form-input-container">
+                    <input asp-for="UserName" id="name" placeholder="Имя пользователя" />
+                    <span asp-validation-for="UserName"></span>
+
+                    <input asp-for="Email" id="name" placeholder="Эл. почта" />
+                    <span asp-validation-for="Email"></span>
+
+                    <input asp-for="Password" id="pas" placeholder="Пароль" />
+                    <span asp-validation-for="Password"></span>
+
+                    <input asp-for="ConfirmPassword" id="pas" placeholder="Подтвердите пароль" />
+                    <span asp-validation-for="ConfirmPassword"></span>
+
+                    <input type="submit" value="Регистрация" id="but"/>
+                </div>
+                <div class="under-input">
+                    
+                    <a asp-controller="Auth" asp-action="Login">Войти</a>
+                </div>
+            </form>
+        </div>
     </div>
-    <div>
-        <label>Электронная почта</label>
-        <input asp-for="Email" />
-        <!--При возвращении пустого View выведет сообщени об обязательном заполнении-->
-        <span asp-validation-for="Email"></span>
-    </div>
-    <div>
-        <label>Пароль</label>
-        <input asp-for="Password" />
-        <span asp-validation-for="Password"></span>
-    </div>
-    <div>
-        <label>Подтвердите пароль</label>
-        <input asp-for="ConfirmPassword" />
-        <span asp-validation-for="ConfirmPassword"></span>
-    </div>
-    <div>
-        <input type="submit" value="Зарегистрироваться" />
-    </div>
-</form>
+</div>
+<textarea asp-for="UserName">
+</textarea>

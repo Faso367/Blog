@@ -127,5 +127,13 @@ input:focus {
     }
 
 .buttons {
-
+    width: 51%;
+    margin-top: 12px;
+    /*transform: translateX(-30%);*/
 }
+    .buttons input#image_but {
+        height: 40px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        background-color: #1a1b1a;
+    }

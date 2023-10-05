@@ -25,7 +25,7 @@
             <input asp-for="Title"/>
         </div>
 @*        <div class="input-container-description">*@
-           <div class="input-container" id="description">
+        <div class="input-container" id="description">
             <label>Описание</label>
             <textarea asp-for="Description"></textarea> <!--Указываем в какое свойство модели будет происходить запись из поля input (в какое поле БД)-->
         </div> 
@@ -48,7 +48,7 @@
         <div class="buttons">
             <label>Изображение</label>
             <input asp-for="CurrentImage" type="hidden"/>
-            <input asp-for="Image" />
+            <input asp-for="Image" id="image_but" />
         </div>
         <input type="submit" value="Подтвердить отправку"/>
         

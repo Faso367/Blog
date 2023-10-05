@@ -9,7 +9,7 @@ namespace VideoService.ViewModels
         public string Email { get; set; }
 
         [Required] // Значит, что все поля обязательны для заполнения
-        public string Username { get; set; }
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
