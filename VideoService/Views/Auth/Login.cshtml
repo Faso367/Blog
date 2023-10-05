@@ -1,0 +1,30 @@
+﻿@model LoginViewModel
+
+@{}
+
+<link href="~/css/Login.css" rel="stylesheet" />
+<div class="login-body">
+    <div class="ramka">
+        <div class="form-wrapper">
+            <div class="h1-wrapper">Авторизация</div>
+
+            <form asp-controller="Auth" asp-action="Login" method="post">
+                <div class="form-input-container">
+                    @*<label for="name"> <b>Имя пользователя</b> </label>*@
+                    <input asp-for="UserName" id="name" placeholder="Имя пользователя" /> @**@
+
+                    @*<label for="pas"> <b>Пароль</b> </label>*@
+                    <input asp-for="Password" id="pas" placeholder="Пароль" />
+                    @*<p>Пароль</p>*@
+                    <input type="submit" value="Войти" id="but"/>
+                </div>
+                <div class="under-input">
+                    
+                    <a asp-controller="Auth" asp-action="Register">Зарегистрироваться</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<textarea asp-for="UserName">
+</textarea>

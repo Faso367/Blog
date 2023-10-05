@@ -1,0 +1,32 @@
+﻿@model RegisterViewModel
+
+@{
+}
+
+<form class="sign-in-form" asp-controller="Auth" asp-action="Register" method="post">
+    <div>
+        <label>Имя пользователя</label>
+        <input asp-for="Username" />
+        <!--При возвращении пустого View выведет сообщени об обязательном заполнении-->
+        <span asp-validation-for="Username"></span>
+    </div>
+    <div>
+        <label>Электронная почта</label>
+        <input asp-for="Email" />
+        <!--При возвращении пустого View выведет сообщени об обязательном заполнении-->
+        <span asp-validation-for="Email"></span>
+    </div>
+    <div>
+        <label>Пароль</label>
+        <input asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+    </div>
+    <div>
+        <label>Подтвердите пароль</label>
+        <input asp-for="ConfirmPassword" />
+        <span asp-validation-for="ConfirmPassword"></span>
+    </div>
+    <div>
+        <input type="submit" value="Зарегистрироваться" />
+    </div>
+</form>

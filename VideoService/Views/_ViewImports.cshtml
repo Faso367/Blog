@@ -1,0 +1,10 @@
+﻿<!--Этот файл нужен Для импортирования классов контроллеров.
+    Чтобы постоянно не импортировать в каждый вид
+нашу модель (для взаимодействия с ней), то есть
+не писать постоянно@model VideoService.Models.Post в каждом представлении,
+мы просто включаем пространство имен с содержимым папки Models во все представления@using VideoService.Models
+-->
+@using VideoService.Models
+@using VideoService.ViewModels
+@using VideoService.Models.Comments
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

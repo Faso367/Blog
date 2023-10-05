@@ -1,0 +1,38 @@
+﻿<!--получаем на вход коллекцию объектов Post -->
+@model IEnumerable<Post>
+<!--model IEnumerable<Post> !!!!!!!!!!!!!!!!!!!!!-->
+@{
+
+}
+
+<link href="~/css/Panel.css" rel="stylesheet" />
+
+<div class="panel">
+    <div class="header">
+        <h1>Панель администратора</h1>
+        <a asp-controller="Panel" asp-action="Edit">Создать новую запись</a>
+    </div>
+    <ul>
+        @foreach (var post in Model)
+        {
+            <li>
+                <div class="li-wrapper_record">
+                        @post.Title
+                    @post.Author
+                </div>
+                @*<p>@post.Author</p>*@
+                <div class="li-buttons-wrapper">
+                        <a asp-controller="Panel" asp-action="Edit" asp-route-id="@post.Id">
+                            <!--Передаем на вход в метод Post Id поля БД-->
+                            Редактировать
+                        </a>
+                        <a asp-controller="Panel" asp-action="Remove" asp-route-id="@post.Id">
+                            <!--Передаем на вход в метод Post Id поля БД-->
+                            Удалить
+                        </a>
+                </div>
+
+            </li>
+        }
+</ul>
+</div>
