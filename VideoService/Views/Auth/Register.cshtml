@@ -25,13 +25,15 @@
 
                     <input type="submit" value="Регистрация" id="but"/>
                 </div>
-                <div class="under-input">
+@*                <div class="under-input">
                     
                     <a asp-controller="Auth" asp-action="Login">Войти</a>
-                </div>
+                </div>*@
             </form>
+        <a asp-controller="Auth" asp-action="Login"> <p>Войти</p></a>
         </div>
     </div>
 </div>
-<textarea asp-for="UserName">
+@*<textarea asp-for="UserName">
 </textarea>
+*@

@@ -13,18 +13,35 @@
 }
 
 .ramka {
-    width: 35%;
-    height: 80%;
+        width: 35%;
+    height: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+/*    width: 28%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;*/
 }
 
 .form-wrapper {
-    height: 80%;
+    /*    height: 80%;
     width: 70%;
     padding-left: 30px;
     padding-right: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #1a1b1a;
+    border: 2px solid #13ea79;
+    border-radius: 15px;*/
+
+    height: 80%;
+    width: 70%;
+    padding-left: 20px;
+    padding-right: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,23 +61,30 @@
 }
 
 form {
-    padding: 40px 0;
+    padding-top: 40px;
+    padding-bottom: 20px;
     width: 80%;
     height: 100%;
 }
 
 
 .form-input-container {
-    width: 100%;
+    /*    width: 100%;
     height: 100%;
-    /*width: 200px;*/
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;*/
+    width: 100%;
+    height: 80%;
     padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     color: white;
-    /*justify-content: center;*/
 }
 
     .form-input-container input {
@@ -105,4 +129,30 @@ input:focus {
 
     .form-input-container input#but:hover {
         background-color: #1aa95d;
+    }
+
+.form-wrapper a {
+    color: white;
+    /*border-radius: 50%;*/
+    /*border: 1px solid #eee;*/
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    /*line-height: 50px;*/
+    height: 60px;
+    width: 70%;
+    /*margin: 2px;*/
+    /*font-weight: 400;*/
+    font-size: 18px;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    background-color: #1aa95d;
+    /*margin-bottom: 0px;*/
+    margin-bottom: 0px;
+}
+
+    .form-wrapper a p {
+        height: 18px;
+        /*padding-bottom: 50px;*/
+        /*padding-top: 30%;*/
+        /*text-decoration: none;*/
     }

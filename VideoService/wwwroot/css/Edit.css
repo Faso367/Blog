@@ -35,13 +35,15 @@ input:focus {
     justify-content: center;
 }
     .input-container textarea {
-        font-size: 19px;
+        font-size: 18px;
         font-weight: 400;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     .input-container input {
-        font-size: 22px;
+        font-size: 18px;
         font-weight: 400;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     .input-container textarea, input {
         width: 50%;
@@ -117,7 +119,10 @@ input:focus {
     transform: translateX(3%);
     /*padding-left: 120px;*/
 }
-
+    .main-text label {
+        font-size: 17px;
+        /*font-weight: 500;*/
+    }
     .main-text label {
         /*padding-bottom: 30px !important;*/
         /*margin-bottom: 30px !important;*/
@@ -127,13 +132,50 @@ input:focus {
     }
 
 .buttons {
-    width: 51%;
+    min-width: 30%;
     margin-top: 12px;
-    /*transform: translateX(-30%);*/
+    transform: translateX(-30%);
 }
-    .buttons input#image_but {
-        height: 40px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        background-color: #1a1b1a;
+
+input#submit_but {
+    width: 280px;
+    /*height: 45px;*/
+    margin-top: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    /*vertical-align: central;*/
+    text-decoration: none;
+    display: inline-block;
+    height: 40px;
+    /*width: 200px;*/
+    background-color: #1a1b1a;
+    color: white;
+    /*border: 2px solid white;*/
+    border: 2px solid #13ea79;
+    border-radius: 10px;
+    /*margin-top: 25px;*/
+    font-size: 18px;
+    font-weight: 600;
+}
+
+    input#submit_but:hover {
+        background-color: #1aa95d;
     }
+
+/*.buttons input#file-upload-button {
+    border-radius: 5px !important;
+    border: 1px solid #ccc !important;
+    background-color: #1a1b1a !important;
+}*/
+
+/*    .buttons input#image_but {
+        border-radius: 5px !important;
+        border: 1px solid #ccc !important;
+        background-color: #1a1b1a !important;
+    }*/
+
+/*        .buttons input#image_but input {
+            border-radius: 5px !important;
+            border: 1px solid #ccc !important;
+            background-color: #1a1b1a !important;
+        }*/

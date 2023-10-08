@@ -18,13 +18,11 @@
                     @*<p>Пароль</p>*@
                     <input type="submit" value="Войти" id="but"/>
                 </div>
-                <div class="under-input">
-                    
-                    <a asp-controller="Auth" asp-action="Register">Зарегистрироваться</a>
-                </div>
             </form>
+@*            <div class="bottom-block">*@
+
+            <a asp-controller="Auth" asp-action="Register"> <p>Зарегистрироваться</p></a>
+            @*</div>*@
         </div>
     </div>
 </div>
-<textarea asp-for="UserName">
-</textarea>
