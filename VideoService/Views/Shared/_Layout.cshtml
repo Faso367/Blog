@@ -31,8 +31,36 @@
 <body>
     @*<div>*@
         <nav>
-            <a asp-controller="Home" asp-action="Index">Домой</a>
-            <a asp-controller="Home" asp-action="Index" asp-route-category="Programing">Программирование</a>
+            @*<a asp-controller="Home" asp-action="Index">Домой</a>*@
+@*            <div class="dropdown">
+              <button class="dropbtn">Выпадающее</button>
+              <div class="dropdown-content">
+                <a asp-controller="Home" asp-action="Index" asp-route-category="Programing">Программирование</a>
+                <a asp-controller="Home" asp-action="Index" asp-route-category="Travel">Путешествия</a>
+                <a asp-controller="Home" asp-action="Index" asp-route-category="Photography">Фотография</a>
+              </div>
+            </div>*@
+
+        <ul class="topmenu">
+            <li><a asp-controller="Home" asp-action="Index">Домой</a></li>
+            <li>
+                <a href="" class="down">Темы</a>
+                <ul class="submenu">
+                    <li><a asp-controller="Home" asp-action="Index" asp-route-category="Programing">Программирование</a></li>
+                    <li><a asp-controller="Home" asp-action="Index" asp-route-category="Travel">Путешествия</a></li>
+                    <li><a asp-controller="Home" asp-action="Index" asp-route-category="Photography">Фотография</a></li>
+                </ul>
+            </li>
+            </ul>
+
+@*        <ul class="topmenu">
+                <li> <a asp-controller="Home" asp-action="Index" asp-route-category="Programing">Программирование</a> </li>
+                <li> <a asp-controller="Home" asp-action="Index" asp-route-category="Travel">Путешествия</a> </li>
+                <li> <a asp-controller="Home" asp-action="Index" asp-route-category="Photography">Фотография</a> </li>
+        </ul>*@
+
+        @*</div>*@
+            @*<a asp-controller="Home" asp-action="Index" asp-route-category="Programing">Программирование</a>*@
 
         @*<a asp-controller="Panel" asp-action="Edit" asp-route-category="Programing">Создать запись</a>*@
 
