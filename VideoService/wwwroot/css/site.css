@@ -53,28 +53,43 @@ nav {
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    /*padding-top:-10px;*/
+    margin-top: -2px;
 }
 
     /* Ссылки внутри выпадающего списка */
     .spisok a {
         color: black;
-        padding: 12px 16px;
+        /*padding: 12px 16px;*/
         text-decoration: none;
         display: block;
     }
 
         /* Изменение цвета выпадающих ссылок при наведении курсора */
-        .spisok a:hover {
+/*        .spisok a:hover {
             background-color: #ddd
-        }
+        }*/
+/* Change color of dropdown links on hover */
+.spisok a:hover {
+    background-color: #ddd;
+}
 
+/* Show the dropdown menu on hover */
+.themes-block:hover .spisok {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.themes-block:hover .themes-btn {
+    background-color: #3e8e41;
+}
 /*.themes-btn:hover .show {
     display: block;
 }*/
 /* Показать выпадающее меню (используйте JS, чтобы добавить этот класс .dropdown-content содержимого, когда пользователь нажимает на кнопку выпадающего списка) */
-.show {
+/*.show {
     display: block;
-}
+}*/
 /*.spisok {
     visibility: hidden;
     opacity: 0;
