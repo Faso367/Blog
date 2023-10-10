@@ -42,13 +42,14 @@ nav {
         display: block;
         text-decoration: none;
         outline: none;
-        transition: .4s ease-in-out;
+
+        /*transition: .1s ease-in-out; *//*Плавная анимация?*/
     }
 
-.topmenu {
+/*.topmenu {
     backface-visibility: hidden;
     background: rgba(255,255,255,.8);
-}
+}*/
 
     .topmenu > li {
         display: inline-block;
@@ -56,174 +57,66 @@ nav {
     }
 
         .topmenu > li > a {
-            font-family: 'Exo 2', sans-serif;
-            height: 70px;
-            line-height: 70px;
-            padding: 0 30px;
-            font-weight: bold;
-            color: #003559;
-            text-transform: uppercase;
+            /*font-family: 'Exo 2', sans-serif;*/
+            height: 50px;
+            line-height: 50px;
+            /*padding: 0 30px;*/
+            width: 180px;
+            font-weight: 500;
+            color: white;
+            /*text-transform: uppercase;*/ /*текст будет в верхнем регистре*/
         }
 
 .down:after {
-    content: "\f107";
+    /*content: "\f107";*/
     margin-left: 8px;
-    font-family: FontAwesome;
+    /*font-family: FontAwesome;*/
 }
 
 .topmenu li a:hover {
-    color: #E6855F;
+    /*color: #E6855F;*/
+    text-decoration: none;
+    background-color: #444444;
 }
 
 .submenu {
-    background: white;
-    border: 2px solid #003559;
+    /*background: white;*/
+    /*border: 2px solid #003559;*/
     position: absolute;
     left: 0;
     visibility: hidden;
     opacity: 0;
     z-index: 5;
-    width: 150px;
-    transform: perspective(600px) rotateX(-90deg);
+    width: 180px;
+    /*transform: perspective(600px) rotateX(-90deg);
     transform-origin: 0% 0%;
-    transition: .6s ease-in-out;
+    transition: .6s ease-in-out;*/
 }
 
 .topmenu > li:hover .submenu {
     visibility: visible;
+
     opacity: 1;
-    transform: perspective(600px) rotateX(0deg);
+    /*transform: perspective(600px) rotateX(0deg);*/
 }
 
 .submenu li a {
-    color: #7f7f7f;
-    font-size: 13px;
-    line-height: 36px;
-    padding: 0 25px;
-    font-family: 'Kurale', serif;
-}
-
-
-/* Кнопка выпадающего списка */
-/*.dropbtn {
-    background-color: #4CAF50;
+    /*color: #7f7f7f;*/
+    background-color: #142127;
     color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-}*/
-
-/* Контейнер <div> - необходим для размещения выпадающего содержимого */
-/*.dropdown {
-    position: relative;
-    display: inline-block;
-}*/
-
-/* Выпадающее содержимое (скрыто по умолчанию) */
-/*.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}*/
-
-    /* Ссылки внутри выпадающего списка */
-    /*.dropdown-content a {*/
-        /*width: 100%;*/
-        /*display: inline-block;
-        color: black;*/
-        /*padding: 12px 16px;*/
-        /*padding: 0;
-        text-decoration: none;
-        display: block;
-    }*/
-    /*.dropdown-content:checked*/
-    /* Изменение цвета выпадающих ссылок при наведении курсора */
-    /*.dropdown-content a:hover {
-        background-color: #ddd;
-    }*/
-
-/* Показать выпадающее меню при наведении курсора */
-/*.dropdown:onclick() .dropdown-content {
-    display: block;
-}*/
-
-/* Изменение цвета фона кнопки раскрывающегося списка при отображении содержимого раскрывающегося списка */
-/*.dropdown:hover .dropbtn {
-    background-color: #3e8e41;
-}*/
-
-/*nav  ul {
-    display: block;
-}*/
-
-/*.accordion {
-    height: 50px;
-    padding: 0;
-    margin: 0;
-    position: absolute;
-}*/
-
-/*    nav ul li {
-        height: auto;
-        width: 135.8px;
-        float: left;
-        text-align: center;
-        list-style: none;
-        font: normal bold 13px/1em Arial, Verdana, Helvetica;
-        padding: 0;
-        margin: 0;
-        background-color: #444444;
-    }*/
-
-/*    nav a {
-        padding: 18px 0;
-        border-left: 1px solid #ccc9c9;
-        text-decoration: none;
-        color: white;
-        display: block;
-    }*/
-
-/*    .navbar a {
-        padding: 18px 0;
-        border-left: 1px solid #ccc9c9;
-        text-decoration: none;
-        color: white;
-        display: block;
-    }*/
-
-     li:hover, a:hover {
+    font-size: 15px;
+    line-height: 50px;
+    padding: 0 25px;
+    /*font-family: 'Kurale', serif;*/
+}
+    .submenu li a:hover {
         background-color: #444444;
     }
-/*
-        .accordion li ul {
-            display: none;
-            height: auto;
-            margin: 0;
-            padding: 0;
-        }
 
-        .accordion li:hover ul {
-            display: block;
-        }
-
-        .accordion li ul li {
-            background-color: #444444;
-        }
-
-            .accordion li ul li a {
-                border-left: 1px solid #444444;
-                border-right: 1px solid #444444;
-                border-top: 1px solid #c9d4d8;
-                border-bottom: 1px solid #444444;
-            }
-
-            .navbar li ul li a:hover {
-                background-color: #a3a1a1;
-            }*/
-
+/*     li:hover, a:hover {
+        background-color: #444444;
+    }
+*/
 
 .main-img {
     position: relative;

@@ -51,7 +51,7 @@
                     <li><a asp-controller="Home" asp-action="Index" asp-route-category="Photography">Фотография</a></li>
                 </ul>
             </li>
-            </ul>
+            
 
 @*        <ul class="topmenu">
                 <li> <a asp-controller="Home" asp-action="Index" asp-route-category="Programing">Программирование</a> </li>
@@ -70,23 +70,23 @@
 
         @if (User.Identity.IsAuthenticated)
         {
-            <a asp-controller="Panel" asp-action="Edit" asp-route-category="Programing">Создать запись</a>
-            <a asp-controller="Panel" asp-action="UserProfile">Личный кабинет</a>
+            <li><a asp-controller="Panel" asp-action="Edit" asp-route-category="Programing">Создать запись</a></li>
+            <li><a asp-controller="Panel" asp-action="UserProfile">Личный кабинет</a></li>
 
             // Если авторизовался админ, то показываем ему эту кнопку
             @if (User.IsInRole("Admin"))
             {
                 @*<a asp-controller="Home" asp-action="Index" asp-route-category="Panel">Панель администратора</a>*@
-                <a asp-controller="Panel" asp-action="Index" asp-route-category="Panel">Панель администратора</a>
+                <li><a asp-controller="Panel" asp-action="Index" asp-route-category="Panel">Панель администратора</a></li>
             }
-            <a asp-controller="Auth" asp-action="Logout">Выйти</a>
+            <li><a asp-controller="Auth" asp-action="Logout">Выйти</a></li>
         }
         else
         {
-            <a asp-controller="Auth" asp-action="Login">Создать запись</a>
-            <a asp-controller="Auth" asp-action="Login">Войти</a>
+            <li><a asp-controller="Auth" asp-action="Login">Создать запись</a></li>
+            <li><a asp-controller="Auth" asp-action="Login">Войти</a></li>
         }
-
+        </ul>
         </nav>
     @*</div>*@
     <!--Здесь будут отрисовываться остальные наши страницы-->
