@@ -108,6 +108,8 @@ form {
         box-sizing: border-box;
         color: white !important;
         background-color: #111211;
+        font-size: 15px;
+        
     }
 
 /*    .form-input-container input:focus {
@@ -116,12 +118,15 @@ form {
 input:focus {
     color: white !important;
 }
-    .form-input-container input::-webkit-input-placeholder {
-        color: white;
-    }
-        .form-input-container input:focus::-webkit-input-placeholder {
-            color: white;
-        }
+.form-input-container input::-webkit-input-placeholder {
+    color: #cab8b8;
+    /*background-color: red;*/
+    /*font-size: 18px;*/
+}
+/*.form-input-container input:focus::-webkit-input-placeholder {*/
+    /*color: white;*/
+    /*color: #111211;
+}*/
         .form-input-container input#but {
             width: 70%;
             /*height: 45px;*/

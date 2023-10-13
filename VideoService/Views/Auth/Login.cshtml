@@ -12,9 +12,11 @@
                 <div class="form-input-container">
                     @*<label for="name"> <b>Имя пользователя</b> </label>*@
                     <input asp-for="UserName" id="name" placeholder="Имя пользователя" /> @**@
+                    <span asp-validation-for="UserName"></span>
 
                     @*<label for="pas"> <b>Пароль</b> </label>*@
                     <input asp-for="Password" id="pas" placeholder="Пароль" />
+                    <span asp-validation-for="Password"></span>
                     @*<p>Пароль</p>*@
                     <input type="submit" value="Войти" id="but"/>
                 </div>

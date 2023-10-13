@@ -98,6 +98,7 @@ form {
         box-sizing: border-box;
         color: white !important;
         background-color: #111211;
+        font-size: 15px;
     }
 
 input:focus {
@@ -105,12 +106,12 @@ input:focus {
 }
 
 .form-input-container input::-webkit-input-placeholder {
-    color: white;
+    /*color: #808080;*/
+    color: #cab8b8;
 }
-
-.form-input-container input:focus::-webkit-input-placeholder {
-    color: white;
-}
+/*.form-input-container input:focus::-webkit-input-placeholder {
+    color: #111211;
+}*/
 
 .form-input-container input#but {
     width: 70%;
