@@ -18,25 +18,13 @@
     <!--ViewBag.Keywords - список ключевых слов-->
     <meta name="keywords" content="@ViewBag.Keywords" />
     <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
-    <!--Этот css файл будет использоваться, если мы в режиме разработки-->
-    @*    <environment include="Development">
-    <!--asp-append-version="true" указывает, что если мы изменим этот css файл, то он добавится в кеш клиента вместо старого-->
-    <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
-    </environment>*@
-    <!--Этот css файл будет использоваться, если мы уже выкатили сайт-->
-    @*    <environment include="Production"> КОГДА ЗАПУСКАЮ САЙТ РАБОТАЕТ ЭТОТ РЕЖИМ
-    <link href="~/css/site.min.css" rel="stylesheet" asp-append-version="true" />
-    </environment>*@
+
 </head>
 <body>
-    @*<div>*@
     <nav>
         <a asp-controller="Home" asp-action="Index">Домой</a>
 
-        @*<a href="#" class="themes">Темы</a>*@
         <div class="themes-block">
-            @*<button onclick="myFunction()" class="themes-btn">Темы</button>*@
-            @*<button class="themes-btn">Темы</button>*@
             <a href="#" class="themes-btn">Темы</a>
             <div id="myDropdown" class="spisok">
                 <a asp-controller="Home" asp-action="Index" asp-route-category="Programing">Программирование</a>
@@ -44,22 +32,16 @@
                 <a asp-controller="Home" asp-action="Index" asp-route-category="Photography">Фотография</a>
             </div>
         </div>
-        @*<a asp-controller="Home" asp-action="Index" asp-route-category="Programing">Программирование</a>*@
 
-        @*<a asp-controller="Panel" asp-action="Edit" asp-route-category="Programing">Создать запись</a>*@
-
-        @*asp-route-id="@post.Id">*@
-        <!--!!!!!!!!!!!!!!!!! БЫЛО asp-controller="Home"  -->
-        <!--<a asp-controller="Home" asp-action="Edit">Создать_запись</a> --> <!--!!!!!!!!!!!!!!!!!-->
         @if (User.Identity.IsAuthenticated)
         {
-            <a asp-controller="Panel" asp-action="Edit" asp-route-category="Programing">Создать запись</a>
+            <!--<a asp-controller="Panel" asp-action="Edit" asp-route-category="Programing">Создать запись</a>-->
+            <a asp-controller="Panel" asp-action="Edit">Создать запись</a>
             <a asp-controller="Panel" asp-action="UserProfile">Личный кабинет</a>
 
             // Если авторизовался админ, то показываем ему эту кнопку
             @if (User.IsInRole("Admin"))
             {
-                @*<a asp-controller="Home" asp-action="Index" asp-route-category="Panel">Панель администратора</a>*@
                 <a asp-controller="Panel" asp-action="Index" asp-route-category="Panel">Панель администратора</a>
             }
             <a asp-controller="Auth" asp-action="Logout">Выйти</a>
@@ -71,11 +53,8 @@
         }
 
     </nav>
-    @*</div>*@
     <!--Здесь будут отрисовываться остальные наши страницы-->
-    @*<div>*@
     @RenderBody()
-    @*</div>*@
     @RenderSection("scripts", false) <!--Подгружаем (рендерим) добавленный JS только для этой страницы html (тк false)-->
     <script>
         /* Когда пользователь нажимает на кнопку,

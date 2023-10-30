@@ -9,7 +9,6 @@ namespace VideoService.Data.Repository
     {
         Post GetPost(int id);
         List<Post> GetAllPosts();
-        //IEnumerable<int> PageNumbers(int pageNumber, int pageCount);
         IndexViewModel GetAllPosts(int pageNumber, string category, string search);
         IEnumerable<Post> GetAllUserPosts(string author);
         void AddPost(Post post); // метод для добавления записи в БД 

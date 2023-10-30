@@ -17,7 +17,7 @@ namespace VideoService.Data.Repository
         // ВСЕ НИЖЕ ПЕРЕЧИСЛЕННЫЕ МЕТОДЫ (кроме SaveChanges) по факту коммитят изменения,
         // БД изменяется только после вызова SaveChangesAsync()
 
-        // Получаем контекст из тела HTTP запроса
+        // Получаем контекст текущей сессии с БД
         public Repository(AppDbContext ctx)
         {
             _ctx = ctx;
@@ -37,21 +37,8 @@ namespace VideoService.Data.Repository
 
         public IEnumerable<Post> GetAllUserPosts(string author)
         {
-            //authorsPosts = _ctx.Posts.Where(x => x.Author == author);
-
-            //return _ctx.Posts.ToList();
-
-            //return _ctx.Posts.Where(x => x.Author == author);
             return _ctx.Posts.Where(x => x.Author == author);
         }
-
-        //public IEnumerable<Post> GetAllPosts(string author)
-        //{
-        //    //authorsPosts = _ctx.Posts.Where(x => x.Author == author);
-
-        //    //return _ctx.Posts.ToList();
-        //    return _ctx.Posts.Where(x => x.Author == author);
-        //}
 
         // Получаем все записи в БД
         public IndexViewModel GetAllPosts(int pageNumber,
@@ -64,16 +51,15 @@ namespace VideoService.Data.Repository
                 return post.Category.ToLower()
             .Equals(category.ToLower());
             };
-            // !!!!!!!!!!!!!!!!!!!!!!!!!
+
             int pageSize = 2; // столько постов вмещает одна страница
             int skipAmount = pageSize * (pageNumber - 1); // размер сдвига
-            //int postsCount = _ctx.Posts.Count(); // Получаем количество записей в таблице
 
             // Если всего записей больше, чем мы показали, то продолжаем увеличивать сдвиг и идем на след страницу
 
             // AsNoTracking() - позволяет сделать запрос в БД без отслеживания
-            // То есть EF вытаскивает данные и не кеширует их (сразу применяет SaveChanges сам)
-            //var query = _ctx.Posts.AsQueryable(); - УСТАРЕЛО 
+            // То есть EF вытаскивает данные и не кеширует их в AppDBContext(сразу применяет SaveChanges сам)
+
             var query = _ctx.Posts.AsNoTracking().AsEnumerable();
 
             if (!String.IsNullOrEmpty(category))
@@ -86,14 +72,6 @@ namespace VideoService.Data.Repository
                 query = query.Where(x => x.Title.Contains(search)
                     || x.Body.Contains(search)
                     || x.Description.Contains(search));
-
-            // Раньше это ускоряло получение данных из БД
-            //if (!String.IsNullOrEmpty(search))
-            //    query = query.Where(x => EF.Functions.Like(x.Title, $"%{search}%")
-            //    || EF.Functions.Like(x.Body, $"%{search}%")
-            //    || EF.Functions.Like(x.Description, $"%{search}%"));
-
-
 
             int postsCount = query.Count();
             // Делаем postsCount типа double (для однозначной работы Ceiling)
@@ -119,6 +97,7 @@ namespace VideoService.Data.Repository
         // Получаем одну запись из БД
         public Post GetPost(int id)
         {
+            Console.WriteLine("GetPost");
             // Если полученный id совпадает с найденным в БД, то возвращаем (достаем) эту запись
             return _ctx.Posts
                 .Include(p => p.MainComments) // включаем в запись основные комментарии
@@ -138,8 +117,6 @@ namespace VideoService.Data.Repository
             _ctx.Posts.Update(post);
         }
 
-        // 
-
         public async Task<bool> SaveChangesAsync()
         {
             await _ctx.SaveChangesAsync(); // сохраняем изменения в БД
@@ -149,7 +126,6 @@ namespace VideoService.Data.Repository
                 return true;
             }
             return false;
-
         }
 
         public void AddSubComment(SubComment comment)

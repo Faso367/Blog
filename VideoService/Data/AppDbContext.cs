@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using VideoService.Models;
 using VideoService.Models.Comments;
 
-// Здесь мы определяем таблицы (ячейки - это свойства классов), которые будут в БД
+// Здесь мы определяем таблицы, которые будут в БД
 
 namespace VideoService.Data
 {
@@ -12,12 +12,12 @@ namespace VideoService.Data
     public class AppDbContext : IdentityDbContext
     {
 
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { } //Database.EnsureCreated(); } 
-        //public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { Database.EnsureCreated(); } 
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { } 
 
         // Определяем таблицу Posts в нашей БД
         public DbSet<Post> Posts { get; set; }
-        // Для основных и доп комментов будут создаваться отдельные талицы
+
+        // Для основных и доп комментов будут создаваться отдельные таблицы
         public DbSet<MainComment> MainComments { get; set; }
         public DbSet<SubComment> SubComments { get; set; }
 

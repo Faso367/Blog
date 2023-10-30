@@ -20,8 +20,5 @@ namespace VideoService.ViewModels
         // Если значения полей не равны, то вернем View с предупреждением
         [Compare("Password")]
         public string ConfirmPassword { get; set; }
-
-        //[Required]
-        //public string PasswordHash { get; set; }
     } 
 }

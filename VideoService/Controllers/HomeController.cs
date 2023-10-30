@@ -18,8 +18,7 @@ namespace VideoService.Controllers
         public HomeController(IRepository repo, IFileManager fileManager)
         {
             _fileManager = fileManager;
-            _repo = repo; // Получаем экземпляр интерфейса для доступа ко всем методам его методам
-            
+            _repo = repo; // Получаем экземпляр интерфейса для доступа ко всем его методам
         }
 
         // ОБЪЯСНЕНИЕ МЕТОДА НИЖЕ
@@ -39,8 +38,8 @@ namespace VideoService.Controllers
          return View(vm);
         }
 
-        public IActionResult Post(int postId) =>
-            View(_repo.GetPost(postId));
+        public IActionResult Post(int id) =>
+            View(_repo.GetPost(id));
 
 
         [HttpGet("/Image/{image}")]
@@ -88,38 +87,5 @@ namespace VideoService.Controllers
 
             return RedirectToAction("Post", new { id = vm.PostId });
         }
-
-
-        // ТЕ ЖЕ МЕТОДЫ, НО В ИМПЕРАТИВНОМ ПРЕДСТАВЛЕНИИ
-
-        // Метод из интерфейса соответствует названию нашего отображения (Index.cshtml)
-        // 1) public IActionResult Index(string category)
-        //{
-        //    //_repo.GetAllPosts(); // Получаем список значений ячеек БД
-        //    var posts = string.IsNullOrEmpty(category) ? _repo.GetAllPosts() :
-        //        _repo.GetAllPosts(category);
-        //    // то же самое что и
-        //    /*
-        //    if (string.IsNullOrEmpty(category)) {
-        //    _repo.GetAllPosts();
-        //    }
-        //    else { _repo.GetAllPosts(category); }
-        //    */
-        //    return View(posts);
-        //}
-
-        // 2) public IActionResult Post(int id)
-        //{
-        //    var post = _repo.GetPost(id);
-
-        //    return View(post);
-        //}
-
-        //[HttpGet("/Image/{image}")]
-        // 3) public IActionResult Image(string image)
-        //{
-        //    var extension = image.Substring(image.LastIndexOf('.') + 1);
-        //    return new FileStreamResult(_fileManager.ImageStream(image), $"image/{extension}");
-        //}
     }
 }

@@ -118,7 +118,46 @@ form {
 input:focus {
     color: white !important;
 }
-.form-input-container input::-webkit-input-placeholder {
+
+/*input:required {*/
+    /*    border-width: 2px;
+    border-color: #FF8630;
+    background-color: rgb(255 134 48 / 0.1);*/
+
+    /*border: 2px solid red;
+}*/
+
+
+/*input:invalid {*/
+    /*background: hsla(0, 90%, 70%, 1);*/
+    /*background: hsla(0, 90%, 70%, 1);*/
+/*}
+
+input:valid {*/
+    /*background: hsla(100, 90%, 70%, 1);*/
+/*}
+
+input:focus {
+    border: 1px solid #ccc;*/
+    /*background: hsla(100, 90%, 70%, 1);*/
+/*}
+
+input:required {*/
+    /*    border-color: #800000;
+    border-width: 3px;*/
+    /*border: 1px solid #800000;
+}*/
+
+    input:user-invalid {
+        border: 1px solid red;
+    }
+/*input:valid {
+    border: 1px solid #ccc;
+}*/
+/*input:required:valid {
+    border: 2px solid black;
+}*/
+    .form-input-container input::-webkit-input-placeholder {
     color: #cab8b8;
     /*background-color: red;*/
     /*font-size: 18px;*/

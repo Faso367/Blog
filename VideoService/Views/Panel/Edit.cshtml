@@ -6,10 +6,9 @@
     <!--получаем доступ к классу Post (который является моделью)-->
 
 @{
-
-    //var UserName = Context.User.ToString();
     var UserName = Context.User.Identity?.Name;
-} <!--Чтобы IntelliSense не ругалась, лучше всегда добавлять эту штуку-->
+}
+<!--Чтобы IntelliSense не ругалась, лучше всегда добавлять эту штуку-->
 <link href="~/css/Edit.css" rel="stylesheet" />
 <link href="~/lib/trumbowyg-main/dist/ui/trumbowyg.min.css" rel="stylesheet" />
 
@@ -24,14 +23,13 @@
             <label>Заголовок</label>
             <input asp-for="Title"/>
         </div>
-@*        <div class="input-container-description">*@
         <div class="input-container" id="description">
             <label>Описание</label>
-            <textarea asp-for="Description"></textarea> <!--Указываем в какое свойство модели будет происходить запись из поля input (в какое поле БД)-->
+            <textarea asp-for="Description"></textarea> <!--Указываем в какое свойство модели будет происходить запись из поля textarea (в какое поле БД)-->
         </div> 
         <div class="input-container" id="tags">
             <label>Теги</label>
-            <textarea asp-for="Tags"></textarea> <!--Указываем в какое свойство модели будет происходить запись из поля input (в какое поле БД)-->
+            <textarea asp-for="Tags"></textarea>
         </div>
         <div class="themes">
             <label>Тема</label>
@@ -49,20 +47,6 @@
             <label>Изображение</label>
             <input asp-for="CurrentImage" type="hidden"/>
             <input asp-for="Image" />
-@*            <input id="fileToUpload" name="fileToUpload"
-                   type="file" class="d-none" />*@
-@*            <div class="input-group">
-                <button class="input-group-text btn btn-success"
-                        type="button"
-                        onclick="selectFileClick();">
-                    Select a File
-                </button>
-                <input id="fileDisplay" type="text"
-                       class="form-control" readonly="readonly"
-                       onclick="selectFileClick();" />
-                             <div class="input-group-text" onclick="selectFileClick();">
-        <i class="fa-regular fa-folder-open"></i>
-      </div>*@
         </div>
 
         <input type="submit" id="submit_but" value="Подтвердить отправку"/>
@@ -76,28 +60,8 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="~/lib/trumbowyg-main/dist/trumbowyg.min.js"></script>
     <script>$('#editor').trumbowyg();
-
-
-
        // . - class
        // # - id
        // nav - html element
     </script>
-@*  <script>
-    $(document).on('change', ':file', function (e) {
-      console.log('in change');
-      $("#fileDisplay").val(e.target.value);
-    });
-
-    function selectFileClick() {
-      console.log('in trigger');
-      $("#fileToUpload").trigger("click");
-    }
-  </script>*@
-
 }
-
-@*        @if (User.Identity.IsAuthenticated)
-        {
-            <p asp-for="Author" type="hidden">@UserName</p>
-        }*@

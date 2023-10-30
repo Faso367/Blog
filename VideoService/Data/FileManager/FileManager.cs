@@ -57,7 +57,6 @@ namespace VideoService.Data.FileManager
                 // Создаём файловый поток, чтобы сохранить в БД файл, который мы получаем с сайта
                 using (var fileStream = new FileStream(Path.Combine(save_path, fileName), FileMode.Create))
                 {
-                    //await image.CopyToAsync(fileStream);
                     MagicImageProcessor.ProcessImage(image.OpenReadStream(), fileStream, ImageOptions());
 
                 }
@@ -88,15 +87,5 @@ namespace VideoService.Data.FileManager
                 JpegSubsampleMode = ChromaSubsampleMode.Subsample420,
             };
         }
-        /*
-        private JpegEncoderOptions ImageSettings() =>
-            new JpegEncoderOptions()
-            {
-                Quality = 100,
-                Subsample = ChromaSubsampleMode.Subsample420,
-
-            };*/
-
-
     }
 }

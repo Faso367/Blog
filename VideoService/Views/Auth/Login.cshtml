@@ -10,21 +10,13 @@
 
             <form asp-controller="Auth" asp-action="Login" method="post">
                 <div class="form-input-container">
-                    @*<label for="name"> <b>Имя пользователя</b> </label>*@
-                    <input asp-for="UserName" id="name" placeholder="Имя пользователя" /> @**@
-                    <span asp-validation-for="UserName"></span>
-
-                    @*<label for="pas"> <b>Пароль</b> </label>*@
-                    <input asp-for="Password" id="pas" placeholder="Пароль" />
+                    <input asp-for="UserName" id="name" placeholder="Имя пользователя" required/>
+                    <input asp-for="Password" id="pas" placeholder="Пароль" required />
                     <span asp-validation-for="Password"></span>
-                    @*<p>Пароль</p>*@
                     <input type="submit" value="Войти" id="but"/>
                 </div>
             </form>
-@*            <div class="bottom-block">*@
-
             <a asp-controller="Auth" asp-action="Register"> <p>Зарегистрироваться</p></a>
-            @*</div>*@
         </div>
     </div>
 </div>
