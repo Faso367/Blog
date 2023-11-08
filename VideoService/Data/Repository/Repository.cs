@@ -17,7 +17,7 @@ namespace VideoService.Data.Repository
         // ВСЕ НИЖЕ ПЕРЕЧИСЛЕННЫЕ МЕТОДЫ (кроме SaveChanges) по факту коммитят изменения,
         // БД изменяется только после вызова SaveChangesAsync()
 
-        // Получаем контекст из тела HTTP запроса
+        // Получаем контекст текущей сессии с БД
         public Repository(AppDbContext ctx)
         {
             _ctx = ctx;

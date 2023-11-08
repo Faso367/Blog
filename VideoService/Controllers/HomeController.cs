@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Mvc;
 using VideoService.Data;
 using VideoService.Data.FileManager;
@@ -18,8 +19,7 @@ namespace VideoService.Controllers
         public HomeController(IRepository repo, IFileManager fileManager)
         {
             _fileManager = fileManager;
-            _repo = repo; // Получаем экземпляр интерфейса для доступа ко всем методам его методам
-            
+            _repo = repo; // Получаем экземпляр интерфейса для доступа ко всем его методам
         }
 
         // ОБЪЯСНЕНИЕ МЕТОДА НИЖЕ
@@ -39,9 +39,13 @@ namespace VideoService.Controllers
          return View(vm);
         }
 
-        public IActionResult Post(int postId) =>
-            View(_repo.GetPost(postId));
-
+        //public IActionResult Post(int postId) =>
+        //    View(_repo.GetPost(postId));
+        public IActionResult Post(int postId)
+        {
+            var s = _repo.GetPost(postId);
+            return View(s);
+        }
 
         [HttpGet("/Image/{image}")]
         // Указываем, что изображения будут кешироваться по указанной схеме
@@ -86,7 +90,11 @@ namespace VideoService.Controllers
 
             await _repo.SaveChangesAsync();
 
-            return RedirectToAction("Post", new { id = vm.PostId });
+            // return RedirectToAction("Post", new { id = vm.PostId }); // БЫЛО
+            post.Id = vm.PostId;
+            
+            //return RedirectToAction("Post", post);
+            return RedirectToAction("Post", new { postId = vm.PostId});
         }
 
 
