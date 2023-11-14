@@ -18,6 +18,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 40px;
     /*    width: 28%;
     height: 90%;
     display: flex;
@@ -155,3 +156,31 @@ input:focus {
         /*padding-top: 30%;*/
         /*text-decoration: none;*/
     }
+
+/*Настройка текста ошибок*/
+span {
+    color: red;
+    font-size: 14px;
+}
+
+
+/*Настройка валидации*/
+/*.has-success .pas {
+    border-bottom: 2px solid #168b3f;
+}
+
+.has-danger .pas {
+    border-bottom: 2px solid #dc1d34;
+}
+
+.form-group .text-help {
+    color: #dc1d34;
+}*/
+
+/*.inline-label label {
+    display: inline;
+}*/
+
+/*.pristine-error {
+    display: table;
+}*/

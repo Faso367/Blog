@@ -84,6 +84,11 @@ namespace VideoService.Controllers
 
         [HttpPost]
         // Метод для сохранения данных, из формы для регистрации, в VM
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Movie movie)
+
         public async Task<IActionResult> Register(RegisterViewModel vm)
         {
             //vm.PasswordHash = vm.Password.GetHashCode().ToString();
