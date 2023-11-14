@@ -81,10 +81,6 @@ li {
     align-items: center;
 }
 
-/*    .li-buttons-wrapper a :hover {
-        color: #13ea79;
-    }*/
-
 li a {
     text-decoration: none;
     display: inline-block;
@@ -96,6 +92,4 @@ li a {
 
     li a:hover {
         text-decoration: none;
-        /*color: #13ea79;*/
-        /*color: #00ff79;*/
     }

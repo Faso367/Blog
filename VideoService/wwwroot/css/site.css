@@ -11,14 +11,10 @@ html, body {
 a {
     color: white;
     text-decoration: none; /*ссылка как обычный текст по умолчанию*/
-    /*background-color: #189b67*/
-    /*#13ea79*/
-    /*#1a1b1a*/
 }
 
 
 nav {
-    /*background-color: #142127;*/
     background-color: #222;
     height: 50px;
     width: 100%;

@@ -18,14 +18,11 @@ namespace VideoService.ViewModels
         [DataType(DataType.Password)]
         public string? Password { get; set; }
 
-        [Required]
+        //[Required]
         //[ValidatePa]
         [DataType(DataType.Password)]
         // Если значения полей не равны, то вернем View с предупреждением
-        [Compare("Password", ErrorMessage = "Это поле обязательно для ввода")]
+        [Compare("Password")]
         public string? ConfirmPassword { get; set; }
-
-        //[Required]
-        //public string PasswordHash { get; set; }
     } 
 }

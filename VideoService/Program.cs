@@ -10,30 +10,10 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        /*var builder = WebApplication.CreateBuilder(
-            new WebApplicationOptions()
-            {
-                WebRootPath = "wwwroot"
-            }
-        );*/
 
         try
         {
             var builder = WebApplication.CreateBuilder(args);
-            //var AppName = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("SmtpSettings")["Videoservice"];
-
-            // старая локальная бд
-            //string connection = "Server=(localdb)\\MSSQLLocalDB;Database=MyBlog;Trusted_Connection=True;";
-
-            // ПОСЛЕДНЯЯ
-            //"DefaultConnection": "Server=DESKTOP-IF0N1RI;Database=MyBlog;User=Lekaic_777;Password=gajopar745;TrustServerCertificate=True;Encrypt=False"
-
-            // Старый вариант
-            //"DefaultConnection": "Server=DESKTOP-IF0N1RI;Database=MyBlog;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False"
-
-            // Внешняя БД
-            //string connection = "Data Source=SQL6031.site4now.net;Initial Catalog=db_a9d119_lekaic777;User Id=db_a9d119_lekaic777_admin;Password=gajopar745;";
-
             // Добавляем контекст ApplicationContext в качестве сервиса в приложение (чтобы обращаться к MS SQL)
             IServiceCollection services = builder.Services;
 
@@ -63,14 +43,6 @@ public class Program
                 options.LoginPath = "/Auth/Login";
             });
 
-            /*builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-        .AddCookie(options =>
-        {
-            options.LoginPath = "/Auth/Login";
-            options.AccessDeniedPath = "/accessdenied";
-        });*/
-
-
             // Указываем, что для работы с БД используется такой интерфейс и класс, который реализует его
             services.AddTransient<IRepository, Repository>();
             services.AddTransient<IFileManager, FileManager>();
@@ -97,9 +69,6 @@ public class Program
             var roleMgr = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
             ctx.Database.EnsureCreated();
-
-            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 
             // Добавляем роль администратора
             var adminRole = new IdentityRole("Admin");
@@ -150,7 +119,6 @@ public class Program
         {
             Console.WriteLine(e.Message);
         }
-        //123
     }
 }
 

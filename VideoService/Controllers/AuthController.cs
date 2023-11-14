@@ -60,19 +60,6 @@ namespace VideoService.Controllers
             }
 
             return RedirectToAction("Index", "Home");
-
-            //var claims = new List<Claim>
-            //{
-            /*
-    new Claim(ClaimsIdentity.DefaultRoleClaimType, "Admin")
-};
-        var claimsIdentity = new ClaimsIdentity(claims, "Cookies");
-        var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);*/
-            //return RedirectToAction("Index", "Panel");
-
-
-
-            // Panel - имя контроллера, который будет использоваться при переводе на представление Index
         }
 
         [HttpGet]
@@ -86,9 +73,6 @@ namespace VideoService.Controllers
         // Метод для сохранения данных, из формы для регистрации, в VM
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Movie movie)
-
         public async Task<IActionResult> Register(RegisterViewModel vm)
         {
             //vm.PasswordHash = vm.Password.GetHashCode().ToString();
@@ -97,9 +81,6 @@ namespace VideoService.Controllers
             {
                 return View(vm);
             }
-
-            //var authRole = new IdentityRole("AuthUser");
-            //roleMgr.CreateAsync(authRole).GetAwaiter().GetResult();
 
             // Заполняем в Model данные о новом пользователе
             var user = new IdentityUser
@@ -113,10 +94,6 @@ namespace VideoService.Controllers
 
             var result = await _userManager.CreateAsync(user, vm.Password);
             await _userManager.AddToRoleAsync(user, "AuthUser");
-
-            //AuthorName = vm.Username;
-
-            //var result = userMgr.CreateAsync(adminUser, "password").GetAwaiter().GetResult();
 
             // Если данные в БД сохранились без ошибок
             if (result.Succeeded)

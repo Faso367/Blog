@@ -19,25 +19,9 @@
     flex-direction: column;
     align-items: center;
     margin-top: 40px;
-    /*    width: 28%;
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;*/
 }
 
 .form-wrapper {
-    /*    height: 80%;
-    width: 70%;
-    padding-left: 30px;
-    padding-right: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #1a1b1a;
-    border: 2px solid #13ea79;
-    border-radius: 15px;*/
-
     height: 80%;
     width: 70%;
     padding-left: 20px;
@@ -69,14 +53,6 @@ form {
 
 
 .form-input-container {
-    /*    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: white;*/
     width: 100%;
     height: 80%;
     padding: 0;
@@ -133,28 +109,19 @@ input:focus {
 
 .form-wrapper a {
     color: white;
-    /*border-radius: 50%;*/
-    /*border: 1px solid #eee;*/
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    /*line-height: 50px;*/
     height: 60px;
     width: 70%;
-    /*margin: 2px;*/
-    /*font-weight: 400;*/
     font-size: 18px;
     border-radius: 50% 50% 0 0 / 100% 100% 0 0;
     background-color: #1aa95d;
-    /*margin-bottom: 0px;*/
     margin-bottom: 0px;
 }
 
     .form-wrapper a p {
         height: 18px;
-        /*padding-bottom: 50px;*/
-        /*padding-top: 30%;*/
-        /*text-decoration: none;*/
     }
 
 /*Настройка текста ошибок*/
@@ -162,25 +129,3 @@ span {
     color: red;
     font-size: 14px;
 }
-
-
-/*Настройка валидации*/
-/*.has-success .pas {
-    border-bottom: 2px solid #168b3f;
-}
-
-.has-danger .pas {
-    border-bottom: 2px solid #dc1d34;
-}
-
-.form-group .text-help {
-    color: #dc1d34;
-}*/
-
-/*.inline-label label {
-    display: inline;
-}*/
-
-/*.pristine-error {
-    display: table;
-}*/
