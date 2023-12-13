@@ -39,14 +39,15 @@
     text-align: center;
     font-weight: 700;
     font-size: 30px;
-    padding-top: 50px;
+    padding-top: 30px;
+    padding-bottom: 20px;
     width: 100%;
     /*margin-bottom: 20px;*/
 }
 
 form {
-    padding-top: 40px;
-    padding-bottom: 20px;
+    /*padding-top: 20px;*/
+    padding-bottom: 10px;
     width: 80%;
     height: 100%;
 }
@@ -64,9 +65,10 @@ form {
 }
 
     .form-input-container input {
+    /*.form-input-container input:not(:last-child)*/ 
         width: 90%;
         padding: 12px 20px;
-        height: 45px;
+        height: 40px;
         border-radius: 10px;
         margin: 8px 0;
         display: inline-block;
@@ -74,6 +76,38 @@ form {
         box-sizing: border-box;
         color: white !important;
         background-color: #111211;
+        font-size: 15px;
+    }
+
+/*#check {
+    width: 15px;*/
+    /*padding: 12px 20px;*/
+    /*padding: 10px 0 10px 12px;
+    height: 15px;
+    margin: 8px 0;
+}
+
+.check-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.check-wrapper label{
+    padding-left: 10px;
+}*/
+
+.confirm-policy {
+    width: 95%;
+    color: white;
+    text-align: center;
+    padding-bottom: 20px;
+    /*padding-left: */
+    font-size: 14px;
+}
+
+    .confirm-policy a {
+        color:#13ea79;
     }
 
 input:focus {
@@ -82,24 +116,27 @@ input:focus {
 
 .form-input-container input::-webkit-input-placeholder {
     color: white;
+    font-size: 14px;
 }
 
 .form-input-container input:focus::-webkit-input-placeholder {
-    color: white;
+    color: transparent;
+    /*color: white;*/
+    /*overflow: hidden;*/
 }
 
 .form-input-container input#but {
-    width: 70%;
+    width: 75%;
     margin-top: 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    height: 50px;
+    height: 45px;
     background-color: #1a1b1a;
     color: white;
     border: 2px solid #13ea79;
     border-radius: 10px;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 600;
 }
 
@@ -107,7 +144,7 @@ input:focus {
         background-color: #1aa95d;
     }
 
-.form-wrapper a {
+.form-wrapper a:not(:first-child) {
     color: white;
     text-align: center;
     text-decoration: none;
@@ -120,9 +157,11 @@ input:focus {
     margin-bottom: 0px;
 }
 
-    .form-wrapper a p {
-        height: 18px;
-    }
+.form-wrapper a p {
+    height: 16px;
+    font-size: 18px;
+    font-weight: 600;
+}
 
 /*Настройка текста ошибок*/
 span {

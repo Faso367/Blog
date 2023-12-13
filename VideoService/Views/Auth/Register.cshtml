@@ -11,40 +11,48 @@
 
             <form class="sign-in-form" asp-controller="Auth" asp-action="Register" method="post">
                 <div class="form-input-container">
-                    <input asp-for="Username" class="name"
-                        name="username" placeholder="Имя пользователя" />
-                    @*<div class="errors" style="color: red"></div>*@
-                    <span asp-validation-for="Username"></span>
+                    <input asp-for="Username" class="name" name="username" placeholder="Имя пользователя" />
+                    @*<span class="errors" style="height: 20px; color: red"></span>*@
 
-                    <input asp-for="Email" class="email"
-                        name="email" placeholder="Эл. почта" />
-@*                    <div class="errors" style="color: red"></div>
-*@                    <span asp-validation-for="Email"></span>
+                    <span class="errors"></span>
+                    
 
-                    <input asp-for="Password" class="pas"
-                        name="password" placeholder="Пароль" />
-                    @*<div class="errors" style="color: red"></div>*@
-                    <span asp-validation-for="Password"></span>
 
-                    <input asp-for="ConfirmPassword" class="pas"
-                        name="passwordConfirmation" placeholder="Подтвердите пароль" />
-                    @*<div class="errors" style="color: red"></div>*@
-                    <span asp-validation-for="ConfirmPassword"></span>
-@*                    <span asp-validation-for="ConfirmPassword">Пароли не совпадают</span>
-*@
-                    <input type="submit" value="Регистрация" id="but" />
+                    @*<div class="errors" style="color: red"></div>
+                    <span asp-validation-for="Username"></span>*@
+
+                    <input asp-for="Email" class="email" name="email" placeholder="Эл. почта" />
+                    <span class="errors"></span>
+
+                    <input asp-for="Password" class="pas" name="password" placeholder="Пароль" />
+                    <span class="errors"></span>
+
+                    <input asp-for="ConfirmPassword" class="pas" name="passwordConfirmation" placeholder="Подтвердите пароль" />
+                    <span class="errors"></span>
+
+@*                   <div class="check-wrapper">
+                        <input type="checkbox" class="form-check-input" id="check">
+                        <label class="form-check-Label" for="check">Я согласен с условиями</label>
+                    </div>*@
+
+                    <input type="submit" value="Зарегистрироваться" id="but" />
+
+                    
+
                 </div>
-                @*                <div class="under-input">
-
-                <a asp-controller="Auth" asp-action="Login">Войти</a>
-                </div>*@
+                
             </form>
+
+            <span class="confirm-policy">Нажимая кнопку «Зарегистрироваться», Вы принимаете условия
+                <a href="https://xn--d1achjhdicc8bh4h.xn--80asehdb/agreement">Пользовательского соглашения</a>
+            </span>
+
             <a asp-controller="Auth" asp-action="Login"> <p>Войти</p></a>
         </div>
     </div>
 </div>
 
-<script src="~/js/RegisterValidation.js"></script>
+@*<script src="~/js/RegisterValidation.js"></script>*@
 
 @*<textarea asp-for="UserName">
 </textarea>

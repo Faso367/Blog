@@ -20,7 +20,7 @@ public class Program
             // <AppDbContext> - внутри <> имя класса (мы сами его так назвали)
             var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("SmtpSettings");
 
-            builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             // Инициализируем свойства класса SmtpSettings, соответствующие параметрам из appsettings.json
             services.Configure<SmtpSettings>(config);
@@ -59,6 +59,7 @@ public class Program
             }
             );
 
+            services.AddRazorPages().AddRazorRuntimeCompilation();
 
             var app = builder.Build();
 
