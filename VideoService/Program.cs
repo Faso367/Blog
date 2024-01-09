@@ -25,18 +25,19 @@ public class Program
             // Инициализируем свойства класса SmtpSettings, соответствующие параметрам из appsettings.json
             services.Configure<SmtpSettings>(config);
 
+
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             // добавляем авторизацию по логину и паролю (класс IdentityUser уже содержит поля телефона/почты/никнейма/пароля и валидацию)
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
-            //services.AddDefaultIdentity<IdentityUser>(options =>
             // Меняем настройки по умолчанию, чтобы изменить требования к паролю (там не обязательно 1 цифра, заглавная буква...)
             {
-                options.Password.RequireDigit = false; // цифра
+                options.Password.RequireDigit = true; // цифра
                 options.Password.RequireNonAlphanumeric = false; // спецсимвол
-                options.Password.RequireUppercase = false; // заглавная буква
-                options.Password.RequiredLength = 6; // длина
+                options.Password.RequireUppercase = true; // заглавная буква
+                options.Password.RequiredLength = 8; // длина
+            }).AddEntityFrameworkStores<AppDbContext>();
 
-            })
-                .AddEntityFrameworkStores<AppDbContext>();
+            //services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
 
             services.ConfigureApplicationCookie(options =>
             {
@@ -58,6 +59,7 @@ public class Program
                 options.CacheProfiles.Add("Monthly", new Microsoft.AspNetCore.Mvc.CacheProfile { Duration = 60 * 60 * 24 * 7 * 4 });
             }
             );
+            
 
             services.AddRazorPages().AddRazorRuntimeCompilation();
 

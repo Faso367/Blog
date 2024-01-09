@@ -4,11 +4,11 @@ namespace VideoService.ViewModels
 {
     public class CommentViewModel
     {
-        [Required]
+        //[Required]
         public int PostId { get; set; }
-        [Required]
+        //[Required]
         public int MainCommentId { get; set; }
-        [Required]
+        //[Required]
         public string Message { get; set; }
 
     }

@@ -8,24 +8,23 @@
     <div class="ramka">
         <div class="form-wrapper">
             <div class="h1-wrapper">Авторизация</div>
-
             <form asp-controller="Auth" asp-action="Login" method="post">
                 <div class="form-input-container">
-                    @*<label for="name"> <b>Имя пользователя</b> </label>*@
-                    <input asp-for="UserName" id="name" placeholder="Имя пользователя" /> @**@
 
-                    @*<label for="pas"> <b>Пароль</b> </label>*@
-                    <input asp-for="Password" id="pas" placeholder="Пароль" />
-                    @*<p>Пароль</p>*@
+                    <div class="form-group">
+                        <input asp-for="UserName" name="username" id="name" placeholder="Имя пользователя" />
+                        <span class="errors"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Password" name="password" id="pas" placeholder="Пароль" />
+                        <span class="errors"></span>
+                    </div>
+
                     <input type="submit" value="Войти" id="but"/>
                 </div>
             </form>
-            @*            <div class="bottom-block">*@
-
             <a asp-controller="Auth" asp-action="Register"> <p>Зарегистрироваться</p></a>
-            @*</div>*@
         </div>
     </div>
 </div>
-
-@*asasdasd*@
+<script src="~/js/LoginValidation.js"></script>

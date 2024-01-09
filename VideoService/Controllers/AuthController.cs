@@ -69,13 +69,18 @@ namespace VideoService.Controllers
             return View(new RegisterViewModel());
         }
 
-        [HttpPost]
+        //[HttpPost]
         // Метод для сохранения данных, из формы для регистрации, в VM
 
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel vm)
         {
+            // 04.01
+            // Какого-то фига ConfirmedPassword передаётся = null
+
             //vm.PasswordHash = vm.Password.GetHashCode().ToString();
+
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
 
             if (!ModelState.IsValid)
             {
@@ -93,7 +98,8 @@ namespace VideoService.Controllers
             //var result = await _userManager.CreateAsync(user, vm.PasswordHash); // НЕ ЗНАЮ ЛУЧШЕ С ПАРОЛЕМ ИЛИ С ХЕШЕМ ПАРОЛЯ
 
             var result = await _userManager.CreateAsync(user, vm.Password);
-            await _userManager.AddToRoleAsync(user, "AuthUser");
+
+            await _userManager.AddToRoleAsync(user, "AuthUser"); // НЕ РАБОТАЕТ !!!!!!!!!!!!!!
 
             // Если данные в БД сохранились без ошибок
             if (result.Succeeded)

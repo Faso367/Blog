@@ -7,6 +7,7 @@ namespace VideoService.Models
 
     public class Post
     {
+        //public int? Id { get; set; }
         public int Id { get; set; }
 
         public string Title { get; set; } = ""; // поле для хранения заголовка записи
@@ -20,5 +21,6 @@ namespace VideoService.Models
         // БД должна содержать список первостепенных (основных комментов)
         // а уже у основных будут дополнительные (которые тоже могут быть основными для других дополнительных)
         public List<MainComment> MainComments { get; set; }
+        //public List<MainComment>? MainComments { get; set; }
     }
 }
