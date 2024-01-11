@@ -14,7 +14,7 @@ namespace VideoService.Controllers
         //public UserManager<IdentityUser> _userManager { get; private set; }
         private UserManager<IdentityUser> _userManager; // для управления пользователями используется не контекст данных, а класс - UserManager<T>
         private IEmailService _emailService;
-        
+
 
         public AuthController(SignInManager<IdentityUser> signInManager,
             UserManager<IdentityUser> userManager, IEmailService emailService)
@@ -30,7 +30,7 @@ namespace VideoService.Controllers
             // Отвечаю Login.cshtml, передаю представлению на вход экземпляр LoginViewModel
             return View(new LoginViewModel());
         }
-        
+
 
         [HttpPost]
         // Использую async Task, тк внутри крутится асинхронная функция
@@ -45,7 +45,7 @@ namespace VideoService.Controllers
             if (!result.Succeeded)
             {
                 // Возвращаем сообщение об ошибке от VM 
-                return View(vm);   
+                return View(vm);
             }
             // Получаем имя пользователя
             var user = await _userManager.FindByNameAsync(vm.UserName);
@@ -99,11 +99,10 @@ namespace VideoService.Controllers
 
             var result = await _userManager.CreateAsync(user, vm.Password);
 
-            await _userManager.AddToRoleAsync(user, "AuthUser"); // НЕ РАБОТАЕТ !!!!!!!!!!!!!!
-
             // Если данные в БД сохранились без ошибок
             if (result.Succeeded)
             {
+                await _userManager.AddToRoleAsync(user, "AuthUser");
                 await _signInManager.SignInAsync(user, false);
                 //await _emailService.SendEmail(user.Email, "Welcome", "Sir");
                 return RedirectToAction("Index", "Home");
@@ -119,6 +118,8 @@ namespace VideoService.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+
 
     }
 

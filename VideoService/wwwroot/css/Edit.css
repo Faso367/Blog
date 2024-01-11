@@ -1,11 +1,10 @@
-﻿/*edit:not(#editor) {*/
+﻿
 edit {
     margin: 0;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    /*color: white;*/
 }
 
 h1 {
@@ -20,7 +19,6 @@ form {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /*transform: translateX(10%);*/
 }
 input:focus {
     color: white;
@@ -45,19 +43,13 @@ input:focus {
     }
     .input-container textarea, input {
         width: 50%;
-        /*padding: 12px 20px;*/
         height: 90%;
         border-radius: 10px;
         margin: 8px 0;
-        /*padding-left: 30px;*/
-        /*display: inline-block;*/
         border: 1px solid #ccc;
         box-sizing: border-box;
-        /*color: white !important;*/
-        /*background-color: #111211;*/
         background-color: #1a1b1a;
         color: white;
-        /*transform: translateX(50%);*/
     }
 .input-container#description {
     height: 120px;
@@ -65,17 +57,12 @@ input:focus {
 
     .input-container label {
         margin-right: 20px;
-/*        transform: translateX(50%);
-*/        /*padding-right: 10px;*/
-          /*padding-left: 45%;*/
     }
 
     .input-container#tags label {
         margin-right: 23px;
         margin-left: 37px;
     }
-
-
 
 
 
@@ -91,18 +78,14 @@ input:focus {
         margin-left: 62px;
     }
 
-    /*background-color: #111211;*/
-
 .themes select {
     width: auto;
-    /*margin-top: 10px;*/
     text-align: center;
     text-decoration: none;
     display: inline-block;
     height: 40px;
     background-color: #1a1b1a;
     color: white;
-    /*border: 2px solid #13ea79;*/
     border: 1px solid #ccc;
     border-radius: 10px;
     font-size: 16px;
@@ -112,20 +95,71 @@ input:focus {
 
 .main-text {
     width: 60%;
-    /*height: 700px;*/
-    /*margin-top: 10px;*/
     transform: translateX(3%);
-    /*padding-left: 120px;*/
+    margin-bottom: 10px;
 }
 
     .main-text label {
-        /*padding-bottom: 30px !important;*/
-        /*margin-bottom: 30px !important;*/
         margin-bottom: 12px;
         display: block;
         transform: translateX(43%);
+        font-size: 18px;
     }
 
 .buttons {
-
+    margin-top: 25px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding-right: 8px;
+    margin: 8px 0;
+    min-width: 25%;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    background-color: #1a1b1a;
+    color: white;
+    display: flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items: center;
 }
+
+#custom-button {
+    padding: 10px;
+    color: white;
+    background-color: #1a1b1a;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+    #custom-button:hover {
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+#custom-text {
+    margin-left: 10px;
+    font-family: sans-serif;
+    color: #aaa;
+}
+
+input#but {
+    width: 18%;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    height: 45px;
+    background-color: #1a1b1a;
+    color: white;
+    border: 2px solid #13ea79;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+    input#but:hover {
+        background-color: #1aa95d;
+    }

@@ -1,17 +1,14 @@
-﻿
+﻿@model PostViewModel
 
-@model PostViewModel 
-
-
-    <!--получаем доступ к классу Post (который является моделью)-->
-
+<!--получаем доступ к классу Post (который является моделью)-->
 @{
 
-    //var UserName = Context.User.ToString();
     var UserName = Context.User.Identity?.Name;
-} <!--Чтобы IntelliSense не ругалась, лучше всегда добавлять эту штуку-->
+}
+
 <link href="~/css/Edit.css" rel="stylesheet" />
 <link href="~/lib/trumbowyg-main/dist/ui/trumbowyg.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
 
 <div class="edit">
     <h1>Создание поста</h1>
@@ -22,13 +19,12 @@
         <input asp-for="Id" type="hidden" /> <!--Сможем увидеть Id через инструменты разработчика в браузере-->
         <div class="input-container">
             <label>Заголовок</label>
-            <input asp-for="Title"/>
+            <input asp-for="Title" />
         </div>
-@*        <div class="input-container-description">*@
-           <div class="input-container" id="description">
+        <div class="input-container" id="description">
             <label>Описание</label>
             <textarea asp-for="Description"></textarea> <!--Указываем в какое свойство модели будет происходить запись из поля input (в какое поле БД)-->
-        </div> 
+        </div>
         <div class="input-container" id="tags">
             <label>Теги</label>
             <textarea asp-for="Tags"></textarea> <!--Указываем в какое свойство модели будет происходить запись из поля input (в какое поле БД)-->
@@ -46,12 +42,15 @@
             <textarea id="editor" asp-for="Body"></textarea>
         </div>
         <div class="buttons">
-            <label>Изображение</label>
-            <input asp-for="CurrentImage" type="hidden"/>
-            <input asp-for="Image" />
+            <input asp-for="CurrentImage" type="hidden" />
+            <input asp-for="Image" type="file" id="real-life" hidden="hidden" />
+            <button type="button" id="custom-button">Выберите файл</button>
+            <span id="custom-text">Файл не выбран</span>
+            <i class="fa-regular fa-folder-open"></i>
         </div>
-        <input type="submit" value="Подтвердить отправку"/>
-        
+
+        <input type="submit" value="Подтвердить отправку" id="but" />
+
         @*Чтобы система могла связать параметры метода и данные формы, необходимо,
         чтобы атрибуты name у полей формы соответствовали названиям параметров.*@
     </form>
@@ -60,15 +59,8 @@
 @section scripts {
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="~/lib/trumbowyg-main/dist/trumbowyg.min.js"></script>
-    <script>$('#editor').trumbowyg();
-
-       // . - class
-       // # - id
-       // nav - html element
+    <script>
+        $('#editor').trumbowyg();
     </script>
+    <script src="~/js/Edit.js"></script>
 }
-
-@*        @if (User.Identity.IsAuthenticated)
-        {
-            <p asp-for="Author" type="hidden">@UserName</p>
-        }*@
