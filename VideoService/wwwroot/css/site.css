@@ -31,6 +31,54 @@ nav {
             /*background-color: #0d8e5b;*/
             background-color: #1a7450;
         }
+/* Dropdown Button */
+.dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-buttons {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+    /* Links inside the dropdown */
+    .dropdown-buttons a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-buttons a:hover {
+            background-color: #ddd;
+        }
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-buttons {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
 
 /* Кнопка выпадающего списка */
 /*.themes-btn {*/
@@ -54,47 +102,45 @@ nav {
 /*background-color: #1a7450;
     }*/
 /* Контейнер <div> - необходим для размещения выпадающего содержимого */
-.themes-block {
+/*.themes-block {
     position: relative;
     display: inline-block;
-}
+}*/
 
 /* Выпадающее содержимое (скрыто по умолчанию) */
-.spisok {
+/*.spisok {
     display: none;
     position: absolute;
-    /*background-color: #f1f1f1;*/
     background-color: #222;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    /*padding-top:-10px;*/
-    /*margin-top: -1px;*/
-}
+}*/
 
     /* Ссылки внутри выпадающего списка */
-    .spisok a {
-        /*color: black;*/
+    /*.spisok a {
         color: white;
-        /*padding: 12px 16px;*/
         text-decoration: none;
         display: block;
-    }
+    }*/
 
         /* Изменение цвета выпадающих ссылок при наведении курсора */
         /*        .spisok a:hover {
             background-color: #ddd
         }*/
         /* Change color of dropdown links on hover */
-        .spisok a:hover {
-            /*background-color: #ddd;*/
+        /*.spisok a:hover {
             background-color: #1a7450;
-        }
+        }*/
 
 /* Show the dropdown menu on hover */
-.themes-block:hover .spisok {
+/*.themes-block:hover .spisok {
     display: block;
-}
+}*/
+
+
+
+
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 /*.themes-block:hover .themes-btn {
@@ -133,7 +179,7 @@ nav {
 
 
 /*---------------------------------------*/
-.main-img {
+/*.main-img {
     position: relative;
     height: 500px;
     background-image: url(../_content/static/pushka.webp);
@@ -179,10 +225,10 @@ nav {
 
 .search::placeholder {
     color: pink;
-}
+}*/
 
 /*Для экранов мобильных телефонов (если экран < 768px) появится кнопка Поиск*/
-@media screen and (max-width: 768px) {
+/*@media screen and (max-width: 768px) {
     .submit-btn {
         display: inline-block;
     }
@@ -197,15 +243,15 @@ nav {
 .post {
     margin: 5px;
     position: relative;
-    display: flex; /*фото сможет менять свой размер*/
-    height: 400px;
+    display: flex;*/ /*фото сможет менять свой размер*/
+    /*height: 400px;
     box-shadow: 0 0 5px 0 black;
 }
 
     .post img {
         width: 100%;
-        object-fit: cover; /*заголовки фото будут подстраиваться под его размер*/
-    }
+        object-fit: cover;*/ /*заголовки фото будут подстраиваться под его размер*/
+    /*}
 
     .post .title {
         position: absolute;
@@ -237,9 +283,9 @@ nav {
     margin: 2rem;
 }
 
-    .pages a {
+    .pages a {*/
         /*background-color: #189b67;*/
-        color: white;
+        /*color: white;
         border-radius: 50%;
         border: 1px solid #eee;
         text-align: center;
@@ -250,21 +296,21 @@ nav {
         margin: 2px;
         font-weight: 600;
         font-size: 20px;
-    }
+    }*/
 
         /*Вариант с квадратными кнопками*/
 
-        .pages a.active {
-            background-color: #189b67;
+        /*.pages a.active {
+            background-color: #189b67;*/
             /*background-color: #3ae9a3;*/
-            color: whitesmoke;
+            /*color: whitesmoke;
         }
 
-        .pages a:hover {
+        .pages a:hover {*/
             /*text-shadow: 0 0 8px black;*/
-            background-color: #1a7450;
+            /*background-color: #1a7450;
             text-decoration: none;
-        }
+        }*/
 
 
 

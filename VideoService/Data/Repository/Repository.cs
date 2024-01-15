@@ -54,7 +54,7 @@ namespace VideoService.Data.Repository
         //}
 
         // Получаем все записи в БД
-        public IndexViewModel GetAllPosts(int pageNumber,
+        public FeedViewModel GetAllPosts(int pageNumber,
             string category,
             string search)
         {
@@ -101,7 +101,7 @@ namespace VideoService.Data.Repository
             // Преобразовываем для VM результат в int (тк метод вернет целое число типа double)
             int pageCount = (int)Math.Ceiling(((double)postsCount) / pageSize);
 
-            return new IndexViewModel
+            return new FeedViewModel
             {
                 PageNumber = pageNumber,
                 PageCount = pageCount,

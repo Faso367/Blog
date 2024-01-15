@@ -2,7 +2,7 @@
 
 namespace VideoService.ViewModels
 {
-    public class IndexViewModel
+    public class FeedViewModel
     {
         // Текущий номер страницы
         public int PageNumber { get; set; }

@@ -1,5 +1,5 @@
 ﻿<!--Этот View нужен, чтобы не засорять Index.cshtml (мы просто подключим к нему это представление)-->
-@model IndexViewModel
+@model FeedViewModel
 
 @{
 }
@@ -9,7 +9,7 @@
     @if (Model.PageNumber > 1) // Если пользователь не на первой странице, то у него появляется кнопка Назад
     {
         <div class="a-wrapper">
-            <a asp-action="Index" class="bottom-with-text" asp-controller="Home" asp-route-category="@Model.Category"
+            <a asp-action="Index" class="bottom-with-text" asp-controller="Feed" asp-route-category="@Model.Category"
             asp-route-search="@Model.Search" asp-route-pageNumber="@(Model.PageNumber - 1)">&lt;</a>
         </div>
     }
@@ -33,7 +33,7 @@
             // Затем меняем цвет кнопки в CSS
             // Пробегаемся по всем номерам страниц и делаем из их номеров ссылки (кнопки)
             <div class="a-wrapper">
-                <a class="@activeClass" asp-action="Index" asp-controller="Home" asp-route-category="@Model.Category"
+                <a class="@activeClass" asp-action="Index" asp-controller="Feed" asp-route-category="@Model.Category"
                 asp-route-search="@Model.Search" asp-route-pageNumber="@p">@p</a>
             </div>
         }
@@ -43,7 +43,7 @@
     @if (Model.NextPage) //Если на этой странице показаны не последние записи из таблицы
     {
         <div class="a-wrapper">
-            <a asp-action="Index" class="bottom-with-text" asp-controller="Home" asp-route-category="@Model.Category"
+            <a asp-action="Index" class="bottom-with-text" asp-controller="Feed" asp-route-category="@Model.Category"
            asp-route-search="@Model.Search" asp-route-pageNumber="@(Model.PageNumber + 1)">&gt;</a>
         </div>
 

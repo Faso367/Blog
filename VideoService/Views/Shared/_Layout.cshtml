@@ -32,14 +32,19 @@
 <body>
     @*<div>*@
         <nav>
-            <a asp-controller="Home" asp-action="Index">Домой</a>
-            <a asp-controller="Home" asp-action="Index" asp-route-category="Programing">Программирование</a>
+           <a asp-controller="Home" asp-action="Index">Домой</a>
 
-        @*<a asp-controller="Panel" asp-action="Edit" asp-route-category="Programing">Создать запись</a>*@
+            <a asp-controller="Feed" asp-action="Index">Лента</a>
 
-            @*asp-route-id="@post.Id">*@
-            <!--!!!!!!!!!!!!!!!!! БЫЛО asp-controller="Home"  -->
-            <!--<a asp-controller="Home" asp-action="Edit">Создать_запись</a> --> <!--!!!!!!!!!!!!!!!!!-->
+            @*РАБОТАЕТ (12.01)*@
+@*        <div class="dropdown">
+            <button class="dropbtn">Темы</button>
+            <div class="dropdown-buttons">
+                <a asp-controller="Home" asp-action="Index" asp-route-category="Programing">Программирование</a>
+                <a asp-controller="Home" asp-action="Index" asp-route-category="Photography">Фотография</a>
+                <a asp-controller="Home" asp-action="Index" asp-route-category="Travel">Путешествия</a>
+            </div>
+        </div>*@
 
         @if (User.Identity.IsAuthenticated)
         {
