@@ -3,12 +3,18 @@
 @{
 }
 
-
-<div>
-    <form method="post" asp-controller="Home" asp-action="Comment"> 
+<link rel="stylesheet" href="~/css/MainComment.css"/>
+<div class="send-comment">
+    <form method="post" asp-controller="Feed" asp-action="Comment"> 
         <input asp-for="PostId" type="hidden"/>
         <input asp-for="MainCommentId" type="hidden" />
-        <input asp-for="Message" />
-        <button type="submit">Отправить</button>
+        
+        @*onclick="spanSwitch(this)">*@
+        @*<span class="textarea" role="textbox" contenteditable="true"></span>*@
+        <textarea asp-for="Message" oninput="auto_grow(this)"></textarea>
+
+        <button type="submit" id="send-comment-but">Отправить</button>
     </form>
 </div>
+
+<script src="~/js/MainComment.js"></script>

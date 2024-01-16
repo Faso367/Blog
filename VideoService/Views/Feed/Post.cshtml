@@ -10,9 +10,10 @@
     var base_path = Context.Request.PathBase;
 }
 
+<link href="~/css/Post.css" rel="stylesheet"/>
 
-<div class="container">
-    <div class="post no-shadow">
+<div class="post">
+    <div class="main-image">
         @if (!String.IsNullOrEmpty(Model.Image))
         {
             //var image_path = $"/Image/{Model.Image}";
@@ -22,37 +23,39 @@
         }
     </div>
 
-    <div class="post-body">
+    <div class="text-section">
         @Html.Raw(Model.Body) <!--Отображаем тело записи из БД под фото-->
     </div>
 
     @if (User.Identity.IsAuthenticated)
     {
     // Если пользователь авторизовался, то он может создать комментарий
-        <div class="comment-section">
+        <div class="comments-section">
             @{
+                // Подгружаем MainComment.cshtml
                 await Html.RenderPartialAsync("MainComment",
                     new CommentViewModel { PostId = Model.Id, MainCommentId = 0 });
             }
             @foreach (var c in Model.MainComments)
             {
+                <div class="comment">
                 <p>
                     @c.Message --- @c.Created
                 </p>
-                <div style="margin-left: 20px;">
-                    <h4>Подкомментарии</h4>
+                    @*
                     @{
                         await Html.RenderPartialAsync("MainComment",
                             new CommentViewModel { PostId = Model.Id, MainCommentId = c.Id });
-                    }
-
-                    @foreach (var sc in c.SubComments)
-                    {
-                        <p>
-                            @sc.Message --- @sc.Created
-                        </p>
-                    }
+                    }*@
                 </div>
+                //<div class="subcomment" style="margin-left: 30px;">
+                //    @foreach (var sc in c.SubComments)
+                //    {
+                //        <p>
+                //            @sc.Message --- @sc.Created
+                //        </p>
+                //    }
+                //</div>
             }
 
         </div>
