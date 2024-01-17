@@ -4,15 +4,15 @@
 }
 
 <link rel="stylesheet" href="~/css/MainComment.css"/>
+<h1 class="comments-title">Комментарии</h1>
 <div class="send-comment">
+
     <form method="post" asp-controller="Feed" asp-action="Comment"> 
         <input asp-for="PostId" type="hidden"/>
         <input asp-for="MainCommentId" type="hidden" />
-        
-        @*onclick="spanSwitch(this)">*@
-        @*<span class="textarea" role="textbox" contenteditable="true"></span>*@
-        <textarea asp-for="Message" oninput="auto_grow(this)"></textarea>
 
+        <textarea asp-for="Message" oninput="auto_grow(this)" placeholder="Введите комментарий" id="comment-textarea"></textarea>
+        @*<textarea asp-for="Message" placeholder="Введите комментарий" id="comment-textarea"></textarea>*@
         <button type="submit" id="send-comment-but">Отправить</button>
     </form>
 </div>
