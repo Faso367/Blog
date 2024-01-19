@@ -32,16 +32,27 @@
     // Если пользователь авторизовался, то он может создать комментарий
         <div class="comments-section">
             @{
+
                 // Подгружаем MainComment.cshtml
                 await Html.RenderPartialAsync("MainComment",
                     new CommentViewModel { PostId = Model.Id, MainCommentId = 0 });
             }
             @foreach (var c in Model.MainComments)
             {
+                
                 <div class="comment">
-                <p>
-                    @c.Message --- @c.Created
-                </p>
+                <label>
+                    Author`s name --- @c.Created
+                </label>
+                    <div class="comment-text">
+                        @c.Message
+                        
+                        <span class="dots" id="dots(@c.Id)">...</span>
+                        @*<span class="dots" id=@"dots"+c.Id>...</span>*@
+                        <span class="moreText" id="moreText(@c.Id)">MORE text aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
+                        <span class="readMoreBut" id="readMoreBut(@c.Id)" onclick="ReadMoreOrLess(@c.Id)">Читать далее...</span>
+                    </div>
+                    
                     @*
                     @{
                         await Html.RenderPartialAsync("MainComment",
@@ -67,3 +78,5 @@
         </div>
     }
 </div>
+
+<script src="~/js/Post.js"></script>
