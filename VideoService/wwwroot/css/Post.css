@@ -8,7 +8,6 @@
     margin: 0;
     height: 100%;
     width: 100%;
-    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,43 +22,42 @@
     /*height: 1000px;*/
     width: 100%;
     height: 655px;
-/*    background-image: url(../_content/static/pushka.webp);*/
+    /*    background-image: url(../_content/static/pushka.webp);*/
     background-position: center;
     background-size: cover;
-/*    display: flex;
+    /*    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;*/
 }
 
-.main-image img {
-    width: 100%;
-    height: 100%;
-}
+    .main-image img {
+        width: 100%;
+        height: 100%;
+    }
 
-.main-image .title {
-    color: white;
-    font-size: 40px;
-    text-shadow: 0 0 8px black;
-    margin-bottom: 1rem;
-}
-
-    .title {
-        position: absolute;
-        left: 50%;
-        top: 35%;
-        transform: translateX(-50%);
+    .main-image .title {
         color: white;
         font-size: 40px;
         text-shadow: 0 0 8px black;
         margin-bottom: 1rem;
     }
 
+.title {
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 40px;
+    text-shadow: 0 0 8px black;
+    margin-bottom: 1rem;
+}
+
 /*Секция с основным текстом поста*/
 .post .text-section {
     height: 100%;
     width: 80%;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,7 +70,6 @@
     border: 1px solid #ccc;
     width: 100%;
     overflow: hidden;
-
     margin: 20px;
     padding-left: 200px;
     display: flex;
@@ -95,8 +92,12 @@
 
 .comment .comment-text {
     font: 14px sans-serif;
-    width: 100%;
+    min-width: 600px;
+    max-width: 700px;
+    /*width: 100%;*/
+    /*overflow-x: hidden;*/
     overflow-wrap: break-word;
+    /*overflow-wrap: normal;*/
 }
 
 .comment .moreText {
@@ -107,10 +108,122 @@
     color: white;
 }
 
-.comment .readMoreBut:hover {
-    color: #13ea79;
+    .comment .readMoreBut:hover {
+        color: #13ea79;
+        cursor: pointer;
+    }
+
+
+.show-text-but {
+    /*background-color: #eee;*/
+    /*    background-color: #111211;
+    color: #444;
     cursor: pointer;
+    padding: 18px;
+    width: 200px;
+    text-align: center;
+    border: none;
+    outline: none;
+    transition: 0.4s;*/
+    /*background-color: #111211;*/
+    /*color: #444;*/
+    color: white;
+    cursor: pointer;
+    /*padding: 15px 5px 15px 5px;*/
+    /*padding: 9px;*/
+
+    padding: 10px 5px 10px 0;
+    /*padding-*/
+    font-size: 14px;
+    font-weight: 600;
+    width: 110px;
+    text-align: center;
+    border: none;
+    outline: none;
+    display: inline;
+    transition: 0.1s;
+    background-color: #1a1b1a;
+    border-radius: 10px;
 }
+
+    .show-text-but:hover {
+        background-color: #189b67;
+    }
+
+    .show-text-but:after {
+        /*content: '\02795'; */
+        /*        content: url(~/_content/static/up.svg);
+        
+        font-size: 13px;
+        color: red;
+        float: left;
+        margin-left: 5px;*/
+
+        content: '\25BC';
+        font-size: 11px;
+        padding-top: 3px;
+        float: left;
+        margin-left: 10px;
+    }
+
+.active:after {
+    /*content: '\02796'; */
+    /* content: url(~/_content/static/down.svg);*/
+    content: '\25B2';
+}
+
+/*.arrow {
+    display: inline-block;
+    margin-right: 30px;
+    width: 15px;
+    height: 15px;
+    border-top: 2px solid #000;
+    border-right: 2px solid #000;
+    transform: rotate(-45deg);
+}*/
+/*При наведении на кнопку переворачиваем стрелку*/
+/*.show-text-but:after .arrow {
+    transform: rotate(-180deg);
+}*/
+
+.subcomment {
+    width: 50%;
+    min-height: 100px;
+    max-height: 400px;
+    margin-top: 20px;
+    margin-left: 30px;
+    display: none;
+    padding: 0 18px;
+    background-color: black;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    /*
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;*/
+}
+
+
+/*
+.subcomment p {
+
+}*/
+
+/*.subcomment-text {
+    font: 14px sans-serif;
+    min-width: 600px;
+    max-width: 700px;
+    overflow-wrap: break-word;
+    display: none;
+}*/
+
+/*span #z {
+    display: inline;
+}*/
+
 /*    .comments-section .send-comment {
         width: 100%;
         min-height: 100px;
@@ -118,20 +231,20 @@
         height: auto;
     }*/
 
-        /*.comments-section .send-comment textarea {
+/*.comments-section .send-comment textarea {
             width: 80%;*/
-            /*height: 90%;*/
-            /*height: 100%;*/
-            /*min-height: 60px;*/
-            /*border-radius: 10px;*/
-            /*margin: 8px 0;*/
-            /*outline: none;*/
-            /*border: none;
+/*height: 90%;*/
+/*height: 100%;*/
+/*min-height: 60px;*/
+/*border-radius: 10px;*/
+/*margin: 8px 0;*/
+/*outline: none;*/
+/*border: none;
             border-bottom: 1px solid #ccc;*/
-            /*box-sizing: border-box;*/
-            /*background-color: #111211;*/
-            /*background-color: #1a1b1a;*/
-            /*color: white;
+/*box-sizing: border-box;*/
+/*background-color: #111211;*/
+/*background-color: #1a1b1a;*/
+/*color: white;
             font-size: 19px;
             font-weight: 400;
         }*/
@@ -151,18 +264,18 @@
             }*/
 
 
-    /*.comments-section .comment {
+/*.comments-section .comment {
         width: 100%;
         height: 60px;*/
-        /*margin-left: 50px;*/
-    /*}*/
+/*margin-left: 50px;*/
+/*}*/
 
-    /*.comments-section form {
+/*.comments-section form {
         width: 100%;*/
 /*        height: 100%;
         min-height: 100px;
         max-height: 500px;*/
-        /*height: auto;
+/*height: auto;
         margin: 0px;
         display: flex;
         flex-direction: row;

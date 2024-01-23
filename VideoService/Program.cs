@@ -5,6 +5,7 @@ using VideoService.Data;
 using VideoService.Data.FileManager;
 using VideoService.Data.Repository;
 using VideoService.Services.Email;
+using Umbraco.Web;
 
 public class Program
 {

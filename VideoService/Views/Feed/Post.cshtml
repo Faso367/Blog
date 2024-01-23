@@ -1,6 +1,4 @@
-﻿
-<!--ТУТ ВСЕ ОК-->
-
+﻿<!--ТУТ ВСЕ ОК-->
 @model Post
 @{
     ViewBag.Title = Model.Title;
@@ -10,7 +8,7 @@
     var base_path = Context.Request.PathBase;
 }
 
-<link href="~/css/Post.css" rel="stylesheet"/>
+<link href="~/css/Post.css" rel="stylesheet" />
 
 <div class="post">
     <div class="main-image">
@@ -29,35 +27,82 @@
 
     @if (User.Identity.IsAuthenticated)
     {
-    // Если пользователь авторизовался, то он может создать комментарий
+        // Если пользователь авторизовался, то он может создать комментарий
         <div class="comments-section">
             @{
 
                 // Подгружаем MainComment.cshtml
                 await Html.RenderPartialAsync("MainComment",
-                    new CommentViewModel { PostId = Model.Id, MainCommentId = 0 });
+                new CommentViewModel { PostId = Model.Id, MainCommentId = 0 });
             }
             @foreach (var c in Model.MainComments)
             {
-                
+
                 <div class="comment">
-                <label>
-                    Author`s name --- @c.Created
-                </label>
+                    <label>
+                        Comment Author`s name --- @c.Created
+                    </label>
                     <div class="comment-text">
-                        @c.Message
-                        
-                        <span class="dots" id="dots(@c.Id)">...</span>
-                        @*<span class="dots" id=@"dots"+c.Id>...</span>*@
-                        <span class="moreText" id="moreText(@c.Id)">MORE text aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
-                        <span class="readMoreBut" id="readMoreBut(@c.Id)" onclick="ReadMoreOrLess(@c.Id)">Читать далее...</span>
+                        @*Если длина комментария более 400 символов, тогда выводим только 400, иначе весь коммент*@
+
+                        @{
+                            //string str = "";
+
+                            if (c.Message.Length > 400)
+                            {
+                                foreach (char s in c.Message.Take(400))
+                                    @s
+                                ;
+                                //foreach(char s in c.Message.Skip(400))
+                                //{
+                                //    str += s;
+                                //}
+                                <span class="dots" id="dots(@c.Id)">...</span>
+                                <span class="moreText" id="moreText(@c.Id)">@foreach (char s in c.Message.Skip(400))
+                                        @s
+                </span>
+                                <br />
+                                <span class="readMoreBut" id="readMoreBut(@c.Id)" onclick="ReadMoreOrLess(@c.Id)">Читать далее</span>
+                            }
+                            else
+                            {
+                                @c.Message
+                                ;
+                            }
+                        }
                     </div>
-                    
+
+                    @if (c.SubComments.Count > 0)
+                    {
+                        <button class="show-text-but">@(c.SubComments.Count) ответов</button>
+                        //<button class="show-text-but"><span class="arrow"></span>@(c.SubComments.Count) ответов</button>
+
+                        //<span class="showSubcommentsBut" id="showSubcommentsBut(@c.Id)" onclick="ShowSubcomments(@c.Id)">
+                        //@(c.SubComments.Count) ответов
+                        //</span>
+
+                        <div class="subcomment">
+                            @foreach (var sc in c.SubComments)
+                            {
+                                <label>
+                                    Subcomment Author`s name  --- @sc.Created
+                                </label>
+                                <p>@sc.Message</p>
+
+                                //@sc.Message
+                                //<div class="subcomment-text" id="subcocommentText(@c.Id)">
+                                //    @sc.Message --- @sc.Created
+                                //</div>
+                            }
+                        </div>
+                    }
+
                     @*
-                    @{
-                        await Html.RenderPartialAsync("MainComment",
-                            new CommentViewModel { PostId = Model.Id, MainCommentId = c.Id });
-                    }*@
+
+            @{
+            await Html.RenderPartialAsync("MainComment",
+            new CommentViewModel { PostId = Model.Id, MainCommentId = c.Id });
+            }*@
                 </div>
                 //<div class="subcomment" style="margin-left: 30px;">
                 //    @foreach (var sc in c.SubComments)
