@@ -8,6 +8,13 @@
     var base_path = Context.Request.PathBase;
 }
 
+
+<!-- Подключение шрифта roboto --->
+<!--
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+--->
 <link href="~/css/Post.css" rel="stylesheet" />
 
 <div class="post">
@@ -74,7 +81,7 @@
 
                     @if (c.SubComments.Count > 0)
                     {
-                        <button class="show-text-but">@(c.SubComments.Count) ответов</button>
+                        <button class="show-answers-but">@(c.SubComments.Count) ответов</button>
                         //<button class="show-text-but"><span class="arrow"></span>@(c.SubComments.Count) ответов</button>
 
                         //<span class="showSubcommentsBut" id="showSubcommentsBut(@c.Id)" onclick="ShowSubcomments(@c.Id)">
