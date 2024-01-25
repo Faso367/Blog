@@ -79,9 +79,28 @@
                         }
                     </div>
 
+                    @functions {
+                string DetermineEnding(int number) {
+                    string ending = "ответ";
+                    string numberStr = number.ToString();
+
+                    List<char> Aending = new List<char>(){ '2', '3', '4' };
+                    List<char> OVending = new List<char>(){ '0', '5', '6', '7', '8', '9'};
+
+                            if (Aending.Contains(numberStr[^1])) { ending += "а"; }
+                            if (number != 1 && (numberStr.EndsWith("11") || OVending.Contains(numberStr[^1]))) { ending += "ов"; }
+                            
+                            return ending;
+                        }
+                    }
+
                     @if (c.SubComments.Count > 0)
                     {
-                        <button class="show-answers-but">@(c.SubComments.Count) ответов</button>
+
+                        var count = @c.SubComments.Count;
+                        //<button class="show-answers-but">@(c.SubComments.Count) ответов</button>
+                        <button class="show-answers-but">@count @DetermineEnding(@count)</button>
+
                         //<button class="show-text-but"><span class="arrow"></span>@(c.SubComments.Count) ответов</button>
 
                         //<span class="showSubcommentsBut" id="showSubcommentsBut(@c.Id)" onclick="ShowSubcomments(@c.Id)">

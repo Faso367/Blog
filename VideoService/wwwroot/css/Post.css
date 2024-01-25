@@ -36,7 +36,7 @@
 
     .main-image .title {
         color: white;
-        /*font-size: 40px;*/
+        font-size: 40px;
         text-shadow: 0 0 8px black;
         margin-bottom: 1rem;
     }
@@ -89,7 +89,7 @@
     font: 14px bold 'Roboto'; /*ШРИФТ*/
 }
 
-.comment .comment-text {
+.comment .comment-text, .subcomment {
     font: 16px sans-serif; /*ШРИФТ*/
     /*font-weight: 200;*/
     min-width: 600px;
@@ -115,19 +115,22 @@
 .show-answers-but { /*Кнопка для показа ответов на комментарий*/
     color: white;
     cursor: pointer;
-    padding: 10px 5px 10px 0;
+    margin-top: 10px;
+    padding: 12px 5px 10px 0;
     /*font: 14px 'Roboto';*/ /*ШРИФТ*/
     font: 14px sans-serif;
     /*    font-size: 14px;*/
     font-weight: 600;
     width: 110px;
-    text-align: center;
+/*    text-align: center;
+    align-content: center;*/
     border: none;
     outline: none;
     display: inline;
     transition: 0.1s;
     background-color: #1a1b1a;
     border-radius: 10px;
+    
 }
 
     .show-answers-but:hover {
@@ -136,7 +139,7 @@
 
     .show-answers-but:after {
         content: '\25BC';
-        /*font-size: 11px;*/
+        font-size: 10px;
         padding-top: 3px;
         float: left;
         margin-left: 10px;
@@ -149,13 +152,17 @@
 .subcomment { /*Блок подкомментария*/
     width: 50%;
     min-height: 100px;
-    max-height: 400px;
+    /*max-height: 400px;*/
     margin-top: 20px;
     margin-left: 30px;
     display: none;
     padding: 0 18px;
-    background-color: black;
+    /*background-color: black;*/
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
+}
+
+.subcomment p {
+    margin-top: 10px;
 }

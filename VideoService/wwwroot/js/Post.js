@@ -55,7 +55,7 @@ function ReadMoreOrLess(id) {
     }
 } 
 
-var acc = document.getElementsByClassName("show-text-but");
+var acc = document.getElementsByClassName("show-answers-but");
 var i;
 
 for (i = 0; i < acc.length; i++) {
