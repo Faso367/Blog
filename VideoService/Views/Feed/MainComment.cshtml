@@ -4,29 +4,36 @@
 }
 
 <link rel="stylesheet" href="~/css/MainComment.css"/>
-<h1 class="comments-title">Комментарии</h1>
 
-<div class="IsAuthenticated" style="display: none; overflow: hidden;">@User.Identity.IsAuthenticated</div>
 
-<div class="modal-window" id="modal">
-    <button id="closeModal"></button>
-    <div class="modal-window-inner">
+<span id="IsAuthenticated" style="display: none; overflow: hidden;">@User.Identity.IsAuthenticated</span>
 
-        <p>Авторизуйтесь, чтобы оставить комментарий</p>
-        <a asp-action="Login" asp-controller="Auth">Вход</a>
-    </div>
-</div>
+@*<div class="modal-window" id="modal">*@
+
 
 
 <div class="send-comment">
-
+    <h1 class="comments-title">Комментарии</h1>
     <form method="post" asp-controller="Feed" asp-action="Comment"> 
+
+        <div class="input-wrapper">
         <input asp-for="PostId" type="hidden"/>
         <input asp-for="MainCommentId" type="hidden" />
 
         <textarea asp-for="Message" oninput="auto_grow(this)" placeholder="Введите комментарий" id="comment-textarea"></textarea>
         @*<textarea asp-for="Message" placeholder="Введите комментарий" id="comment-textarea"></textarea>*@
+        </div>
+        <div class="button-wrapper">
+        <div class="popup">
+            @*<button id="closeModal"></button>*@
+            <div class="popuptext" id="myPopup">
+                <p>Авторизуйтесь, чтобы оставить комментарий</p>
+                @*Авторизуйтесь, чтобы оставить комментарий*@
+                <a asp-action="Login" asp-controller="Auth">Вход</a>
+            </div>
+        </div>
         <button type="submit" id="send-comment-but">Отправить</button>
+        </div>
     </form>
 </div>
 

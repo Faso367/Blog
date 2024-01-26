@@ -19,7 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const openBtn = document.getElementById("send-comment-but");
     const closeBtn = document.getElementById("closeModal");
     const modal = document.getElementById("modal");
-    const isAuthenticated = document.getElementsByClassName("IsAuthenticated").textContent;
+    //const isAuthenticated = document.getElementsByClassName("IsAuthenticated").textContent;
+
+    //console.log(isAuthenticated);
 
     const changeColor1 = () => {
         But.style.backgroundColor = '#1aa95d';
@@ -77,6 +79,10 @@ document.addEventListener("DOMContentLoaded", () => {
         // Указываем, что следует отменить типичное поведение браузера
         // Теперь при нажатии на кнопку submit страница не будет перезагружена
 
+        var isAuthenticated = document.getElementById("IsAuthenticated").innerText;
+
+        console.log(isAuthenticated);
+
         even.preventDefault();
 
         console.log("submitEvent");
@@ -109,9 +115,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (isAuthenticated) {
 
-                closeBtn.addEventListener("click", () => {
-                    modal.classList.remove("open");
-                });
+                //closeBtn.addEventListener("click", () => {
+                //    modal.classList.remove("open");
+                //});
 
                 //console.log("Форма успешно отправлена");
                 form.submit();
@@ -120,9 +126,15 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             else {
-                openBtn.addEventListener("click", () => {
-                    modal.classList.add("open");
-                });
+                //openBtn.addEventListener("click", () => {
+                //    modal.classList.add("open");
+                //});
+
+                function myFunction() {
+                    var popup = document.getElementById("myPopup");
+                    popup.classList.toggle("show");
+                }
+                myFunction();
             }
         }
 
