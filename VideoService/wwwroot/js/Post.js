@@ -34,7 +34,6 @@
 //} 
 
 
-
 function ReadMoreOrLess(id) {
     const moreText = document.getElementById('moreText' + '(' + id + ')');
     const but = document.getElementById('readMoreBut' + '(' + id + ')');
@@ -55,31 +54,37 @@ function ReadMoreOrLess(id) {
     }
 } 
 
-var acc = document.getElementsByClassName("show-answers-but");
-var i;
 
-for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function () {
-        /* Toggle between adding and removing the "active" class,
-        to highlight the button that controls the panel */
-        this.classList.toggle("active");
+document.addEventListener("DOMContentLoaded", () => {
+    // Используем строгий синтаксис во избежание ошибок и уязвимостей
+    "use sctrict";
 
-        /* Toggle between hiding and showing the active panel */
-        var panel = this.nextElementSibling;
-        if (panel.style.maxHeight) {
-            panel.style.maxHeight = null;
-        } else {
-            panel.style.maxHeight = panel.scrollHeight + "px";
-        }
+    var acc = document.getElementsByClassName("show-answers-but");
+    var i;
 
-        if (panel.style.display === "block") {
-            panel.style.display = "none";
-        } else {
-            panel.style.display = "block";
-        }
-    });
-}
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            /* Toggle between adding and removing the "active" class,
+            to highlight the button that controls the panel */
+            this.classList.toggle("active");
 
+            /* Toggle between hiding and showing the active panel */
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    }
+
+});
 //function ShowSubcomments(id) {
 //    //const but = document.getElementById('showSubcommentsBut' + '(' + id + ')');
 //    const subcommentText = document.getElementById('subcocommentText' + '(' + id + ')');

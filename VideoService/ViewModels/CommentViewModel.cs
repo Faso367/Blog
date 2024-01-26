@@ -11,5 +11,12 @@ namespace VideoService.ViewModels
         //[Required]
         public string Message { get; set; }
 
+        /*        [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")]
+        [Required]
+        public string Name { get; set; }
+        [StringLength(60, MinimumLength = 3)]
+        [Required]
+        public string Description { get; set; }*/
+
     }
 }

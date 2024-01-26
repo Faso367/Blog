@@ -32,9 +32,10 @@
         @Html.Raw(Model.Body) <!--Отображаем тело записи из БД под фото-->
     </div>
 
-    @if (User.Identity.IsAuthenticated)
-    {
-        // Если пользователь авторизовался, то он может создать комментарий
+    @*@if (User.Identity.IsAuthenticated)
+    // Если пользователь авторизовался, то он может создать комментарий
+    {*@
+
         <div class="comments-section">
             @{
 
@@ -42,6 +43,7 @@
                 await Html.RenderPartialAsync("MainComment",
                 new CommentViewModel { PostId = Model.Id, MainCommentId = 0 });
             }
+
             @foreach (var c in Model.MainComments)
             {
 
@@ -73,8 +75,7 @@
                             }
                             else
                             {
-                                @c.Message
-                                ;
+                                @c.Message;
                             }
                         }
                     </div>
@@ -141,13 +142,14 @@
             }
 
         </div>
+        @*
     }
     else
     {
         <div>
             <a asp-action="Login" asp-controller="Auth">Авторизироваться</a>, чтобы оставить комментарий
         </div>
-    }
+    }*@
 </div>
 
 <script src="~/js/Post.js"></script>

@@ -63,6 +63,11 @@ namespace VideoService.Controllers
             if (!ModelState.IsValid)
                 return RedirectToAction("Post", new { id = vm.PostId });
 
+            if(!User.Identity.IsAuthenticated)
+            {
+
+            }
+
             var post = _repo.GetPost(vm.PostId);
 
             if (vm.MainCommentId == 0)

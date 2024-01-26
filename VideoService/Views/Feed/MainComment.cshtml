@@ -5,6 +5,19 @@
 
 <link rel="stylesheet" href="~/css/MainComment.css"/>
 <h1 class="comments-title">Комментарии</h1>
+
+<div class="IsAuthenticated" style="display: none; overflow: hidden;">@User.Identity.IsAuthenticated</div>
+
+<div class="modal-window" id="modal">
+    <button id="closeModal"></button>
+    <div class="modal-window-inner">
+
+        <p>Авторизуйтесь, чтобы оставить комментарий</p>
+        <a asp-action="Login" asp-controller="Auth">Вход</a>
+    </div>
+</div>
+
+
 <div class="send-comment">
 
     <form method="post" asp-controller="Feed" asp-action="Comment"> 

@@ -16,6 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const Textarea = document.getElementById("comment-textarea");
     const But = document.getElementById("send-comment-but");
 
+    const openBtn = document.getElementById("send-comment-but");
+    const closeBtn = document.getElementById("closeModal");
+    const modal = document.getElementById("modal");
+    const isAuthenticated = document.getElementsByClassName("IsAuthenticated").textContent;
+
     const changeColor1 = () => {
         But.style.backgroundColor = '#1aa95d';
     }
@@ -100,10 +105,25 @@ document.addEventListener("DOMContentLoaded", () => {
             
 
         if (isValid) {
-            //console.log("Форма успешно отправлена");
-            form.submit();
-            // Сбрасываем значения всех полей
-            form.reset();
+
+
+            if (isAuthenticated) {
+
+                closeBtn.addEventListener("click", () => {
+                    modal.classList.remove("open");
+                });
+
+                //console.log("Форма успешно отправлена");
+                form.submit();
+                // Сбрасываем значения всех полей
+                form.reset();
+            }
+
+            else {
+                openBtn.addEventListener("click", () => {
+                    modal.classList.add("open");
+                });
+            }
         }
 
     })
