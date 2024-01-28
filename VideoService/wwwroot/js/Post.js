@@ -54,12 +54,31 @@ function ReadMoreOrLess(id) {
     }
 } 
 
+/*var answerBut = document.getElementById("answer");*/
+
+function ShowSendCommentSection() {
+    const section = document.getElementById("sendCommentWrapper");
+    section.style.display = "block";
+    /*section.style.display = "block";*/
+    //if (section.style.maxHeight) {
+    //    section.style.maxHeight = null;
+    //} else {
+    //    section.style.maxHeight = panel.scrollHeight + "px";
+    //}
+
+    //if (section.style.display === "block") {
+    //    section.style.display = "none";
+    //} else {
+    //    section.style.display = "block";
+    //}
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     // Используем строгий синтаксис во избежание ошибок и уязвимостей
     "use sctrict";
 
     var acc = document.getElementsByClassName("show-answers-but");
+
     var i;
 
     for (i = 0; i < acc.length; i++) {

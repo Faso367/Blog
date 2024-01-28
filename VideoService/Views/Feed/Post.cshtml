@@ -37,6 +37,7 @@
     {*@
 
         <div class="comments-section">
+        <h1 class="comments-title">Комментарии</h1>
             @{
 
                 // Подгружаем MainComment.cshtml
@@ -69,7 +70,7 @@
                                 <span class="dots" id="dots(@c.Id)">...</span>
                                 <span class="moreText" id="moreText(@c.Id)">@foreach (char s in c.Message.Skip(400))
                                         @s
-                </span>
+                                </span>
                                 <br />
                                 <span class="readMoreBut" id="readMoreBut(@c.Id)" onclick="ReadMoreOrLess(@c.Id)">Читать далее</span>
                             }
@@ -80,7 +81,7 @@
                         }
                     </div>
 
-                    @functions {
+                @functions {
                 string DetermineEnding(int number) {
                     string ending = "ответ";
                     string numberStr = number.ToString();
@@ -88,12 +89,24 @@
                     List<char> Aending = new List<char>(){ '2', '3', '4' };
                     List<char> OVending = new List<char>(){ '0', '5', '6', '7', '8', '9'};
 
-                            if (Aending.Contains(numberStr[^1])) { ending += "а"; }
-                            if (number != 1 && (numberStr.EndsWith("11") || OVending.Contains(numberStr[^1]))) { ending += "ов"; }
-                            
-                            return ending;
-                        }
-                    }
+                    if (Aending.Contains(numberStr[^1])) { ending += "а"; }
+                    if (number != 1 && (numberStr.EndsWith("11") || OVending.Contains(numberStr[^1]))) { ending += "ов"; }
+
+                    return ending;
+                }
+
+            }
+
+            <div class="undercomment-buttons">
+                <span id="like">7</span>
+                <span id="dislike">7</span>
+                <span id="answer" onclick="ShowSendCommentSection()">Ответить</span>
+
+                 <div id="sendCommentWrapper">
+                 @{  await Html.RenderPartialAsync("MainComment",
+                    new CommentViewModel { PostId = Model.Id, MainCommentId = c.Id });}
+                </div>
+            </div>
 
                     @if (c.SubComments.Count > 0)
                     {
@@ -122,6 +135,11 @@
                                 //</div>
                             }
                         </div>
+
+
+            //await Html.RenderPartialAsync("MainComment",
+            //new CommentViewModel { PostId = Model.Id, MainCommentId = c.Id });
+            
                     }
 
                     @*
@@ -129,7 +147,9 @@
             @{
             await Html.RenderPartialAsync("MainComment",
             new CommentViewModel { PostId = Model.Id, MainCommentId = c.Id });
-            }*@
+            }
+            
+            *@
                 </div>
                 //<div class="subcomment" style="margin-left: 30px;">
                 //    @foreach (var sc in c.SubComments)
@@ -153,3 +173,9 @@
 </div>
 
 <script src="~/js/Post.js"></script>
+@*
+<script>
+    function ShowSendCommentSection(@MainComment? c) {
+         $("#answer").html('@ShowSendCommentSection(c)');
+    }
+</script> *@

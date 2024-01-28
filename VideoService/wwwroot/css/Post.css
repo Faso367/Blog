@@ -110,6 +110,12 @@
         cursor: pointer;
     }
 
+#sendCommentWrapper {
+/*    width: 300px;
+    height: 300px;*/
+margin-top: -30px;
+    display: none;
+}
 
 .show-answers-but { /*Кнопка для показа ответов на комментарий*/
     color: white;
@@ -121,7 +127,7 @@
     /*    font-size: 14px;*/
     font-weight: 600;
     width: 110px;
-/*    text-align: center;
+    /*    text-align: center;
     align-content: center;*/
     border: none;
     outline: none;
@@ -129,7 +135,6 @@
     transition: 0.1s;
     background-color: #1a1b1a;
     border-radius: 10px;
-    
 }
 
     .show-answers-but:hover {
