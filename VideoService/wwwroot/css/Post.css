@@ -113,14 +113,87 @@
 #sendCommentWrapper {
 /*    width: 300px;
     height: 300px;*/
-margin-top: -30px;
+    margin-top: -30px;
     display: none;
+}
+
+/*#like {
+    fill: white;
+}*/
+
+
+.material-symbols-outlined {
+    /*    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+*/ fill: white;
+    width: 25px;
+    height: 25px;
+}
+
+
+.undercomment-buttons {
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: gray;
+    margin-left: 20px;
+}
+
+/*    .undercomment-buttons #like, #dislike {
+        color: 
+    }*/
+
+    .undercomment-buttons #like, #dislike, #answer {
+        flex: 1 1 auto;
+        margin: 5px;
+        cursor: pointer;
+        color: white;
+        border: none;
+    }
+
+        .undercomment-buttons #like, #dislike {
+            padding: 6px;
+            border-radius: 50%;
+        }
+
+    .undercomment-buttons #answer {
+        /*font-size: 12px;*/
+        line-height: 32px;
+        width: 80px;
+        /*padding: 5px;*/
+        padding: 3px 12px;
+        border-radius: 30px;
+    }
+
+        .undercomment-buttons #answer:hover {
+            /*background-color: #ccccccba;*/
+            background-color:#ffffff22;
+        }
+
+
+
+.material-symbols-outlined:hover {
+    background-color: #ffffff22;
+    
+}
+/*    .undercomment-buttons #like img {
+        filter: w;
+    }*/
+.my-svg-alternate {
+    display: none;
+}
+
+.no-svg .my-svg-alternate {
+    display: block;
+    width: 100px;
+    height: 100px;
+    background-image: url(~/_content/static/like.png);
 }
 
 .show-answers-but { /*Кнопка для показа ответов на комментарий*/
     color: white;
     cursor: pointer;
-    margin-top: 10px;
+    /*margin-top: 10px;*/
     padding: 12px 5px 10px 0;
     /*font: 14px 'Roboto';*/ /*ШРИФТ*/
     font: 14px sans-serif;
@@ -134,7 +207,8 @@ margin-top: -30px;
     display: inline;
     transition: 0.1s;
     background-color: #1a1b1a;
-    border-radius: 10px;
+    /*border-radius: 10px;*/
+    border-radius: 20px;
 }
 
     .show-answers-but:hover {

@@ -63,10 +63,10 @@ namespace VideoService.Controllers
             if (!ModelState.IsValid)
                 return RedirectToAction("Post", new { id = vm.PostId });
 
-            if(!User.Identity.IsAuthenticated)
-            {
+            //if(!User.Identity.IsAuthenticated)
+            //{
 
-            }
+            //}
 
             var post = _repo.GetPost(vm.PostId);
 
@@ -78,6 +78,9 @@ namespace VideoService.Controllers
                 {
                     Message = vm.Message,
                     Created = DateTime.Now,
+                    Author = vm.Author,
+                    LikesCount = vm.LikesCount,
+                    DislikesCount = vm.DislikesCount
                 });
                 _repo.UpdatePost(post);
             }
@@ -88,7 +91,9 @@ namespace VideoService.Controllers
                     MainCommentId = vm.MainCommentId,
                     Message = vm.Message,
                     Created = DateTime.Now,
-
+                    Author = vm.Author,
+                    LikesCount = vm.LikesCount,
+                    DislikesCount = vm.DislikesCount
                 };
                 _repo.AddSubComment(comment);
             }

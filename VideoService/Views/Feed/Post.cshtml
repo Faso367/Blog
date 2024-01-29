@@ -16,6 +16,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 --->
 <link href="~/css/Post.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
 <div class="post">
     <div class="main-image">
@@ -98,8 +99,12 @@
             }
 
             <div class="undercomment-buttons">
-                <span id="like">7</span>
-                <span id="dislike">7</span>
+                @* <span id="like"><img src="~/_content/static/like.png" /></span>@c.LikesCount 
+                <span id="dislike"><img src="~/_content/static/dislike.png" /></span>@c.DislikesCount *@
+                @*<span id="like"><image class="my-svg-alternate" src="~/_content/static/like.png" alt="filter applied" /> </span>@c.LikesCount *@
+                <span id="like" class="material-symbols-outlined">thumb_up</span>@c.LikesCount
+                <span id="dislike" class="material-symbols-outlined">thumb_down</span>@c.DislikesCount
+
                 <span id="answer" onclick="ShowSendCommentSection()">Ответить</span>
 
                  <div id="sendCommentWrapper">
@@ -125,7 +130,10 @@
                             @foreach (var sc in c.SubComments)
                             {
                                 <label>
-                                    Subcomment Author`s name  --- @sc.Created
+                                    @* Subcomment Author`s name  --- @sc.Created *@
+                                @* <span id="author" style="display:inline-block;"> *@
+                                <span id="author">@sc.Author</span>
+                                <span id="created">@sc.Created</span>
                                 </label>
                                 <p>@sc.Message</p>
 
