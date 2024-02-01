@@ -19,5 +19,6 @@ namespace VideoService.Data.Repository
         void AddSubComment(SubComment comment);
 
         Task<bool> SaveChangesAsync(); // Метод для сохранения изменений с БД с подтверждением
+        bool SaveChanges();
     }
 }

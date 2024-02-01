@@ -53,10 +53,162 @@ function ReadMoreOrLess(id) {
         but.textContent = 'Читать далее';
     }
 } 
+function Increment() {
+    //$.get("/Panel/Increment", function (count) {
+    //    $("p").html(data);
+    // });
+
+   // var name = "23";
+    const mainCommentId = 3;
+    const like = true;
+
+    //var request;
+    var request = new XMLHttpRequest();
+    //var request = new ActiveXObject("Microsoft.XMLHTTP");
+
+
+    if (request != null) {
+        //var url = "/Post/Increment";
+        var url = "/Post/Test";
+        request.open("POST", url, false);
+
+        //var params = "{postId: '" + postId + "'}";
+
+        //var params = "{name: '" + name + "'}";
+
+        var params2 = `{"name": "${name}"},`;
+        //`My favorite poem is ${poem} by ${author}.`;
+
+        var params3 = "[{name: 23}]";
+
+        //var params = "{postId: '" + postId + "'}" + "{mainCommentId: '" + mainCommentId + "'}" + "{like: '" + like + "'}";
+
+        //request.setRequestHeader("Content-Type", "application/json");
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 && request.status == 200) {
+                //var response = JSON.parse(request.responseText);
+                console.log(777);
+                //alert("Hello: " + response.Name + " .\nCurrent Date and Time: " + response.DateTime);
+            }
+        };
+        request.send(params2);
+        console.log("message was send");
+    }
+
+    //var test = "@LikeCountIncrement()";
+    //    console.log(test);
+    
+}
+
+function Test(postId, mainCommentId) {
+    console.log(postId);
+    console.log(mainCommentId);
+}
+
+//var incrementLikePossibility = true;
+//var decrementLikePossibility = false;
+
+//var incrementDislikePossibility = true;
+//var decrementDislikePossibility = false;
+
+var localLikesCount = 0;
+var localDislikesCount = 0;
+
+function Increment(postId, mainCommentId, like) {
+
+    var likeElem = document.getElementById(`undercomment-buttons(${mainCommentId})`).querySelector("#likesCount");
+    var dislikeElem = document.getElementById(`undercomment-buttons(${mainCommentId})`).querySelector("#dislikesCount");
+
+    var likesCount = likeElem.textContent;
+    var dislikesCount = dislikeElem.textContent;
+
+   // console.log(dislikesCount);
+    // Если тыкаем на лайк
+    if (like == "true") {
+        if (localLikesCount == 0) {
+
+            likesCount++;      
+            localLikesCount++;
+
+            // Если мы тыкаем на лайк и при этом уже дизлайкнули запись
+            if (localDislikesCount == 1) {
+                localDislikesCount--;
+                dislikesCount--;
+            }
+
+            $.get("/Post/Increment", { postId: postId, mainCommentId: mainCommentId, like: like }, function (data) {
+                if (data == "true") console.log("sendData");
+            });
+
+            //incrementLikePossibility = false;
+            // Теперь можно как снять лайк, так и поставить dislike
+            //decrementLikePossibility = true;
+        }
+        // Если уже лайкали
+        else if (localLikesCount == 1) {
+
+            likesCount--;
+            localLikesCount--;
+
+            $.get("/Post/Increment", { postId: postId, mainCommentId: mainCommentId, like: like }, function (data) {
+                if (data == "true") console.log("sendData");
+            });
+            //incrementLikePossibility = true;
+            // Теперь можно как снять лайк, так и поставить dislike
+            //decrementLikePossibility = false;
+        }
+        likeElem.innerHTML = likesCount;
+        dislikeElem.innerHTML = dislikesCount;
+        //incrementDislikePossibility = true; ???
+    }
+
+    // Если тыкаем на дизлайк
+    else if (like == "false") {
+        if (localDislikesCount == 0) {
+
+            // Если мы тыкаем на дизлайк и при этом уже лайкнули запись
+            if (localLikesCount == 1) {
+                localLikesCount--;
+                likesCount--;
+            }
+            dislikesCount++;
+            localDislikesCount++;
+
+            $.get("/Post/Increment", { postId: postId, mainCommentId: mainCommentId, like: like }, function (data) {
+                if (data == "true") console.log("sendData");
+            });
+        }
+        // Если уже дизлайкали запись
+        else if (localDislikesCount == 1) {
+            dislikesCount--;
+            localDislikesCount--;
+
+            $.get("/Post/Increment", { postId: postId, mainCommentId: mainCommentId, like: like }, function (data) {
+                if (data == "true") console.log("sendData");
+            });
+        }
+        dislikeElem.innerHTML = dislikesCount;
+        likeElem.innerHTML = likesCount;
+    }
+
+    //updateDisplay(like);
+
+    //function updateDisplay(like) {
+    //    if (like == "true") likeElem.innerHTML = likesCount;
+    //    else if (like == "false") dislikeElem.innerHTML = dislikesCount;
+    //};
+
+    //console.log(postId);
+    //console.log(mainCommentId);
+    //console.log(like);
+
+    //$.get("/Post/Test", `name=${name, mainCommentId}`, function (data) {
+}
 
 /*var answerBut = document.getElementById("answer");*/
 
 function ShowSendCommentSection() {
+
     const section = document.getElementById("sendCommentWrapper");
     section.style.display = "block";
     /*section.style.display = "block";*/
@@ -73,9 +225,27 @@ function ShowSendCommentSection() {
     //}
 }
 
+
+// Функция для получения элемента-обертки по Id и получения вложенного в него элемента по Id
+function GetElementInsideContainer(containerID, childID) {
+    console.log(containerID);
+    var elm = document.getElementById(childID);
+    var parent = elm ? elm.parentNode : {};
+    return (parent.id && parent.id === containerID) ? elm : {};
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     // Используем строгий синтаксис во избежание ошибок и уязвимостей
     "use sctrict";
+
+
+    //likeBut = document.getElementById("like").addEventListener("click", function () {
+    //    Increment(postId, mainCommentId, like);
+    //});
+
+
+    //Increment();
+    //GetMessage();
 
     var acc = document.getElementsByClassName("show-answers-but");
 

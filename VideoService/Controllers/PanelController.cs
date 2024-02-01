@@ -74,7 +74,7 @@ namespace VideoService.Controllers
 
 
         [HttpPost]
-        // Метод для создания поста
+        // Метод для создания или редактирования поста
         public async Task<IActionResult> Edit(PostViewModel vm)
         {
 

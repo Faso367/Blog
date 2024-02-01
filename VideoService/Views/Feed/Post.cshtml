@@ -48,10 +48,13 @@
 
             @foreach (var c in Model.MainComments)
             {
+            //var timeDifference = DateTime.Now - c.Created;
 
                 <div class="comment">
                     <label>
-                        Comment Author`s name --- @c.Created
+                    @* @c.Author <span id="creationTime">@timeDifference</span> *@
+                    @c.Author <span id="creationTime">@c.Created</span>
+                        @*Comment Author`s name --- @c.Created *@
                     </label>
                     <div class="comment-text">
                         @*Если длина комментария более 400 символов, тогда выводим только 400, иначе весь коммент*@
@@ -61,13 +64,8 @@
 
                             if (c.Message.Length > 400)
                             {
-                                foreach (char s in c.Message.Take(400))
-                                    @s
-                                ;
-                                //foreach(char s in c.Message.Skip(400))
-                                //{
-                                //    str += s;
-                                //}
+                                foreach (char s in c.Message.Take(400)) @s;
+
                                 <span class="dots" id="dots(@c.Id)">...</span>
                                 <span class="moreText" id="moreText(@c.Id)">@foreach (char s in c.Message.Skip(400))
                                         @s
@@ -82,30 +80,13 @@
                         }
                     </div>
 
-                @functions {
-                string DetermineEnding(int number) {
-                    string ending = "ответ";
-                    string numberStr = number.ToString();
-
-                    List<char> Aending = new List<char>(){ '2', '3', '4' };
-                    List<char> OVending = new List<char>(){ '0', '5', '6', '7', '8', '9'};
-
-                    if (Aending.Contains(numberStr[^1])) { ending += "а"; }
-                    if (number != 1 && (numberStr.EndsWith("11") || OVending.Contains(numberStr[^1]))) { ending += "ов"; }
-
-                    return ending;
-                }
-
-            }
-
-            <div class="undercomment-buttons">
-                @* <span id="like"><img src="~/_content/static/like.png" /></span>@c.LikesCount 
-                <span id="dislike"><img src="~/_content/static/dislike.png" /></span>@c.DislikesCount *@
-                @*<span id="like"><image class="my-svg-alternate" src="~/_content/static/like.png" alt="filter applied" /> </span>@c.LikesCount *@
-                <span id="like" class="material-symbols-outlined">thumb_up</span>@c.LikesCount
-                <span id="dislike" class="material-symbols-outlined">thumb_down</span>@c.DislikesCount
-
-                <span id="answer" onclick="ShowSendCommentSection()">Ответить</span>
+                <div class="undercomment-buttons" id="undercomment-buttons(@c.Id)">
+                @* <span id="like" class="material-symbols-outlined" onclick="Increment('@Model.Id', '@c.Id', 'true');">thumb_up</span>@c.LikesCount *@
+                    <span id="like" class="material-symbols-outlined" onclick="Increment('@Model.Id', '@c.Id', 'true');">thumb_up</span>
+                    <span id="likesCount">@c.LikesCount</span>
+                    <span id="dislike" class="material-symbols-outlined" onclick="Increment('@Model.Id', '@c.Id' , 'false');">thumb_down</span>
+                    <span id="dislikesCount">@c.DislikesCount</span>
+                    <span id="answer" onclick="ShowSendCommentSection()">Ответить</span>
 
                  <div id="sendCommentWrapper">
                  @{  await Html.RenderPartialAsync("MainComment",
@@ -117,14 +98,7 @@
                     {
 
                         var count = @c.SubComments.Count;
-                        //<button class="show-answers-but">@(c.SubComments.Count) ответов</button>
                         <button class="show-answers-but">@count @DetermineEnding(@count)</button>
-
-                        //<button class="show-text-but"><span class="arrow"></span>@(c.SubComments.Count) ответов</button>
-
-                        //<span class="showSubcommentsBut" id="showSubcommentsBut(@c.Id)" onclick="ShowSubcomments(@c.Id)">
-                        //@(c.SubComments.Count) ответов
-                        //</span>
 
                         <div class="subcomment">
                             @foreach (var sc in c.SubComments)
@@ -180,7 +154,26 @@
     }*@
 </div>
 
+@functions {
+    string DetermineEnding(int number)
+    {
+        string ending = "ответ";
+        string numberStr = number.ToString();
+
+        List<char> Aending = new List<char>() { '2', '3', '4' };
+        List<char> OVending = new List<char>() { '0', '5', '6', '7', '8', '9' };
+
+        if (Aending.Contains(numberStr[^1])) { ending += "а"; }
+        if (number != 1 && (numberStr.EndsWith("11") || OVending.Contains(numberStr[^1]))) { ending += "ов"; }
+
+        return ending;
+    }
+}
+
+
 <script src="~/js/Post.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 @*
 <script>
     function ShowSendCommentSection(@MainComment? c) {

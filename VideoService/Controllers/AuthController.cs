@@ -55,7 +55,7 @@ namespace VideoService.Controllers
             //!!!!!!!!!!!!!!!!!!!!!
             if (isAdmin)
             {
-                // Если это админ, то отправляем его на панель администратора
+                // Если это админ, то отправляем его в контроллер Index метод Panel
                 return RedirectToAction("Index", "Panel");
             }
 

@@ -92,8 +92,8 @@ namespace VideoService.Controllers
                     Message = vm.Message,
                     Created = DateTime.Now,
                     Author = vm.Author,
-                    LikesCount = vm.LikesCount,
-                    DislikesCount = vm.DislikesCount
+                    LikesCount = vm.LikesCount, // ???????
+                    DislikesCount = vm.DislikesCount // ???????
                 };
                 _repo.AddSubComment(comment);
             }
@@ -106,6 +106,30 @@ namespace VideoService.Controllers
             //return RedirectToAction("Post", post);
             return RedirectToAction("Post", new { postId = vm.PostId });
         }
+
+        //// Если это like, то true. Если dislike, то false
+        //[HttpGet]
+        //public void Increment(int postId, int mainCommentId, bool like)
+        //{
+        //    var post = _repo.GetPost(postId);
+        //    MainComment? mainComment = post.MainComments.Find(x => x.Id == mainCommentId);
+
+        //    if (mainComment != null)
+        //    {
+        //        if (like)
+        //            mainComment.LikesCount++;
+        //        else
+        //            mainComment.DislikesCount++;
+        //        _repo.UpdatePost(post);
+        //    }
+        //    //else
+        //    //{
+
+        //    //}
+        //    //int likesCount = post.MainComments.FirstOrDefault()?.LikesCount ?? 0;
+
+
+        //}
 
 
         // ТЕ ЖЕ МЕТОДЫ, НО В ИМПЕРАТИВНОМ ПРЕДСТАВЛЕНИИ

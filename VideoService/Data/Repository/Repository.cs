@@ -152,10 +152,17 @@ namespace VideoService.Data.Repository
 
         }
 
+        public bool SaveChanges()
+        {
+            int numberOfSavedChanges = _ctx.SaveChanges();
+            //Console.WriteLine("---------------!!!!!!!" + numberOfSaveChanges.ToString());
+            return numberOfSavedChanges > 0 ? true : false;
+        }
+
+
         public void AddSubComment(SubComment comment)
         {
             _ctx.SubComments.Add(comment);
         }
-
     }
 }
