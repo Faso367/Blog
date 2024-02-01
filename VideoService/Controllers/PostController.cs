@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using VideoService.Data.FileManager;
 using VideoService.Data.Repository;
 using VideoService.Models.Comments;
@@ -24,6 +25,15 @@ namespace VideoService.Controllers
         [HttpGet]
         public ActionResult Increment(int postId, int mainCommentId, bool like)
         {
+            //var user = User.
+            // Получаем имя текущего пользователя
+            //string? currentUser = User.Identity?.Name;
+
+            //if (!currentUser.IsNullOrEmpty())
+            //{
+
+            //}
+
             Console.WriteLine($"{postId} {mainCommentId} {like}");
 
             var post = _repo.GetPost(postId);

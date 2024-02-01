@@ -116,8 +116,15 @@ var localDislikesCount = 0;
 
 function Increment(postId, mainCommentId, like) {
 
-    var likeElem = document.getElementById(`undercomment-buttons(${mainCommentId})`).querySelector("#likesCount");
-    var dislikeElem = document.getElementById(`undercomment-buttons(${mainCommentId})`).querySelector("#dislikesCount");
+    //var allWrappers = document.getElementsByClassName("undercomment-buttons");
+
+    var wrapper = document.getElementById(`undercomment-buttons(${mainCommentId})`);
+
+    var likeIcon = wrapper.querySelector("#like");
+    var dislikeIcon = wrapper.querySelector("#dislike");
+
+    var likeElem = wrapper.querySelector("#likesCount");
+    var dislikeElem = wrapper.querySelector("#dislikesCount");
 
     var likesCount = likeElem.textContent;
     var dislikesCount = dislikeElem.textContent;
@@ -125,13 +132,20 @@ function Increment(postId, mainCommentId, like) {
    // console.log(dislikesCount);
     // Если тыкаем на лайк
     if (like == "true") {
+
+        
+
+        //allWrappers.style.font - variation - settings = "'FILL' 0";
+
         if (localLikesCount == 0) {
+            $(likeIcon).css('fontVariationSettings', "'FILL' 1");
 
             likesCount++;      
             localLikesCount++;
 
             // Если мы тыкаем на лайк и при этом уже дизлайкнули запись
             if (localDislikesCount == 1) {
+                $(dislikeIcon).css('fontVariationSettings', "'FILL' 0");
                 localDislikesCount--;
                 dislikesCount--;
             }
@@ -146,7 +160,7 @@ function Increment(postId, mainCommentId, like) {
         }
         // Если уже лайкали
         else if (localLikesCount == 1) {
-
+            $(likeIcon).css('fontVariationSettings', "'FILL' 0");
             likesCount--;
             localLikesCount--;
 
@@ -166,8 +180,13 @@ function Increment(postId, mainCommentId, like) {
     else if (like == "false") {
         if (localDislikesCount == 0) {
 
+            $(dislikeIcon).css('fontVariationSettings', "'FILL' 1");
+
             // Если мы тыкаем на дизлайк и при этом уже лайкнули запись
             if (localLikesCount == 1) {
+
+                $(likeIcon).css('fontVariationSettings', "'FILL' 0");
+
                 localLikesCount--;
                 likesCount--;
             }
@@ -180,6 +199,8 @@ function Increment(postId, mainCommentId, like) {
         }
         // Если уже дизлайкали запись
         else if (localDislikesCount == 1) {
+            $(dislikeIcon).css('fontVariationSettings', "'FILL' 0");
+
             dislikesCount--;
             localDislikesCount--;
 
@@ -190,6 +211,8 @@ function Increment(postId, mainCommentId, like) {
         dislikeElem.innerHTML = dislikesCount;
         likeElem.innerHTML = likesCount;
     }
+
+
 
     //updateDisplay(like);
 

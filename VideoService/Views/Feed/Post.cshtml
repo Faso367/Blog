@@ -16,7 +16,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 --->
 <link href="~/css/Post.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+<!-- Динамические -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+<!-- Статические -->
+<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,300,0,0" /> -->
 
 <div class="post">
     <div class="main-image">
@@ -82,9 +87,9 @@
 
                 <div class="undercomment-buttons" id="undercomment-buttons(@c.Id)">
                 @* <span id="like" class="material-symbols-outlined" onclick="Increment('@Model.Id', '@c.Id', 'true');">thumb_up</span>@c.LikesCount *@
-                    <span id="like" class="material-symbols-outlined" onclick="Increment('@Model.Id', '@c.Id', 'true');">thumb_up</span>
+                    <span id="like" class="material-symbols-rounded" onclick="Increment('@Model.Id', '@c.Id', 'true');">thumb_up</span>
                     <span id="likesCount">@c.LikesCount</span>
-                    <span id="dislike" class="material-symbols-outlined" onclick="Increment('@Model.Id', '@c.Id' , 'false');">thumb_down</span>
+                    <span id="dislike" class="material-symbols-rounded" onclick="Increment('@Model.Id', '@c.Id' , 'false');">thumb_down</span>
                     <span id="dislikesCount">@c.DislikesCount</span>
                     <span id="answer" onclick="ShowSendCommentSection()">Ответить</span>
 
