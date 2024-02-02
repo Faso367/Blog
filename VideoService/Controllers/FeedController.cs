@@ -80,7 +80,9 @@ namespace VideoService.Controllers
                     Created = DateTime.Now,
                     Author = vm.Author,
                     LikesCount = vm.LikesCount,
-                    DislikesCount = vm.DislikesCount
+                    DislikesCount = vm.DislikesCount,
+
+                    //AuthorsAndLikeExistence = vm.AuthorsAndLikeExistence
                 });
                 _repo.UpdatePost(post);
             }
@@ -93,7 +95,9 @@ namespace VideoService.Controllers
                     Created = DateTime.Now,
                     Author = vm.Author,
                     LikesCount = vm.LikesCount, // ???????
-                    DislikesCount = vm.DislikesCount // ???????
+                    DislikesCount = vm.DislikesCount, // ???????
+
+                    //AuthorsAndLikeExistence = vm.AuthorsAndLikeExistence
                 };
                 _repo.AddSubComment(comment);
             }

@@ -117,19 +117,20 @@ namespace VideoService.Data.Repository
         }
 
         // Получаем одну запись из БД
-        public Post GetPost(int id)
+        public Post? GetPost(int id)
         {
             // Если полученный id совпадает с найденным в БД, то возвращаем (достаем) эту запись
             return _ctx.Posts
                 .Include(p => p.MainComments) // включаем в запись основные комментарии
                     .ThenInclude(mc => mc.SubComments)
                 .FirstOrDefault(p => p.Id == id);
+
         }
 
         // Удаляем запись
-        public void RemovePost(int id)
+        public void RemovePost(int id) // !!!!!!!!!!!!!!! СДЕЛАТЬ с подтверждением удаления
         {
-            _ctx.Posts.Remove(GetPost(id));
+            _ctx.Posts.Remove(GetPost(id)); 
         }
 
         // Перезаписываем ячейку БД

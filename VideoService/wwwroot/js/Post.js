@@ -143,20 +143,24 @@ function Increment(postId, mainCommentId, like) {
             likesCount++;      
             localLikesCount++;
 
+            //$.get("/Post/changeReactionsCount", { postId: postId, mainCommentId: mainCommentId, like: true, increment: true }, function (data) {
+            //    if (data == "true") console.log("sendData");
+            //});
+
+            $.post("/Post/changeReactionsCount", { postId: postId, mainCommentId: mainCommentId, like: true, increment: true });
+
             // Если мы тыкаем на лайк и при этом уже дизлайкнули запись
             if (localDislikesCount == 1) {
                 $(dislikeIcon).css('fontVariationSettings', "'FILL' 0");
                 localDislikesCount--;
                 dislikesCount--;
+
+                //$.get("/Post/changeReactionsCount", { postId: postId, mainCommentId: mainCommentId, like: false, increment: false }, function (data) {
+                //    if (data == "true") console.log("sendData");
+                //});
+
+                $.post("/Post/changeReactionsCount", { postId: postId, mainCommentId: mainCommentId, like: false, increment: false });
             }
-
-            $.get("/Post/Increment", { postId: postId, mainCommentId: mainCommentId, like: like }, function (data) {
-                if (data == "true") console.log("sendData");
-            });
-
-            //incrementLikePossibility = false;
-            // Теперь можно как снять лайк, так и поставить dislike
-            //decrementLikePossibility = true;
         }
         // Если уже лайкали
         else if (localLikesCount == 1) {
@@ -164,12 +168,11 @@ function Increment(postId, mainCommentId, like) {
             likesCount--;
             localLikesCount--;
 
-            $.get("/Post/Increment", { postId: postId, mainCommentId: mainCommentId, like: like }, function (data) {
-                if (data == "true") console.log("sendData");
-            });
-            //incrementLikePossibility = true;
-            // Теперь можно как снять лайк, так и поставить dislike
-            //decrementLikePossibility = false;
+            //$.get("/Post/changeReactionsCount", { postId: postId, mainCommentId: mainCommentId, like: true, increment: false }, function (data) {
+            //    if (data == "true") console.log("sendData");
+            //});
+
+            $.post("/Post/changeReactionsCount", { postId: postId, mainCommentId: mainCommentId, like: true, increment: false });
         }
         likeElem.innerHTML = likesCount;
         dislikeElem.innerHTML = dislikesCount;
@@ -189,13 +192,21 @@ function Increment(postId, mainCommentId, like) {
 
                 localLikesCount--;
                 likesCount--;
+
+                //$.get("/Post/changeReactionsCount", { postId: postId, mainCommentId: mainCommentId, like: true, increment: false }, function (data) {
+                //    if (data == "true") console.log("sendData");
+                //});
+
+                $.post("/Post/changeReactionsCount", { postId: postId, mainCommentId: mainCommentId, like: true, increment: false });
             }
             dislikesCount++;
             localDislikesCount++;
 
-            $.get("/Post/Increment", { postId: postId, mainCommentId: mainCommentId, like: like }, function (data) {
-                if (data == "true") console.log("sendData");
-            });
+            //$.get("/Post/changeReactionsCount", { postId: postId, mainCommentId: mainCommentId, like: false, increment: true }, function (data) {
+            //    if (data == "true") console.log("sendData");
+            //});
+
+            $.post("/Post/changeReactionsCount", { postId: postId, mainCommentId: mainCommentId, like: false, increment: true });
         }
         // Если уже дизлайкали запись
         else if (localDislikesCount == 1) {
@@ -204,9 +215,11 @@ function Increment(postId, mainCommentId, like) {
             dislikesCount--;
             localDislikesCount--;
 
-            $.get("/Post/Increment", { postId: postId, mainCommentId: mainCommentId, like: like }, function (data) {
-                if (data == "true") console.log("sendData");
-            });
+            //$.get("/Post/changeReactionsCount", { postId: postId, mainCommentId: mainCommentId, like: false, increment: false }, function (data) {
+            //    if (data == "true") console.log("sendData");
+            //});
+
+            $.post("/Post/changeReactionsCount", { postId: postId, mainCommentId: mainCommentId, like: false, increment: false });
         }
         dislikeElem.innerHTML = dislikesCount;
         likeElem.innerHTML = likesCount;
