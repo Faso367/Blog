@@ -77,18 +77,26 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("inputEvent");
     });
 
+    //function ShowPopup(popup) {
+    //    var popup = document.getElementById("myPopup");
+    //    popup.classList.toggle("show");
+    //}
+
+
     // Событие происходит при клике на кнопку с type="submit"
     form.addEventListener("submit", (even) => {
         // Указываем, что следует отменить типичное поведение браузера
         // Теперь при нажатии на кнопку submit страница не будет перезагружена
 
+
+
         var isAuthenticated = document.getElementById("IsAuthenticated").innerText;
 
-        console.log("User is Authenticated?:" + isAuthenticated);
+        //console.log("User is Authenticated?:" + isAuthenticated);
 
         even.preventDefault();
 
-        console.log("submitEvent");
+        //console.log("submitEvent");
 
         if (Textarea.value === "") {
 
@@ -112,32 +120,22 @@ document.addEventListener("DOMContentLoaded", () => {
         }
             
             
-
         if (isValid) {
 
 
             if (isAuthenticated == 'True') {
 
-                //closeBtn.addEventListener("click", () => {
-                //    modal.classList.remove("open");
-                //});
-
-                //console.log("Форма успешно отправлена");
                 form.submit();
                 // Сбрасываем значения всех полей
                 form.reset();
             }
 
             else {
-                //openBtn.addEventListener("click", () => {
-                //    modal.classList.add("open");
-                //});
-
-                function myFunction() {
+                //function myFunction() {
                     var popup = document.getElementById("myPopup");
                     popup.classList.toggle("show");
-                }
-                myFunction();
+                //}
+                //myFunction();
             }
         }
 

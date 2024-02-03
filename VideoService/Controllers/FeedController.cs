@@ -59,6 +59,8 @@ namespace VideoService.Controllers
         [HttpPost]
         public async Task<IActionResult> Comment(CommentViewModel vm)
         {
+            //vm.Author = User.Identity.Name;
+
 
             if (!ModelState.IsValid)
                 return RedirectToAction("Post", new { postId = vm.PostId });

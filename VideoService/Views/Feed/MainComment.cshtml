@@ -3,7 +3,6 @@
 @{
 }
 
-<link rel="stylesheet" href="~/css/MainComment.css"/>
 
 
 <span id="IsAuthenticated" style="display: none; overflow: hidden;">@User.Identity.IsAuthenticated</span>
@@ -18,6 +17,8 @@
 
         <div class="input-wrapper">
             <input asp-for="PostId" type="hidden" />
+            <input asp-for="MainCommentId" type="hidden"/>
+            <input asp-for="Author" type="hidden" value="@User.Identity.Name"/>
        @* <input asp-for="PostId" type="hidden" value="@Model.PostId"/>
          <input asp-for="MainCommentId" type="hidden" />
             <input asp-for="LikesCount" type="hidden" />
@@ -42,4 +43,3 @@
         </div>
     </form>
 </div>
-<script src="~/js/MainComment.js"></script>

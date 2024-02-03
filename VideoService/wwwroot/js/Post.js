@@ -57,6 +57,8 @@ function ChangeReactionsCount(postId, mainCommentId, like) {
 
     var wrapper = document.getElementById(`undercomment-buttons(${mainCommentId})`);
 
+    var comment = document.getElementById(`comment(${mainCommentId})`);
+
     var likeIcon = wrapper.querySelector("#like");
     var dislikeIcon = wrapper.querySelector("#dislike");
 
@@ -66,78 +68,97 @@ function ChangeReactionsCount(postId, mainCommentId, like) {
     var likesCount = likeElem.textContent;
     var dislikesCount = dislikeElem.textContent;
 
-    // Если тыкаем на лайк
-    if (like == "true") {
 
-        if (localLikesCount == 0) {
-            $(likeIcon).css('fontVariationSettings', "'FILL' 1");
+    var isAuthenticated = document.getElementById("IsAuthenticated").innerText;
 
-            likesCount++;
-            localLikesCount++;
+    // Если пользователь авторизован
+    if (isAuthenticated == 'True') {
 
-            ChangeReactionsCountOnServer(true, true);
+        // Если тыкаем на лайк
+        if (like == "true") {
 
-            // Если мы тыкаем на лайк и при этом уже дизлайкнули запись
-            if (localDislikesCount == 1) {
-                $(dislikeIcon).css('fontVariationSettings', "'FILL' 0");
-                localDislikesCount--;
-                dislikesCount--;
+            if (localLikesCount == 0) {
+                $(likeIcon).css('fontVariationSettings', "'FILL' 1");
 
-                ChangeReactionsCountOnServer(false, false);
+                likesCount++;
+                localLikesCount++;
+
+                ChangeReactionsCountOnServer(true, true);
+
+                // Если мы тыкаем на лайк и при этом уже дизлайкнули запись
+                if (localDislikesCount == 1) {
+                    $(dislikeIcon).css('fontVariationSettings', "'FILL' 0");
+                    localDislikesCount--;
+                    dislikesCount--;
+
+                    ChangeReactionsCountOnServer(false, false);
+                }
             }
-        }
-        // Если уже лайкали
-        else if (localLikesCount == 1) {
-            $(likeIcon).css('fontVariationSettings', "'FILL' 0");
-            likesCount--;
-            localLikesCount--;
-
-            ChangeReactionsCountOnServer(true, false);
-
-        }
-        likeElem.innerHTML = likesCount;
-        dislikeElem.innerHTML = dislikesCount;
-    }
-
-    // Если тыкаем на дизлайк
-    else if (like == "false") {
-        if (localDislikesCount == 0) {
-
-            $(dislikeIcon).css('fontVariationSettings', "'FILL' 1");
-
-            // Если мы тыкаем на дизлайк и при этом уже лайкнули запись
-            if (localLikesCount == 1) {
-
+            // Если уже лайкали
+            else if (localLikesCount == 1) {
                 $(likeIcon).css('fontVariationSettings', "'FILL' 0");
-
-                localLikesCount--;
                 likesCount--;
+                localLikesCount--;
 
                 ChangeReactionsCountOnServer(true, false);
+
             }
-            dislikesCount++;
-            localDislikesCount++;
-
-            ChangeReactionsCountOnServer(false, true);
-
+            likeElem.innerHTML = likesCount;
+            dislikeElem.innerHTML = dislikesCount;
         }
-        // Если уже дизлайкали запись
-        else if (localDislikesCount == 1) {
-            $(dislikeIcon).css('fontVariationSettings', "'FILL' 0");
 
-            dislikesCount--;
-            localDislikesCount--;
+        // Если тыкаем на дизлайк
+        else if (like == "false") {
+            if (localDislikesCount == 0) {
 
-            //$.get("/Post/changeReactionsCount", { postId: postId, mainCommentId: mainCommentId, like: false, increment: false }, function (data) {
-            //    if (data == "true") console.log("sendData");
-            //});
+                $(dislikeIcon).css('fontVariationSettings', "'FILL' 1");
 
-            ChangeReactionsCountOnServer(false, false);
+                // Если мы тыкаем на дизлайк и при этом уже лайкнули запись
+                if (localLikesCount == 1) {
 
-            //$.post("/Post/changeReactionsCount", { postId: postId, mainCommentId: mainCommentId, like: false, increment: false });
+                    $(likeIcon).css('fontVariationSettings', "'FILL' 0");
+
+                    localLikesCount--;
+                    likesCount--;
+
+                    ChangeReactionsCountOnServer(true, false);
+                }
+                dislikesCount++;
+                localDislikesCount++;
+
+                ChangeReactionsCountOnServer(false, true);
+
+            }
+            // Если уже дизлайкали запись
+            else if (localDislikesCount == 1) {
+                $(dislikeIcon).css('fontVariationSettings', "'FILL' 0");
+
+                dislikesCount--;
+                localDislikesCount--;
+
+                //$.get("/Post/changeReactionsCount", { postId: postId, mainCommentId: mainCommentId, like: false, increment: false }, function (data) {
+                //    if (data == "true") console.log("sendData");
+                //});
+
+                ChangeReactionsCountOnServer(false, false);
+
+                //$.post("/Post/changeReactionsCount", { postId: postId, mainCommentId: mainCommentId, like: false, increment: false });
+            }
+            dislikeElem.innerHTML = dislikesCount;
+            likeElem.innerHTML = likesCount;
         }
-        dislikeElem.innerHTML = dislikesCount;
-        likeElem.innerHTML = likesCount;
+    }
+    // Если пользователь не авторизован
+    else {
+        console.log("User dont authenticated");
+
+        //var popup = wrapper.querySelector("#myPopup");
+
+        var popup = comment.querySelector("#myPopup");
+
+        console.log(popup)
+
+        popup.classList.toggle("show");
     }
 }
 

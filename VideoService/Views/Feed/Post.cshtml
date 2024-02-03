@@ -16,7 +16,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 --->
 <link href="~/css/Post.css" rel="stylesheet" />
-
+<link rel="stylesheet" href="~/css/MainComment.css" />
 <!-- Динамические -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
@@ -43,7 +43,7 @@
     {*@
 
         <div class="comments-section">
-        <h1 class="comments-title">Комментарии</h1>
+        <h1 id="comments-title">Комментарии</h1>
             @{
 
                 // Подгружаем MainComment.cshtml
@@ -55,7 +55,7 @@
             {
             //var timeDifference = DateTime.Now - c.Created;
 
-                <div class="comment">
+            <div class="comment" id="comment(@c.Id)">
                     <label>
                     @* @c.Author <span id="creationTime">@timeDifference</span> *@
                     @c.Author <span id="creationTime">@c.Created</span>
@@ -83,9 +83,24 @@
                                 @c.Message;
                             }
                         }
+
+                    <div class="popup">
+                        <div class="popuptext" id="myPopup">
+                            <p>Авторизуйтесь, чтобы оставить реакцию</p>
+                            <a asp-action="Login" asp-controller="Auth">Вход</a>
+                        </div>
+                    </div>
                     </div>
 
                 <div class="undercomment-buttons" id="undercomment-buttons(@c.Id)">
+                @*
+                    <div class="popup">
+                        <div class="popuptext" id="myPopup">
+                            <p>Авторизуйтесь, чтобы оставить реакцию</p>
+                            <a asp-action="Login" asp-controller="Auth">Вход</a>
+                        </div>
+                    </div>*@
+
                 @* <span id="like" class="material-symbols-outlined" onclick="Increment('@Model.Id', '@c.Id', 'true');">thumb_up</span>@c.LikesCount *@
                     <span id="like" class="material-symbols-rounded" onclick="ChangeReactionsCount('@Model.Id', '@c.Id', 'true');">thumb_up</span>
                     <span id="likesCount">@c.LikesCount</span>
@@ -177,6 +192,7 @@
 
 
 <script src="~/js/Post.js"></script>
+<script src="~/js/MainComment.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 @*
