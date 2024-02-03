@@ -117,7 +117,7 @@ namespace VideoService.Data.Repository
         }
 
         // Получаем одну запись из БД
-        public Post? GetPost(int id)
+        public Post GetPost(int id)
         {
             // Если полученный id совпадает с найденным в БД, то возвращаем (достаем) эту запись
             return _ctx.Posts

@@ -17,8 +17,12 @@
     <form method="post" asp-controller="Feed" asp-action="Comment"> 
 
         <div class="input-wrapper">
-        <input asp-for="PostId" type="hidden"/>
-        <input asp-for="MainCommentId" type="hidden" />
+            <input asp-for="PostId" type="hidden" />
+       @* <input asp-for="PostId" type="hidden" value="@Model.PostId"/>
+         <input asp-for="MainCommentId" type="hidden" />
+            <input asp-for="LikesCount" type="hidden" />
+            <input asp-for="DislikesCount" type="hidden" />
+            <input asp-for="Author" type="hidden"/> *@
 
         <textarea asp-for="Message" oninput="auto_grow(this)" placeholder="Введите комментарий" id="comment-textarea"></textarea>
         @*<textarea asp-for="Message" placeholder="Введите комментарий" id="comment-textarea"></textarea>*@
@@ -30,11 +34,12 @@
                 <p>Авторизуйтесь, чтобы оставить комментарий</p>
                 @*Авторизуйтесь, чтобы оставить комментарий*@
                 <a asp-action="Login" asp-controller="Auth">Вход</a>
+
+                    @* <input asp-for="Author" type="hidden" value="@User"/> *@
             </div>
         </div>
         <button type="submit" id="send-comment-but">Отправить</button>
         </div>
     </form>
 </div>
-
 <script src="~/js/MainComment.js"></script>

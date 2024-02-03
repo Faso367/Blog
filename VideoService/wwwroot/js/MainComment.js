@@ -16,9 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const Textarea = document.getElementById("comment-textarea");
     const But = document.getElementById("send-comment-but");
 
-    const openBtn = document.getElementById("send-comment-but");
-    const closeBtn = document.getElementById("closeModal");
-    const modal = document.getElementById("modal");
+
+    console.log("Hello");
+    //const openBtn = document.getElementById("send-comment-but");
+    //const closeBtn = document.getElementById("closeModal");
+    //const modal = document.getElementById("modal");
     //const isAuthenticated = document.getElementsByClassName("IsAuthenticated").textContent;
 
     //console.log(isAuthenticated);
@@ -72,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     Textarea.addEventListener("input", () => {
         validateElem(Textarea); // Описание функции validateElem выше
+        console.log("inputEvent");
     });
 
     // Событие происходит при клике на кнопку с type="submit"
@@ -81,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         var isAuthenticated = document.getElementById("IsAuthenticated").innerText;
 
-        console.log(isAuthenticated);
+        console.log("User is Authenticated?:" + isAuthenticated);
 
         even.preventDefault();
 
@@ -113,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (isValid) {
 
 
-            if (isAuthenticated) {
+            if (isAuthenticated == 'True') {
 
                 //closeBtn.addEventListener("click", () => {
                 //    modal.classList.remove("open");

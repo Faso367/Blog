@@ -61,7 +61,7 @@ namespace VideoService.Controllers
         {
 
             if (!ModelState.IsValid)
-                return RedirectToAction("Post", new { id = vm.PostId });
+                return RedirectToAction("Post", new { postId = vm.PostId });
 
             //if(!User.Identity.IsAuthenticated)
             //{
@@ -80,7 +80,7 @@ namespace VideoService.Controllers
                     Created = DateTime.Now,
                     Author = vm.Author,
                     LikesCount = vm.LikesCount,
-                    DislikesCount = vm.DislikesCount,
+                    DislikesCount = vm.DislikesCount
 
                     //AuthorsAndLikeExistence = vm.AuthorsAndLikeExistence
                 });
@@ -95,7 +95,7 @@ namespace VideoService.Controllers
                     Created = DateTime.Now,
                     Author = vm.Author,
                     LikesCount = vm.LikesCount, // ???????
-                    DislikesCount = vm.DislikesCount, // ???????
+                    DislikesCount = vm.DislikesCount // ???????
 
                     //AuthorsAndLikeExistence = vm.AuthorsAndLikeExistence
                 };
