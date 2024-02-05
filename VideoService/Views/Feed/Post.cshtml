@@ -103,9 +103,11 @@
 
                 @* <span id="like" class="material-symbols-outlined" onclick="Increment('@Model.Id', '@c.Id', 'true');">thumb_up</span>@c.LikesCount *@
                     <span id="like" class="material-symbols-rounded" onclick="ChangeReactionsCount('@Model.Id', '@c.Id', 'true');">thumb_up</span>
-                    <span id="likesCount">@c.LikesCount</span>
+                    <span id="likesCount" data-likes-count="0">@c.LikesCount</span>
+
                     <span id="dislike" class="material-symbols-rounded" onclick="ChangeReactionsCount('@Model.Id', '@c.Id' , 'false');">thumb_down</span>
-                    <span id="dislikesCount">@c.DislikesCount</span>
+                    <span id="dislikesCount" data-dislikes-count="0">@c.DislikesCount</span>
+
                     <span id="answer" onclick="ShowSendCommentSection()">Ответить</span>
 
                  <div id="sendCommentWrapper">

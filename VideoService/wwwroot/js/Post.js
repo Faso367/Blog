@@ -48,8 +48,8 @@ function ReadMoreOrLess(id) {
     }
 }
 
-var localLikesCount = 0;
-var localDislikesCount = 0;
+//var localLikesCount;
+//var localDislikesCount;
 
 function ChangeReactionsCount(postId, mainCommentId, like) {
 
@@ -64,6 +64,12 @@ function ChangeReactionsCount(postId, mainCommentId, like) {
 
     var likeElem = wrapper.querySelector("#likesCount");
     var dislikeElem = wrapper.querySelector("#dislikesCount");
+
+    var localLikesCount = likeElem.getAttribute("data-likes-count");
+    var localDislikesCount = dislikeElem.getAttribute("data-dislikes-count");
+
+    //console.log(localLikesCount);
+    //console.log(localDislikesCount);
 
     var likesCount = likeElem.textContent;
     var dislikesCount = dislikeElem.textContent;
@@ -147,6 +153,10 @@ function ChangeReactionsCount(postId, mainCommentId, like) {
             dislikeElem.innerHTML = dislikesCount;
             likeElem.innerHTML = likesCount;
         }
+
+        likeElem.setAttribute("data-likes-count", localLikesCount);
+        dislikeElem.setAttribute("data-dislikes-count", localDislikesCount);
+
     }
     // Если пользователь не авторизован
     else {
