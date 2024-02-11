@@ -76,6 +76,8 @@ namespace VideoService.Controllers
             {
                 post.MainComments = post.MainComments ?? new List<MainComment>();
 
+                //string s = FindTimeDifferenceAndCovertToWords(mainComment.Created);
+
                 post.MainComments.Add(new MainComment
                 {
                     Message = vm.Message,
@@ -113,61 +115,131 @@ namespace VideoService.Controllers
             return RedirectToAction("Post", new { postId = vm.PostId });
         }
 
-        //// Если это like, то true. Если dislike, то false
-        //[HttpGet]
-        //public void Increment(int postId, int mainCommentId, bool like)
+        //private string FindTimeDifferenceAndCovertToWords(DateTime postCreatedTime)
         //{
-        //    var post = _repo.GetPost(postId);
-        //    MainComment? mainComment = post.MainComments.Find(x => x.Id == mainCommentId);
+        //    string result = "";
 
-        //    if (mainComment != null)
+        //    TimeSpan timeDifference = DateTime.Now - postCreatedTime;
+
+        //    //string strTimeDifference = timeDifference.ToString();
+
+        //    //TimeSpan time = TimeSpan.Parse(strTimeDifference.Substring(0, 10));
+
+        //    double totalDays = timeDifference.TotalDays;
+        //    double totalHours = timeDifference.TotalHours;
+        //    double totalMinutes = timeDifference.TotalMinutes;
+
+        //    //double days = timeDifference.Days;
+        //    //double hours = timeDifference.Hours;
+        //    //double minutes = timeDifference.Minutes;
+
+        //    if (totalDays > 0)
         //    {
-        //        if (like)
-        //            mainComment.LikesCount++;
+        //        if (totalDays > 364)
+        //            result = CreateCorrectNumeral(totalDays / 365, "year");
         //        else
-        //            mainComment.DislikesCount++;
-        //        _repo.UpdatePost(post);
+        //            result = CreateCorrectNumeral(totalDays, "day");
+
         //    }
-        //    //else
-        //    //{
-
-        //    //}
-        //    //int likesCount = post.MainComments.FirstOrDefault()?.LikesCount ?? 0;
-
-
-        //}
-
-
-        // ТЕ ЖЕ МЕТОДЫ, НО В ИМПЕРАТИВНОМ ПРЕДСТАВЛЕНИИ
-
-        // Метод из интерфейса соответствует названию нашего отображения (Index.cshtml)
-        // 1) public IActionResult Index(string category)
-        //{
-        //    //_repo.GetAllPosts(); // Получаем список значений ячеек БД
-        //    var posts = string.IsNullOrEmpty(category) ? _repo.GetAllPosts() :
-        //        _repo.GetAllPosts(category);
-        //    // то же самое что и
-        //    /*
-        //    if (string.IsNullOrEmpty(category)) {
-        //    _repo.GetAllPosts();
+        //    else if (totalHours > 0)
+        //    {
+        //        result = CreateCorrectNumeral(totalHours, "hour");
         //    }
-        //    else { _repo.GetAllPosts(category); }
-        //    */
-        //    return View(posts);
-        //}
+        //    else if (totalMinutes > 0)
+        //    {
+        //        result = CreateCorrectNumeral(totalHours, "minute");
+        //    }
+        //    else
+        //    {
+        //        result = "меньше минуты назад";
+        //    }
 
-        // 2) public IActionResult Post(int id)
-        //{
-        //    var post = _repo.GetPost(id);
+        //    Console.WriteLine(result);
 
-        //    return View(post);
-        //}
+        //    return result;
 
-        //[HttpGet("/Image/{image}")]
-        // 3) public IActionResult Image(string image)
-        //{
-        //    var extension = image.Substring(image.LastIndexOf('.') + 1);
-        //    return new FileStreamResult(_fileManager.ImageStream(image), $"image/{extension}");
-        //}
-    }
+        //    string CreateCorrectNumeral(double time, string type)
+        //    {
+
+        //        var timeUnits_defaultValues = new Dictionary<string, string[]> {
+        //            {"minute", new string[] { "минуту", "минуты", "минут" }},
+        //            {"hour", new string[] { "час", "часа", "часов" }},
+        //            {"day", new string[] { "день", "дня", "дней" }},
+        //            {"year", new string[] { "год", "года", "лет" }}
+        //        };
+
+        //        if (timeUnits_defaultValues.ContainsKey(type))
+        //        {
+        //            string strTime = time.ToString();
+
+        //            foreach (var unit in timeUnits_defaultValues.Keys)
+        //                switch (strTime[^1] == '1' && strTime != "11" ? 1 :
+        //                         strTime[^1] == '2' || strTime[^1] == '3' || strTime[^1] == '4' ? 2 : 3)
+        //                {
+        //                    case 1: return strTime + timeUnits_defaultValues[unit][0] + " назад";
+        //                    case 2: return strTime + timeUnits_defaultValues[unit][1] + " назад";
+        //                    case 3: return strTime + timeUnits_defaultValues[unit][2] + " назад";
+        //                }
+        //        }
+        //        return "";
+        //    }
+
+
+            //// Если это like, то true. Если dislike, то false
+            //[HttpGet]
+            //public void Increment(int postId, int mainCommentId, bool like)
+            //{
+            //    var post = _repo.GetPost(postId);
+            //    MainComment? mainComment = post.MainComments.Find(x => x.Id == mainCommentId);
+
+            //    if (mainComment != null)
+            //    {
+            //        if (like)
+            //            mainComment.LikesCount++;
+            //        else
+            //            mainComment.DislikesCount++;
+            //        _repo.UpdatePost(post);
+            //    }
+            //    //else
+            //    //{
+
+            //    //}
+            //    //int likesCount = post.MainComments.FirstOrDefault()?.LikesCount ?? 0;
+
+
+            //}
+
+
+            // ТЕ ЖЕ МЕТОДЫ, НО В ИМПЕРАТИВНОМ ПРЕДСТАВЛЕНИИ
+
+            // Метод из интерфейса соответствует названию нашего отображения (Index.cshtml)
+            // 1) public IActionResult Index(string category)
+            //{
+            //    //_repo.GetAllPosts(); // Получаем список значений ячеек БД
+            //    var posts = string.IsNullOrEmpty(category) ? _repo.GetAllPosts() :
+            //        _repo.GetAllPosts(category);
+            //    // то же самое что и
+            //    /*
+            //    if (string.IsNullOrEmpty(category)) {
+            //    _repo.GetAllPosts();
+            //    }
+            //    else { _repo.GetAllPosts(category); }
+            //    */
+            //    return View(posts);
+            //}
+
+            // 2) public IActionResult Post(int id)
+            //{
+            //    var post = _repo.GetPost(id);
+
+            //    return View(post);
+            //}
+
+            //[HttpGet("/Image/{image}")]
+            // 3) public IActionResult Image(string image)
+            //{
+            //    var extension = image.Substring(image.LastIndexOf('.') + 1);
+            //    return new FileStreamResult(_fileManager.ImageStream(image), $"image/{extension}");
+            //}
+        }
 }

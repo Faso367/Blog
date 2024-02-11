@@ -90,11 +90,17 @@
 
 .comment label { /*Шапка комментария с именем автора и датой публикации*/
     font: bold 17px 'Roboto';
+    display: block;
+    width: 200px;
+    height: 30px;
 }
 
     .comment label #creationTime {
         color: gray;
+        
         font-size: 13px;
+        width: 100px;
+        height: 30px;
 /*        font: 13px 'Roboto';
         font-weight: 600;*/
     }
@@ -120,6 +126,8 @@
         color: #13ea79;
         cursor: pointer;
     }
+
+
 
 #sendCommentWrapper {
 /*    width: 300px;

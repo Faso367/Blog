@@ -3,7 +3,7 @@
 @{
         ViewBag.Title = Model.Title;
         ViewBag.Description = Model.Description;
-        <!--Если поле Tags? означает что оно потенциально = null, а если Tag!= null, то применяем Replace-->
+    <!--Если поле Tags? означает что оно потенциально = null, а если Tag!= null, то применяем Replace-->
         ViewBag.Keywords = $"{Model.Tags?.Replace(",", " ")} {Model.Category}";
         var base_path = Context.Request.PathBase;
 }
@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="~/css/MainComment.css" />
 <!-- Динамические -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <!-- Статические -->
 <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,300,0,0" /> -->
 
@@ -58,7 +58,17 @@
             <div class="comment" id="comment(@c.Id)">
                     <label>
                     @* @c.Author <span id="creationTime">@timeDifference</span> *@
-                    @c.Author <span id="creationTime">@c.Created</span>
+                    @c.Author <span id="creationTime">
+                        <script type="text/javascript">
+                            $(document).ready(function () {
+                                $.get("/Post/ShowTimeDifference", { postId: '@Model.Id', mainCommentId: '@c.Id' }, function (text) {
+                                    var el = document.getElementById(`comment(${@c.Id})`);
+                                    el.querySelector("#creationTime").textContent = text;
+                                    console.log(text)
+                                })
+                            });
+                        </script>
+                    </span>
                         @*Comment Author`s name --- @c.Created *@
                     </label>
                     <div class="comment-text">
@@ -71,16 +81,16 @@
                             {
                                 foreach (char s in c.Message.Take(400)) @s;
 
-                                <span class="dots" id="dots(@c.Id)">...</span>
-                                <span class="moreText" id="moreText(@c.Id)">@foreach (char s in c.Message.Skip(400))
-                                        @s
-                                </span>
-                                <br />
-                                <span class="readMoreBut" id="readMoreBut(@c.Id)" onclick="ReadMoreOrLess(@c.Id)">Читать далее</span>
+                                                <span class="dots" id="dots(@c.Id)">...</span>
+                                                <span class="moreText" id="moreText(@c.Id)">@foreach (char s in c.Message.Skip(400))
+                                                        @s
+                                                </span>
+                                                <br />
+                                                <span class="readMoreBut" id="readMoreBut(@c.Id)" onclick="ReadMoreOrLess(@c.Id)">Читать далее</span>
                             }
                             else
                             {
-                                @c.Message;
+                                                @c.Message;
                             }
                         }
 
@@ -195,7 +205,7 @@
 
 <script src="~/js/Post.js"></script>
 <script src="~/js/MainComment.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+@* <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> *@
 
 @*
 <script>

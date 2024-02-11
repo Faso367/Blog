@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Используем строгий синтаксис во избежание ошибок и уязвимостей
     "use sctrict";
 
+
+
+
     var acc = document.getElementsByClassName("show-answers-but");
 
     var i;
@@ -47,6 +50,25 @@ function ReadMoreOrLess(id) {
         but.textContent = 'Читать далее';
     }
 }
+
+
+
+//function ShowTimeDifference(postId, mainCommentId) {
+//    console.log(222);
+//    //var currentdate = new Date();
+//    //var datetime = currentdate.getDate() + "/"
+//    //    + (currentdate.getMonth() + 1) + "/"
+//    //    + currentdate.getFullYear() + " @ "
+//    //    + currentdate.getHours() + ":"
+//    //    + currentdate.getMinutes() + ":"
+//    //    + currentdate.getSeconds();
+
+//    //console.log(777);
+    
+
+//    //console.log(datetime);
+//    this.innerHTML = $.get("/Post/ShowTimeDifference", { postId: postId, mainCommentId: mainCommentId });
+//}
 
 //var localLikesCount;
 //var localDislikesCount;
