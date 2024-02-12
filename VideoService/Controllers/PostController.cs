@@ -69,6 +69,7 @@ namespace VideoService.Controllers
         public void changeReactionsCount(int postId, int mainCommentId, bool like, bool increment)
         {
 
+            /*Надо сделать проверку на то, делался ли лайк до этого */
 
             if (ModelState.IsValid)
             {

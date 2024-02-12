@@ -45,10 +45,13 @@
         <div class="comments-section">
         <h1 id="comments-title">Комментарии</h1>
             @{
-
-                // Подгружаем MainComment.cshtml
+            <div class="sendComment" id="sendCommentWrapper">
+                @* Подгружаем MainComment.cshtml *@
+                @{
                 await Html.RenderPartialAsync("MainComment",
                 new CommentViewModel { PostId = Model.Id, MainCommentId = 0 });
+                }
+             </div>
             }
 
             @foreach (var c in Model.MainComments)
@@ -81,16 +84,16 @@
                             {
                                 foreach (char s in c.Message.Take(400)) @s;
 
-                                                <span class="dots" id="dots(@c.Id)">...</span>
-                                                <span class="moreText" id="moreText(@c.Id)">@foreach (char s in c.Message.Skip(400))
-                                                        @s
-                                                </span>
-                                                <br />
-                                                <span class="readMoreBut" id="readMoreBut(@c.Id)" onclick="ReadMoreOrLess(@c.Id)">Читать далее</span>
+                                <span class="dots" id="dots(@c.Id)">...</span>
+                                <span class="moreText" id="moreText(@c.Id)">@foreach (char s in c.Message.Skip(400))
+                                        @s
+                                </span>
+                                <br />
+                                <span class="readMoreBut" id="readMoreBut(@c.Id)" onclick="ReadMoreOrLess(@c.Id)">Читать далее</span>
                             }
                             else
                             {
-                                                @c.Message;
+                                @c.Message;
                             }
                         }
 
@@ -118,13 +121,16 @@
                     <span id="dislike" class="material-symbols-rounded" onclick="ChangeReactionsCount('@Model.Id', '@c.Id' , 'false');">thumb_down</span>
                     <span id="dislikesCount" data-dislikes-count="0">@c.DislikesCount</span>
 
-                    <span id="answer" onclick="ShowSendCommentSection()">Ответить</span>
+                    <span id="answer" onclick="ShowSendCommentSection('@c.Id')">Ответить</span>
 
-                 <div id="sendCommentWrapper">
-                 @{  await Html.RenderPartialAsync("MainComment",
-                    new CommentViewModel { PostId = Model.Id, MainCommentId = c.Id });}
-                </div>
+                 @* <div id="sendCommentWrapper"> *@
             </div>
+                <div class="sendComment" id="sendCommentWrapper(@c.Id)">
+                    @{
+                        await Html.RenderPartialAsync("MainComment",
+                            new CommentViewModel { PostId = Model.Id, MainCommentId = c.Id });
+                      }
+                </div>
 
                     @if (c.SubComments.Count > 0)
                     {

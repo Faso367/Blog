@@ -16,19 +16,22 @@
 
 .send-comment {
     width: 100%;
+    /*    display: block;
+*/
+    flex: 0 0 auto;
     /*height: 300px;*/
     /*max-height: 1000px;*/
     overflow: hidden;
-    padding-top: 20px;
+    /*padding-top: 20px;*/
     /*z-index: 98;*/
-
     /*position: relative;*/
 }
 
 form {
     width: 70%;
     overflow: hidden;
-    padding-top: 40px;
+    /*padding-top: 40px;*/
+    padding-top: 20px;
     /*z-index: 99;*/
     /*max-height: 1000px;*/
 

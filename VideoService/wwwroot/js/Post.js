@@ -194,8 +194,10 @@ function ChangeReactionsCount(postId, mainCommentId, like) {
     }
 }
 
-function ShowSendCommentSection() {
+function ShowSendCommentSection(mainCommentId) {
 
-    const section = document.getElementById("sendCommentWrapper");
-    section.style.display = "block";
+    //var wrapper = document.getElementById(`undercomment-buttons(${mainCommentId})`);
+    var sendCommentSection = document.getElementById(`sendCommentWrapper(${mainCommentId})`);
+
+    sendCommentSection.style.display = "block";
 }
