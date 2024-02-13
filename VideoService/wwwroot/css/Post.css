@@ -12,11 +12,6 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
-/*    font-family: 'Roboto', Arial, sans-serif;
-    font-size: 1.4rem;
-    line-height: 2rem;
-    font-weight: 400;*/
 }
 
 
@@ -77,11 +72,6 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-
-/*    position: relative;
-    z-index: 1;*/
-
-    /*margin-top: 50px;*/
 }
 
     .comments-section .comment {
@@ -137,26 +127,6 @@
     /*width: 1080px;*/
 }
 
-/*#sendCommentWrapper {
-    display: block;
-}*/
-    /*#like {
-    fill: white;
-}*/
-    /*.material-symbols-outlined {*/ /*Иконки лайка и дизлайка*/
-    /*    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-*/ /*fill: white;
-    width: 25px;
-    height: 25px;
-}*/
-    /*.material-symbols-rounded {*/ /*Иконки лайка и дизлайка*/
-    /*fill: white;
-    width: 25px;
-    height: 25px;
-}*/
-    /*.material-symbols-rounded:active {*/ /*Иконки лайка и дизлайка*/
-    /*font-variation-settings: 'FILL' 1
-    }*/
     .material-symbols-rounded {
         font-variation-settings: 'FILL' 0
     }
@@ -290,49 +260,22 @@
 }
 
 
-
-
-
-
-
-/*font-family: "Roboto","Arial",sans-serif;
-    font-size: 1.4rem;
-    line-height: 2rem;
-    font-weight: 400;*/
-
 .comments-title {
     margin-top: 20px;
     font: bold;
     width: 300px;
-    /*position: relative;*/
-    /*    font: 35px 'Roboto';
-    font-weight: 700;*/
 }
 
 .send-comment {
     width: 100%;
-    /*    display: block;
-*/
     flex: 0 0 auto;
-    /*height: 300px;*/
-    /*max-height: 1000px;*/
     overflow: hidden;
-    
-/*    position: relative;
-    z-index: 4;*/
-    /*padding-top: 20px;*/
-    /*z-index: 98;*/
-    /*position: relative;*/
 }
 
 form {
     width: 70%;
     overflow: hidden;
-    /*padding-top: 40px;*/
     padding-top: 20px;
-    /*z-index: 99;*/
-    /*max-height: 1000px;*/
-
     margin: 0px;
     display: flex;
     flex-direction: row;
@@ -351,29 +294,10 @@ form {
 }
 
 .button-wrapper {
-    /*height: 300px;*/
-    /*z-index: 100;*/
-    /*transform: translateX(-20%);*/
-    /*align-self: end;*/
-    /*position: absolute;*/
-    /*position: absolute;*/
-
 
     position: absolute;
-
     left: 70%;
-
-    /*height: 300px;*/
-
-    /*z-index: 100;*/
     width: 200px;
-
-    /*margin-top: -100px;*/
-
-    /*align-self: end;*/
-    /*z-index: 1000;*/
-    /*margin-top: -100px;*/
-    /*margin-top: -100px;*/
 }
 
 .send-comment form #send-comment-but {
@@ -433,16 +357,8 @@ form textarea {
 
     /* The actual popup */
     .popup .popuptext {
-        /*transform: translateY(-110%);*/
         visibility: hidden;
         display: none;
-        /*position: relative;*/
-        /*z-index: 999;*/
-        /*        position: relative;
-        z-index: 100;*/
-        /*position: absolute;*/
-        /*position: absolute;*/
-        /*z-index: 100;*/
         width: 200px;
         height: 90px;
         text-align: center;
@@ -452,35 +368,12 @@ form textarea {
 
         margin-left: -35px;
 
-        /*margin-bottom: 40px;*/
-        /*        position: absolute;
-        z-index: 1;*/
-        /*        left: 59.7%;
-        top: 125%;*/
         background-color: #1a1b1a;
         color: white;
         border: 1px solid #13ea79;
         border-radius: 10px;
         /*margin-bottom: 100px;*/
     }
-
-/*.button-wrapper .popuptext {
-    position: absolute;
-    z-index: 1;
-    left: 59.7%;
-    top: 125%;
-}*/
-
-/*.comment .popuptext {
-    display: none;
-    position: relative;
-    z-index: 999;*/
-/*    margin-left: -4%;
-    margin-top: 10px;*/
-    /*top: 50%;*/
-    /*    left: 5%;
-    bottom: -153%;*/
-/*}*/
 
 .popuptext p {
     /*padding: 0;*/
@@ -500,42 +393,14 @@ form textarea {
         /*color: #189b67;*/
         color: #13ea79;
     }
-/* Popup arrow */
-/*.button-wrapper .popup .popuptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;*/
-    /*            width: 400px;
-            height: 500px;*/
-    /*margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-}*/
 
 /* Toggle this class - hide and show the popup */
 .popup .show {
     visibility: visible;
     -webkit-animation: fadeIn 1s;
     animation: fadeIn 1s;
-    /*position: relative;*/
     display: block;
-
-/*    position: relative;
-    z-index: 80;*/
-    /*    z-index: 4;
-    display: block;*/
 }
-
-
-
-/*.show {
-    visibility: visible;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s;
-    display: block;
-}*/
 
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {

@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Используем строгий синтаксис во избежание ошибок и уязвимостей
     "use sctrict";
 
-
+    ShowSendCommentSection(0);
 
 
     var acc = document.getElementsByClassName("show-answers-but");
@@ -201,13 +201,16 @@ function ShowSendCommentSection(mainCommentId) {
     //var wrapper = document.getElementById(`undercomment-buttons(${mainCommentId})`);
     var sendCommentSection = document.getElementById(`sendCommentWrapper(${mainCommentId})`);
 
-    sendCommentSection.style.display = "block";
+    console.log(sendCommentSection);
 
+    //if (mainCommentId != '0' && mainCommentId != 0) {
+    //    sendCommentSection.style.display = "block";
+    //}
     // -----------------------
 
     //var sendCommentInsideMainComment = sendCommentSection.querySelector(".send-comment");
     var form = sendCommentSection.querySelector(".send-comment .main-form");
-    var Textarea = form.querySelector(".input-wrapper #comment-textarea")
+    var Textarea = form.querySelector(".input-wrapper #comment-textarea");
     var But = form.querySelector("#send-comment-but");
 
     console.log(Textarea);
