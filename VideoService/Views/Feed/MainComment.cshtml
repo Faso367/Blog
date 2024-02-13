@@ -5,7 +5,7 @@
 
 
 
-<span id="IsAuthenticated" style="display: none; overflow: hidden;">@User.Identity.IsAuthenticated</span>
+@* <span id="IsAuthenticated" style="display: none; overflow: hidden;">@User.Identity.IsAuthenticated</span> *@
 
 @*<div class="modal-window" id="modal">*@
 
@@ -13,7 +13,7 @@
 
 <div class="send-comment">
     @*<h1 class="comments-title">Комментарии</h1>*@
-    <form method="post" asp-controller="Feed" asp-action="Comment"> 
+    <form method="post" asp-controller="Feed" asp-action="Comment" class="main-form"> 
 
         <div class="input-wrapper">
             <input asp-for="PostId" type="hidden" />
@@ -30,7 +30,8 @@
         </div>
         <div class="button-wrapper">
         <div class="popup">
-            @*<button id="closeModal"></button>*@
+            @* <div class="popup show"> *@
+                @*<button id="closeModal"></button>*@
             <div class="popuptext" id="myPopup">
                 <p>Авторизуйтесь, чтобы оставить комментарий</p>
                 @*Авторизуйтесь, чтобы оставить комментарий*@
@@ -39,7 +40,8 @@
                     @* <input asp-for="Author" type="hidden" value="@User"/> *@
             </div>
         </div>
-        <button type="submit" id="send-comment-but">Отправить</button>
+            <button type="submit" id="send-comment-but">Отправить</button>
+           @* <button type="submit" id="send-comment-but(@Model.MainCommentId)">Отправить</button> *@
         </div>
     </form>
 </div>

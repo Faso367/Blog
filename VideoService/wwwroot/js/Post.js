@@ -193,11 +193,151 @@ function ChangeReactionsCount(postId, mainCommentId, like) {
         popup.classList.toggle("show");
     }
 }
-
+//let isValid = false;
 function ShowSendCommentSection(mainCommentId) {
+
+
 
     //var wrapper = document.getElementById(`undercomment-buttons(${mainCommentId})`);
     var sendCommentSection = document.getElementById(`sendCommentWrapper(${mainCommentId})`);
 
     sendCommentSection.style.display = "block";
+
+    // -----------------------
+
+    //var sendCommentInsideMainComment = sendCommentSection.querySelector(".send-comment");
+    var form = sendCommentSection.querySelector(".send-comment .main-form");
+    var Textarea = form.querySelector(".input-wrapper #comment-textarea")
+    var But = form.querySelector("#send-comment-but");
+
+    console.log(Textarea);
+    
+    const changeColor1 = () => {
+        But.style.backgroundColor = '#1aa95d';
+    }
+
+    const changeColor2 = () => {
+        But.style.backgroundColor = '#1a1b1a';
+    }
+
+    let isValid = false;
+
+
+    const validateElem = (elem) => {
+
+        if (elem.value !== "") {
+
+            But.removeAttribute('disabled');
+            But.style.opacity = "1";
+            But.style.cursor = "pointer";
+
+            But.addEventListener('mouseenter', changeColor1, true);
+            But.addEventListener('mouseleave', changeColor2, true);
+
+            isValid = true;
+
+        }
+
+
+        else {
+            But.setAttribute('disabled', 'disabled');
+            But.style.opacity = "0.5";
+            But.style.cursor = "default";
+            if (isValid = true) {
+
+                But.removeEventListener('mouseenter', changeColor1, true);
+                But.removeEventListener('mouseleave', changeColor2, true);
+            }
+
+        }
+
+    }
+
+    validateElem(Textarea);
+
+    //Textarea.addEventListener("blur", () => {
+    //    validateElem(Textarea); // Описание функции validateElem выше
+    //});
+
+    Textarea.addEventListener("input", () => {
+        validateElem(Textarea); // Описание функции validateElem выше
+        console.log("inputEvent");
+    });
+
+    //function ShowPopup(popup) {
+    //    var popup = document.getElementById("myPopup");
+    //    popup.classList.toggle("show");
+    //}
+
+
+    // Событие происходит при клике на кнопку с type="submit"
+    form.addEventListener("submit", (even) => {
+        // Указываем, что следует отменить типичное поведение браузера
+        // Теперь при нажатии на кнопку submit страница не будет перезагружена
+
+
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        var isAuthenticated = document.getElementById("IsAuthenticated").innerText;
+
+        console.log(isAuthenticated);
+
+        //console.log("User is Authenticated?:" + isAuthenticated);
+
+        even.preventDefault();
+
+        //console.log("submitEvent");
+
+        if (Textarea.value === "") {
+
+            isValid = false;
+            But.setAttribute('disabled', 'disabled');
+            But.style.opacity = "0.5";
+            But.style.cursor = "default";
+            But.removeEventListener('mouseenter', changeColor1, true);
+            But.removeEventListener('mouseleave', changeColor2, true);
+
+        }
+
+        else {
+            isValid = true;
+            But.removeAttribute('disabled');
+            But.style.opacity = "1";
+            But.style.cursor = "pointer";
+            But.addEventListener('mouseenter', changeColor1, true);
+            But.addEventListener('mouseleave', changeColor2, true);
+  
+        }
+
+
+        if (isValid) {
+
+
+            if (isAuthenticated == 'True') {
+
+                form.submit();
+                // Сбрасываем значения всех полей
+                form.reset();
+            }
+
+            else {
+
+                //console.log("showPopup");
+
+                //function myFunction() {
+                // var popup = document.getElementById("myPopup");
+                var popup = form.querySelector(".button-wrapper .popup .popuptext");
+
+                console.log(popup);
+
+                popup.classList.toggle("show");
+
+                console.log(popup.classList)
+                //}
+                //myFunction();
+            }
+        }
+
+    }) 
+    
 }
+

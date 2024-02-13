@@ -23,6 +23,16 @@
 <!-- Статические -->
 <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,300,0,0" /> -->
 
+@*
+<script>
+    function SendCommentSection(mainCommentId) {
+
+        const el = document.getElementById(`sendCommentWrapper(${mainCommentId})`);
+        console.log(el);
+    }</script> *@
+
+<span id="IsAuthenticated" style="display: none; overflow: hidden;">@User.Identity.IsAuthenticated</span>
+
 <div class="post">
     <div class="main-image">
         @if (!String.IsNullOrEmpty(Model.Image))
@@ -45,9 +55,25 @@
         <div class="comments-section">
         <h1 id="comments-title">Комментарии</h1>
             @{
-            <div class="sendComment" id="sendCommentWrapper">
+            <div class="sendComment" id="sendCommentWrapper(0)">
+
+                @* <iframe id="myframe" onload="SendCommentSection(0)" style="display: none;" />  *@
+            @*
+                <script>
+                    $(function () {//from   w ww  .j  a v a2s . c o m
+                        var div = '<div onload="SendCommentSection()">Here</div>';
+                        $("#dynamic").html(div);
+                        $('div[onload]').trigger('onload');
+                    });
+                    </script>@*
                 @* Подгружаем MainComment.cshtml *@
                 @{
+
+                    // <script type="text/javascript">
+                    //     var element = this.querySelector()
+                    //     oQuickReply.swap('somid');
+                    // </script>
+
                 await Html.RenderPartialAsync("MainComment",
                 new CommentViewModel { PostId = Model.Id, MainCommentId = 0 });
                 }
@@ -126,6 +152,8 @@
                  @* <div id="sendCommentWrapper"> *@
             </div>
                 <div class="sendComment" id="sendCommentWrapper(@c.Id)">
+                   @* <iframe id="myframe" onload="SendCommentSection(@c.Id)" style="display: none;"/> *@
+                    
                     @{
                         await Html.RenderPartialAsync("MainComment",
                             new CommentViewModel { PostId = Model.Id, MainCommentId = c.Id });
@@ -208,6 +236,12 @@
     }
 }
 
+<script>
+    function SendCommentSection(mainCommentId) {
+
+        const el = document.getElementById(`sendCommentWrapper(${mainCommentId})`);
+        console.log(el);
+    }</script>
 
 <script src="~/js/Post.js"></script>
 <script src="~/js/MainComment.js"></script>
