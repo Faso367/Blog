@@ -328,7 +328,7 @@ function ShowSendCommentSection(mainCommentId) {
 
                 var popupWrapper = form.querySelector(".button-wrapper");
 
-                popupWrapper.style.marginTop = "-100px";
+                /*popupWrapper.style.marginTop = "-100px";*/
 
                 var popupText = popupWrapper.querySelector(".popup .popuptext");
 
