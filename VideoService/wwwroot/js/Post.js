@@ -325,13 +325,18 @@ function ShowSendCommentSection(mainCommentId) {
 
                 //function myFunction() {
                 // var popup = document.getElementById("myPopup");
-                var popup = form.querySelector(".button-wrapper .popup .popuptext");
 
-                console.log(popup);
+                var popupWrapper = form.querySelector(".button-wrapper");
 
-                popup.classList.toggle("show");
+                popupWrapper.style.marginTop = "-100px";
 
-                console.log(popup.classList)
+                var popupText = popupWrapper.querySelector(".popup .popuptext");
+
+                console.log(popupText);
+
+                popupText.classList.toggle("show");
+
+                console.log(popupText.classList)
                 //}
                 //myFunction();
             }
