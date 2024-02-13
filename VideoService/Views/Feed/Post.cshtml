@@ -147,7 +147,7 @@
                     <span id="dislike" class="material-symbols-rounded" onclick="ChangeReactionsCount('@Model.Id', '@c.Id' , 'false');">thumb_down</span>
                     <span id="dislikesCount" data-dislikes-count="0">@c.DislikesCount</span>
 
-                    <span id="answer" onclick="ShowSendCommentSection('@c.Id')">Ответить</span>
+                    <span id="answer" onclick="ShowSendCommentSection(@c.Id)">Ответить</span>
 
                  @* <div id="sendCommentWrapper"> *@
             </div>

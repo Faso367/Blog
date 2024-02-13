@@ -201,11 +201,11 @@ function ShowSendCommentSection(mainCommentId) {
     //var wrapper = document.getElementById(`undercomment-buttons(${mainCommentId})`);
     var sendCommentSection = document.getElementById(`sendCommentWrapper(${mainCommentId})`);
 
-    console.log(sendCommentSection);
+    //console.log(sendCommentSection);
 
-    //if (mainCommentId != '0' && mainCommentId != 0) {
-    //    sendCommentSection.style.display = "block";
-    //}
+    if (mainCommentId != '0' && mainCommentId != 0) {
+        sendCommentSection.style.display = "block";
+    }
     // -----------------------
 
     //var sendCommentInsideMainComment = sendCommentSection.querySelector(".send-comment");
