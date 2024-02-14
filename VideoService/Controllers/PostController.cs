@@ -53,62 +53,68 @@ namespace VideoService.Controllers
 
                     if (mainComment != null)
                     {
-
-                        // Инкремент
-                        // if (increment)
-                        //{
-                        // Если нажали на лайк
-                        if (like == true)
+                        foreach (var reaction in mainComment.AuthorReactions)
                         {
-
-                            // Если лайк уже был нажат
-                            if (WasLiked(mainComment, currentUserName))
+                            if (reaction.ReactionAuthor == currentUserName)
                             {
-                                mainComment.LikesCount--;
-                                _authorReaction.LikeReaction = false;
-                            }
 
-                            else
-                            {
-                                mainComment.LikesCount++;
-                                _authorReaction.LikeReaction = true;
-                            }
+                                // Инкремент
+                                // if (increment)
+                                //{
+                                // Если нажали на лайк
+                                if (like == true)
+                                {
 
-                            // Если до этого был нажат дизлайк
-                            if (WasDisliked(mainComment, currentUserName))
-                            {
-                                mainComment.DislikesCount--;
-                                _authorReaction.DislikeReaction = false;
-                            }
-                            _authorReaction.ReactionAuthor = currentUserName;
-                        }
+                                    // Если лайк уже был нажат
+                                    if (WasLiked(mainComment, currentUserName))
+                                    {
+                                        mainComment.LikesCount--;
+                                        _authorReaction.LikeReaction = false;
+                                    }
 
-                        // Если нажали на дизлайк
-                        if (like == false)
-                        {
-                            // Если дизлайк уже был нажат
-                            if (WasDisliked(mainComment, currentUserName))
-                            {
-                                mainComment.DislikesCount--;
-                                _authorReaction.DislikeReaction = false;
-                            }
-                            else
-                            {
-                                mainComment.DislikesCount++;
-                                _authorReaction.DislikeReaction = true;
-                            }
+                                    else
+                                    {
+                                        mainComment.LikesCount++;
+                                        _authorReaction.LikeReaction = true;
+                                    }
 
-                            // Если до этого был нажат лайк
-                            if (WasLiked(mainComment, currentUserName))
-                            {
-                                mainComment.LikesCount--;
-                                _authorReaction.LikeReaction = false;
-                            }
-                            _authorReaction.ReactionAuthor = currentUserName;
-                        }
-                        _repo.UpdatePost(post);
+                                    // Если до этого был нажат дизлайк
+                                    if (WasDisliked(mainComment, currentUserName))
+                                    {
+                                        mainComment.DislikesCount--;
+                                        _authorReaction.DislikeReaction = false;
+                                    }
+                                    _authorReaction.ReactionAuthor = currentUserName;
+                                }
 
-                        _repo.SaveChanges();
+                                // Если нажали на дизлайк
+                                if (like == false)
+                                {
+                                    // Если дизлайк уже был нажат
+                                    if (WasDisliked(mainComment, currentUserName))
+                                    {
+                                        mainComment.DislikesCount--;
+                                        _authorReaction.DislikeReaction = false;
+                                    }
+                                    else
+                                    {
+                                        mainComment.DislikesCount++;
+                                        _authorReaction.DislikeReaction = true;
+                                    }
+
+                                    // Если до этого был нажат лайк
+                                    if (WasLiked(mainComment, currentUserName))
+                                    {
+                                        mainComment.LikesCount--;
+                                        _authorReaction.LikeReaction = false;
+                                    }
+                                    _authorReaction.ReactionAuthor = currentUserName;
+                                }
+                                _repo.UpdatePost(post);
+
+                                _repo.SaveChanges();
+                            }
+                        }// foreach закончился
                         //    return new JsonResult("true");
                     }
                 }
