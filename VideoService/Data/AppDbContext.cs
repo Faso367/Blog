@@ -17,7 +17,10 @@ namespace VideoService.Data
 
         // Определяем таблицу Posts в нашей БД
         public DbSet<Post> Posts { get; set; }
-        // Для основных и доп комментов будут создаваться отдельные талицы
+
+        public DbSet<ExistenseAuthorReaction> AuthorReactions { get; set; }
+
+        // Для основных и доп комментов будут создаваться отдельные таблицы
         public DbSet<MainComment> MainComments { get; set; }
         public DbSet<SubComment> SubComments { get; set; }
 

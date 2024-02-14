@@ -12,59 +12,25 @@ namespace VideoService.Controllers
     public class PostController : Controller
     {
         private IRepository _repo;
-        //private IFileManager _fileManager;
+        private IFileManager _fileManager;
+
+        private ExistenseAuthorReaction _authorReaction;
 
         public PostController(IRepository repo, IFileManager fileManager)
         {
             // Создаем экземпляр интерфейса, чтобы пользоваться его методами
             _repo = repo;
-            //_fileManager = fileManager;
+            _fileManager = fileManager;
         }
 
-
-        // Если это like, то true. Если dislike, то false
-        //[HttpPost]
-        //public async Task<int> Increment(int postId, int mainCommentId, bool like)
-        //[HttpGet]
-        //public ActionResult changeReactionsCount(int postId, int mainCommentId, bool like, bool increment)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        //Получаем имя текущего пользователя
-        //        string? currentUserName = User.Identity?.Name;
-
-        //        //Console.WriteLine($"{postId} {mainCommentId} {like}");
-
-        //        var post = _repo.GetPost(postId);
-
-        //        if (post != null && !currentUserName.IsNullOrEmpty())
-        //        {
-
-        //            MainComment? mainComment = post.MainComments.Find(x => x.Id == mainCommentId);
-
-        //            if (mainComment != null)
-        //            {
-        //                if (increment)
-        //                {
-        //                    if (like) mainComment.LikesCount++;
-        //                    else mainComment.DislikesCount++;
-        //                }
-        //                else
-        //                {
-        //                    if (like) mainComment.LikesCount--;
-        //                    else mainComment.DislikesCount--;
-        //                }
-
-        //                _repo.UpdatePost(post);
-
-        //                if (_repo.SaveChanges())
-        //                    return new JsonResult("true");
-        //            }
-        //        }
-        //    }
-        //    return new JsonResult("false");
-        //}
-
+        /// <summary>
+        /// Меняет количество лайков или дизлайков, для безопасности логика из js продублирована.
+        /// Не позволяет одному и тому же пользователя лайкнуть один комментарий дважды.
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <param name="mainCommentId"></param>
+        /// <param name="like"></param>
+        /// <param name="increment"></param>
         [HttpPost]
         public void changeReactionsCount(int postId, int mainCommentId, bool like, bool increment)
         {
@@ -87,19 +53,59 @@ namespace VideoService.Controllers
 
                     if (mainComment != null)
                     {
-                        
 
-                        if (increment)
+                        // Инкремент
+                        // if (increment)
+                        //{
+                        // Если нажали на лайк
+                        if (like == true)
                         {
-                            if (like) mainComment.LikesCount++;
-                            else mainComment.DislikesCount++;
-                        }
-                        else
-                        {
-                            if (like) mainComment.LikesCount--;
-                            else mainComment.DislikesCount--;
+
+                            // Если лайк уже был нажат
+                            if (WasLiked(mainComment, currentUserName))
+                            {
+                                mainComment.LikesCount--;
+                                _authorReaction.LikeReaction = false;
+                            }
+
+                            else
+                            {
+                                mainComment.LikesCount++;
+                                _authorReaction.LikeReaction = true;
+                            }
+
+                            // Если до этого был нажат дизлайк
+                            if (WasDisliked(mainComment, currentUserName))
+                            {
+                                mainComment.DislikesCount--;
+                                _authorReaction.DislikeReaction = false;
+                            }
+                            _authorReaction.ReactionAuthor = currentUserName;
                         }
 
+                        // Если нажали на дизлайк
+                        if (like == false)
+                        {
+                            // Если дизлайк уже был нажат
+                            if (WasDisliked(mainComment, currentUserName))
+                            {
+                                mainComment.DislikesCount--;
+                                _authorReaction.DislikeReaction = false;
+                            }
+                            else
+                            {
+                                mainComment.DislikesCount++;
+                                _authorReaction.DislikeReaction = true;
+                            }
+
+                            // Если до этого был нажат лайк
+                            if (WasLiked(mainComment, currentUserName))
+                            {
+                                mainComment.LikesCount--;
+                                _authorReaction.LikeReaction = false;
+                            }
+                            _authorReaction.ReactionAuthor = currentUserName;
+                        }
                         _repo.UpdatePost(post);
 
                         _repo.SaveChanges();
@@ -107,8 +113,164 @@ namespace VideoService.Controllers
                     }
                 }
             }
-            
         }
+
+            //if (like) mainComment.LikesCount++;
+            //else mainComment.DislikesCount++;
+            // }
+
+            // Декремент
+            /*
+            else
+            {
+                // Если нажали на лайк
+                if (like == true)
+                {
+
+                    // Если лайк уже был нажат
+                    if (WasLiked(mainComment, currentUserName))
+                        mainComment.LikesCount--;
+                    else
+                        mainComment.LikesCount++;
+
+                    // Если до этого был нажат дизлайк
+                    if (WasDisliked(mainComment, currentUserName))
+                        mainComment.DislikesCount--;
+                }
+
+                // Если нажали на дизлайк
+                if (like == false)
+                {
+                    // Если дизлайк уже был нажат
+                    if (WasDisliked(mainComment, currentUserName))
+                        mainComment.DislikesCount--;
+                    else
+                        mainComment.DislikesCount++;
+
+                    // Если до этого был нажат лайк
+                    if (WasLiked(mainComment, currentUserName))
+                        mainComment.LikesCount--;
+                }
+
+
+                //if (like) mainComment.LikesCount--;
+                //else mainComment.DislikesCount--;
+            }*/
+
+
+        
+
+
+        //[HttpGet]
+        //public ActionResult Decrement(int postId, int mainCommentId, bool like)
+        //{
+        //    //Получаем имя текущего пользователя
+        //    string? currentUserName = User.Identity?.Name;
+
+        //    Console.WriteLine($"{postId} {mainCommentId} {like}");
+
+        //    var post = _repo.GetPost(postId);
+
+        //    if (post != null)
+        //    {
+
+        //        MainComment? mainComment = post.MainComments.Find(x => x.Id == mainCommentId);
+
+        //        if (mainComment != null && !currentUserName.IsNullOrEmpty())
+        //        {
+        //            //if (A(mainComment, currentUserName, like)) { ... };
+
+        //            //else
+        //            //    mainComment.DislikesCount++;
+
+        //            _repo.UpdatePost(post);
+        //            //await _repo.SaveChangesAsync();
+
+        //            if (_repo.SaveChanges())
+        //                return new JsonResult("true");
+        //            //if (_repo.SaveChangesAsync()) Console.WriteLine(777);
+        //        }
+        //    }
+        //    return new JsonResult("false");
+        //}
+
+        //private bool MatchingWithDbIsSuccess(MainComment mainComment, string userName, bool like)
+
+        //{
+        //    // Если нажали на лайк
+        //    if (like == true)
+        //    {
+
+        //        // Если лайк уже был нажат
+        //        if (WasLiked(mainComment, userName))
+        //            mainComment.LikesCount--;
+        //        else
+        //            mainComment.LikesCount++;
+
+        //        // Если до этого был нажат дизлайк
+        //        if (WasDisliked(mainComment, userName))
+        //            mainComment.DislikesCount--;
+        //    }
+
+        //    // Если нажали на дизлайк
+        //    if (like == false)
+        //    {
+        //        // Если дизлайк уже был нажат
+        //        if (WasDisliked(mainComment, userName))
+        //            mainComment.DislikesCount--;
+        //        else
+        //            mainComment.DislikesCount++;
+
+        //        // Если до этого был нажат лайк
+        //        if (WasLiked(mainComment, userName))
+        //            mainComment.LikesCount--;
+        //    }
+
+        //}
+
+
+        private static bool WasLiked(MainComment mainComment, string userName) =>
+            WasAppreciated(mainComment, userName)[0];
+
+        private static bool WasDisliked(MainComment mainComment, string userName) =>
+            WasAppreciated(mainComment, userName)[1];
+
+        /// <summary>
+        /// Определяет был ли лайкнут и дизлайкнут пост этим пользователем
+        /// </summary>
+        /// <param name="mainComment"></param>
+        /// <param name="userName"></param>
+        /// <param name="reactionName"></param>
+        /// <returns></returns>
+        private static bool[] WasAppreciated(MainComment mainComment, string userName)
+        {
+            // Под первым элементом массива хранится ответ на вопрос: этот пост был лайкнут?
+            // Под вторым элементом массива хранится ответ на вопрос: этот пост был дизлайкнут?
+            var result = new bool[2] { false, false };
+
+            foreach (var reaction in mainComment.AuthorReactions)
+            {
+                if (reaction.ReactionAuthor == userName)
+                {
+                    result[0] = reaction.LikeReaction;
+                    result[1] = reaction.DislikeReaction;
+                }
+            }
+
+            //foreach (KeyValuePair<string, Dictionary<string, bool>> dict in mainComment.AuthorsAndLikeExistence)
+            //    // Если пользователь реагировал на пост
+            //    if (dict.Key == userName)
+            //        foreach (KeyValuePair<string, bool> pair in dict.Value)
+            //        {
+            //            if (pair.Key == reactionName)
+            //                result[0] = (pair.Value == true) ? true : false;
+
+            //            else if (pair.Key == reactionName)
+            //                result[1] = (pair.Value == true) ? true : false;
+            //        }
+            return result;
+        }
+
 
         [HttpGet]
         public ActionResult ShowTimeDifference(int postId, int mainCommentId)
@@ -200,7 +362,6 @@ namespace VideoService.Controllers
                 return "";
             }
         }
-
     }
 
     public static class Extensions {
@@ -215,140 +376,82 @@ namespace VideoService.Controllers
     }
 
 }
-    /*
-    [HttpGet]
-    public ActionResult Decrement(int postId, int mainCommentId, bool like)
-    {
-        //Получаем имя текущего пользователя
-        string? currentUserName = User.Identity?.Name;
 
-        Console.WriteLine($"{postId} {mainCommentId} {like}");
 
-        var post = _repo.GetPost(postId);
-
-        if (post != null)
+/*        string NeedChange(double time, string type)
         {
+            //List<string> timeUnits = new List<string> { "minute", "hour", " day", "year" };
 
-            MainComment? mainComment = post.MainComments.Find(x => x.Id == mainCommentId);
+            var timeUnits_defaultValues = new Dictionary<string, string[]> {
+                {"minute", new string[] {"минуту", "минуты", "минут" } },
+                {"hour", new string[] {"час", "часа", "часов" } },
+                {"day", new string[] {"день", "дня", "дней" }},
+                {"year", new string[] {"год", "года", "лет" }}
+            };
 
-            if (mainComment != null && !currentUserName.IsNullOrEmpty())
-            {
-                if (A(mainComment, currentUserName, like)) {... };
+            //string[] unitsOfTime = [""];
 
-                //else
-                //    mainComment.DislikesCount++;
+            if (timeUnits_defaultValues.ContainsKey(type)) {
 
-                _repo.UpdatePost(post);
-                //await _repo.SaveChangesAsync();
+                //foreach(var pai)
 
-                if (_repo.SaveChanges())
-                    return new JsonResult("true");
-                //if (_repo.SaveChangesAsync()) Console.WriteLine(777);
+                string strTime = time.ToString();
+
+                foreach (var unit in timeUnits_defaultValues.Keys)
+                    switch ( strTime[^1] == '1' && strTime != "11" ? 1 :
+                             strTime[^1] == '2' || strTime[^1] == '3' || strTime[^1] == '4' ? 2 : 3 )
+                    {
+                             //strTime == "11" ? 3 : 4 ) {
+
+                        case 1: return timeUnits_defaultValues[unit][0];
+                        case 2: return timeUnits_defaultValues[unit][1];
+                        case 3: return timeUnits_defaultValues[unit][2];
+                        //case 4: return timeUnits_defaultValues[unit][2];
+                    }
+
+
             }
-        }
-        return new JsonResult("false");
-    }*/
+        }*/
 
-    //private bool MatchingWithDbIsSuccess(MainComment mainComment, string userName, bool like)
+// Если это like, то true. Если dislike, то false
+//[HttpPost]
+//public async Task<int> Increment(int postId, int mainCommentId, bool like)
+//[HttpGet]
+//public ActionResult changeReactionsCount(int postId, int mainCommentId, bool like, bool increment)
+//{
+//    if (ModelState.IsValid)
+//    {
+//        //Получаем имя текущего пользователя
+//        string? currentUserName = User.Identity?.Name;
 
-    //{
-    //    // Если нажали на лайк
-    //    if (like == true) {
+//        //Console.WriteLine($"{postId} {mainCommentId} {like}");
 
-    //        // Если лайк уже был нажат
-    //        if (WasLiked(mainComment, userName))
-    //            mainComment.LikesCount--;
-    //        else
-    //            mainComment.LikesCount++;
+//        var post = _repo.GetPost(postId);
 
-    //        // Если до этого был нажат дизлайк
-    //        if(WasDisliked(mainComment, userName))
-    //            mainComment.DislikesCount--;
-    //    }
+//        if (post != null && !currentUserName.IsNullOrEmpty())
+//        {
 
-    //    // Если нажали на дизлайк
-    //    if (like == false)
-    //    {
-    //        // Если дизлайк уже был нажат
-    //        if (WasDisliked(mainComment, userName))
-    //            mainComment.DislikesCount--;
-    //        else
-    //            mainComment.DislikesCount++;
+//            MainComment? mainComment = post.MainComments.Find(x => x.Id == mainCommentId);
 
-    //        // Если до этого был нажат лайк
-    //        if (WasLiked(mainComment, userName))
-    //            mainComment.LikesCount--;
-    //    }
+//            if (mainComment != null)
+//            {
+//                if (increment)
+//                {
+//                    if (like) mainComment.LikesCount++;
+//                    else mainComment.DislikesCount++;
+//                }
+//                else
+//                {
+//                    if (like) mainComment.LikesCount--;
+//                    else mainComment.DislikesCount--;
+//                }
 
-    //}
+//                _repo.UpdatePost(post);
 
-
-    //private static bool WasLiked(MainComment mainComment, string userName) =>
-    //    WasAppreciated(mainComment, userName, "like")[0];
-
-    //private static bool WasDisliked(MainComment mainComment, string userName) =>
-    //    WasAppreciated(mainComment, userName, "like")[1];
-
-    ///// <summary>
-    ///// Определяет был ли лайкнут и дизлайкнут пост этим пользователем
-    ///// </summary>
-    ///// <param name="mainComment"></param>
-    ///// <param name="userName"></param>
-    ///// <param name="reactionName"></param>
-    ///// <returns></returns>
-    //private static bool[] WasAppreciated(MainComment mainComment, string userName, string reactionName)
-    //{
-    //    // Под первым элементом массива хранится ответ на вопрос: этот пост был лайкнут?
-    //    // Под вторым элементом массива хранится ответ на вопрос: этот пост был дизлайкнут?
-    //    var result = new bool[2] { false, false };
-
-    //    foreach (KeyValuePair<string, Dictionary<string, bool>> dict in mainComment.AuthorsAndLikeExistence)
-    //        // Если пользователь реагировал на пост
-    //        if (dict.Key == userName)
-    //            foreach (KeyValuePair<string, bool> pair in dict.Value)
-    //            {
-    //                if (pair.Key == reactionName)
-    //                    result[0] = (pair.Value == true) ? true : false;
-
-    //                else if (pair.Key == reactionName)
-    //                    result[1] = (pair.Value == true) ? true : false;
-    //            }
-    //    return result;
-    //}
-
-
-    /*        string NeedChange(double time, string type)
-            {
-                //List<string> timeUnits = new List<string> { "minute", "hour", " day", "year" };
-
-                var timeUnits_defaultValues = new Dictionary<string, string[]> {
-                    {"minute", new string[] {"минуту", "минуты", "минут" } },
-                    {"hour", new string[] {"час", "часа", "часов" } },
-                    {"day", new string[] {"день", "дня", "дней" }},
-                    {"year", new string[] {"год", "года", "лет" }}
-                };
-
-                //string[] unitsOfTime = [""];
-
-                if (timeUnits_defaultValues.ContainsKey(type)) {
-
-                    //foreach(var pai)
-
-                    string strTime = time.ToString();
-
-                    foreach (var unit in timeUnits_defaultValues.Keys)
-                        switch ( strTime[^1] == '1' && strTime != "11" ? 1 :
-                                 strTime[^1] == '2' || strTime[^1] == '3' || strTime[^1] == '4' ? 2 : 3 )
-                        {
-                                 //strTime == "11" ? 3 : 4 ) {
-
-                            case 1: return timeUnits_defaultValues[unit][0];
-                            case 2: return timeUnits_defaultValues[unit][1];
-                            case 3: return timeUnits_defaultValues[unit][2];
-                            //case 4: return timeUnits_defaultValues[unit][2];
-                        }
-
-
-                }
-            }*/
-
+//                if (_repo.SaveChanges())
+//                    return new JsonResult("true");
+//            }
+//        }
+//    }
+//    return new JsonResult("false");
+//}

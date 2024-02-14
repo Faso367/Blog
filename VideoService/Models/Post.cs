@@ -18,7 +18,7 @@ namespace VideoService.Models
         public string Tags { get; set; } = " ";
         public string Category { get; set; } = " ";
         public DateTime Created { get; set; } = DateTime.Now;
-        // БД должна содержать список первостепенных (основных комментов)
+        // Пост должен содержать список первостепенных (основных комментов)
         // а уже у основных будут дополнительные (которые тоже могут быть основными для других дополнительных)
         public List<MainComment> MainComments { get; set; }
         //public List<MainComment>? MainComments { get; set; }
