@@ -75,8 +75,10 @@ namespace VideoService.Controllers
             if (vm.MainCommentId == 0)
             {
                 post.MainComments = post.MainComments ?? new List<MainComment>();
-
+                
                 //string s = FindTimeDifferenceAndCovertToWords(mainComment.Created);
+
+
 
                 post.MainComments.Add(new MainComment
                 {
@@ -84,10 +86,15 @@ namespace VideoService.Controllers
                     Created = DateTime.Now,
                     Author = vm.Author,
                     LikesCount = vm.LikesCount,
-                    DislikesCount = vm.DislikesCount
-
+                    DislikesCount = vm.DislikesCount,
+                    //AuthorReactions = new List<ExistenseAuthorReaction> { new ExistenseAuthorReaction {} }
+                    
+                    
                     //AuthorsAndLikeExistence = vm.AuthorsAndLikeExistence
                 });
+
+                
+
                 _repo.UpdatePost(post);
             }
             else

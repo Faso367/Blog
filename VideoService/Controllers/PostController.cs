@@ -14,7 +14,7 @@ namespace VideoService.Controllers
         private IRepository _repo;
         private IFileManager _fileManager;
 
-        private ExistenseAuthorReaction _authorReaction;
+        //private ExistenseAuthorReaction _authorReaction;
 
         public PostController(IRepository repo, IFileManager fileManager)
         {
@@ -35,6 +35,8 @@ namespace VideoService.Controllers
         public void changeReactionsCount(int postId, int mainCommentId, bool like, bool increment)
         {
 
+            Console.WriteLine(like == true ? "true" : "false");
+
             /*Надо сделать проверку на то, делался ли лайк до этого */
 
             if (ModelState.IsValid)
@@ -51,11 +53,16 @@ namespace VideoService.Controllers
 
                     MainComment? mainComment = post.MainComments.Find(x => x.Id == mainCommentId);
 
+
+
                     if (mainComment != null)
                     {
+                        // Реакицй нет, тк мы их не добавляли. При реагировании на пост надо пополнять список AuthorReactions
                         foreach (var reaction in mainComment.AuthorReactions)
                         {
-                            if (reaction.ReactionAuthor == currentUserName)
+                            //if (false && false)
+                            if ( (reaction.LikeReaction == false && reaction.DislikeReaction == false)
+                                || (reaction.ReactionAuthor == currentUserName) ) // !!!!!!!!!!!!!!!!!! Просто не выполняется
                             {
 
                                 // Инкремент
@@ -66,49 +73,49 @@ namespace VideoService.Controllers
                                 {
 
                                     // Если лайк уже был нажат
-                                    if (WasLiked(mainComment, currentUserName))
+                                    if (reaction.LikeReaction == true)
                                     {
                                         mainComment.LikesCount--;
-                                        _authorReaction.LikeReaction = false;
+                                        reaction.LikeReaction = false;
                                     }
 
                                     else
                                     {
                                         mainComment.LikesCount++;
-                                        _authorReaction.LikeReaction = true;
+                                        reaction.LikeReaction = true;
                                     }
 
                                     // Если до этого был нажат дизлайк
-                                    if (WasDisliked(mainComment, currentUserName))
+                                    if (reaction.DislikeReaction == true)
                                     {
                                         mainComment.DislikesCount--;
-                                        _authorReaction.DislikeReaction = false;
+                                        reaction.DislikeReaction = false;
                                     }
-                                    _authorReaction.ReactionAuthor = currentUserName;
+                                    reaction.ReactionAuthor = currentUserName;
                                 }
 
                                 // Если нажали на дизлайк
                                 if (like == false)
                                 {
                                     // Если дизлайк уже был нажат
-                                    if (WasDisliked(mainComment, currentUserName))
+                                    if (reaction.DislikeReaction == true)
                                     {
                                         mainComment.DislikesCount--;
-                                        _authorReaction.DislikeReaction = false;
+                                        reaction.DislikeReaction = false;
                                     }
                                     else
                                     {
                                         mainComment.DislikesCount++;
-                                        _authorReaction.DislikeReaction = true;
+                                        reaction.DislikeReaction = true;
                                     }
 
                                     // Если до этого был нажат лайк
-                                    if (WasLiked(mainComment, currentUserName))
+                                    if (reaction.LikeReaction == true)
                                     {
                                         mainComment.LikesCount--;
-                                        _authorReaction.LikeReaction = false;
+                                        reaction.LikeReaction = false;
                                     }
-                                    _authorReaction.ReactionAuthor = currentUserName;
+                                    reaction.ReactionAuthor = currentUserName;
                                 }
                                 _repo.UpdatePost(post);
 
@@ -121,50 +128,54 @@ namespace VideoService.Controllers
             }
         }
 
-            //if (like) mainComment.LikesCount++;
-            //else mainComment.DislikesCount++;
-            // }
+        //private static bool WasLiked(ExistenseAuthorReaction reaction) => reaction.LikeReaction;
 
-            // Декремент
-            /*
-            else
+        //private static bool WasDisliked(ExistenseAuthorReaction reaction) => reaction.DislikeReaction;
+
+        //if (like) mainComment.LikesCount++;
+        //else mainComment.DislikesCount++;
+        // }
+
+        // Декремент
+        /*
+        else
+        {
+            // Если нажали на лайк
+            if (like == true)
             {
-                // Если нажали на лайк
-                if (like == true)
-                {
 
-                    // Если лайк уже был нажат
-                    if (WasLiked(mainComment, currentUserName))
-                        mainComment.LikesCount--;
-                    else
-                        mainComment.LikesCount++;
+                // Если лайк уже был нажат
+                if (WasLiked(mainComment, currentUserName))
+                    mainComment.LikesCount--;
+                else
+                    mainComment.LikesCount++;
 
-                    // Если до этого был нажат дизлайк
-                    if (WasDisliked(mainComment, currentUserName))
-                        mainComment.DislikesCount--;
-                }
+                // Если до этого был нажат дизлайк
+                if (WasDisliked(mainComment, currentUserName))
+                    mainComment.DislikesCount--;
+            }
 
-                // Если нажали на дизлайк
-                if (like == false)
-                {
-                    // Если дизлайк уже был нажат
-                    if (WasDisliked(mainComment, currentUserName))
-                        mainComment.DislikesCount--;
-                    else
-                        mainComment.DislikesCount++;
+            // Если нажали на дизлайк
+            if (like == false)
+            {
+                // Если дизлайк уже был нажат
+                if (WasDisliked(mainComment, currentUserName))
+                    mainComment.DislikesCount--;
+                else
+                    mainComment.DislikesCount++;
 
-                    // Если до этого был нажат лайк
-                    if (WasLiked(mainComment, currentUserName))
-                        mainComment.LikesCount--;
-                }
+                // Если до этого был нажат лайк
+                if (WasLiked(mainComment, currentUserName))
+                    mainComment.LikesCount--;
+            }
 
 
-                //if (like) mainComment.LikesCount--;
-                //else mainComment.DislikesCount--;
-            }*/
+            //if (like) mainComment.LikesCount--;
+            //else mainComment.DislikesCount--;
+        }*/
 
 
-        
+
 
 
         //[HttpGet]
@@ -235,11 +246,10 @@ namespace VideoService.Controllers
         //}
 
 
-        private static bool WasLiked(MainComment mainComment, string userName) =>
-            WasAppreciated(mainComment, userName)[0];
+        //private static bool WasLiked(ExistenseAuthorReaction reaction, string userName) => reaction.LikeReaction;
 
-        private static bool WasDisliked(MainComment mainComment, string userName) =>
-            WasAppreciated(mainComment, userName)[1];
+        //private static bool WasDisliked(ExistenseAuthorReaction reaction, string userName) => reaction.DislikeReaction;
+        //WasAppreciated(reaction, userName)[1];
 
         /// <summary>
         /// Определяет был ли лайкнут и дизлайкнут пост этим пользователем
@@ -248,34 +258,34 @@ namespace VideoService.Controllers
         /// <param name="userName"></param>
         /// <param name="reactionName"></param>
         /// <returns></returns>
-        private static bool[] WasAppreciated(MainComment mainComment, string userName)
-        {
-            // Под первым элементом массива хранится ответ на вопрос: этот пост был лайкнут?
-            // Под вторым элементом массива хранится ответ на вопрос: этот пост был дизлайкнут?
-            var result = new bool[2] { false, false };
+        //private static bool[] WasAppreciated(ExistenseAuthorReaction reaction, string userName)
+        //{
+        //    // Под первым элементом массива хранится ответ на вопрос: этот пост был лайкнут?
+        //    // Под вторым элементом массива хранится ответ на вопрос: этот пост был дизлайкнут?
+        //    var result = new bool[2] { false, false };
 
-            foreach (var reaction in mainComment.AuthorReactions)
-            {
-                if (reaction.ReactionAuthor == userName)
-                {
-                    result[0] = reaction.LikeReaction;
-                    result[1] = reaction.DislikeReaction;
-                }
-            }
+        //    //foreach (var reaction in mainComment.AuthorReactions)
+        //    //{
+        //      //  if (reaction.ReactionAuthor == userName)
+        //       // {
+        //            result[0] = reaction.LikeReaction;
+        //            result[1] = reaction.DislikeReaction;
+        //        //}
+        //    //}
 
-            //foreach (KeyValuePair<string, Dictionary<string, bool>> dict in mainComment.AuthorsAndLikeExistence)
-            //    // Если пользователь реагировал на пост
-            //    if (dict.Key == userName)
-            //        foreach (KeyValuePair<string, bool> pair in dict.Value)
-            //        {
-            //            if (pair.Key == reactionName)
-            //                result[0] = (pair.Value == true) ? true : false;
+        //    //foreach (KeyValuePair<string, Dictionary<string, bool>> dict in mainComment.AuthorsAndLikeExistence)
+        //    //    // Если пользователь реагировал на пост
+        //    //    if (dict.Key == userName)
+        //    //        foreach (KeyValuePair<string, bool> pair in dict.Value)
+        //    //        {
+        //    //            if (pair.Key == reactionName)
+        //    //                result[0] = (pair.Value == true) ? true : false;
 
-            //            else if (pair.Key == reactionName)
-            //                result[1] = (pair.Value == true) ? true : false;
-            //        }
-            return result;
-        }
+        //    //            else if (pair.Key == reactionName)
+        //    //                result[1] = (pair.Value == true) ? true : false;
+        //    //        }
+        //    return result;
+        //}
 
 
         [HttpGet]

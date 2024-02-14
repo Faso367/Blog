@@ -15,7 +15,7 @@
 
         public int DislikesCount { get; set; }
 
-        public List<ExistenseAuthorReaction> AuthorReactions { get; set; } = new();
+        public List<ExistenseAuthorReaction> AuthorReactions { get; set; } = new () { new ExistenseAuthorReaction {} };
 
         //public List<> ReactionAuthor { get; set; }
 
