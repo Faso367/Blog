@@ -201,11 +201,12 @@ function ShowSendCommentSection(mainCommentId) {
     //var wrapper = document.getElementById(`undercomment-buttons(${mainCommentId})`);
     var sendCommentSection = document.getElementById(`sendCommentWrapper(${mainCommentId})`);
 
+
     //console.log(sendCommentSection);
 
-    if (mainCommentId != '0' && mainCommentId != 0) {
+   // if (mainCommentId != '0' && mainCommentId != 0) {
         sendCommentSection.style.display = "block";
-    }
+    //}
     // -----------------------
 
     //var sendCommentInsideMainComment = sendCommentSection.querySelector(".send-comment");
@@ -213,6 +214,8 @@ function ShowSendCommentSection(mainCommentId) {
     var Textarea = form.querySelector(".input-wrapper #comment-textarea");
     var But = form.querySelector("#send-comment-but");
 
+    var popupWrapper = form.querySelector(".button-wrapper");
+    var popupText = popupWrapper.querySelector(".popup .popuptext");
     console.log(Textarea);
     
     const changeColor1 = () => {
@@ -228,7 +231,7 @@ function ShowSendCommentSection(mainCommentId) {
 
     const validateElem = (elem) => {
 
-        if (elem.value !== "") {
+        if (elem.value !== "") { // Это не значит непустое поле!? Видимо это не равно null
 
             But.removeAttribute('disabled');
             But.style.opacity = "1";
@@ -246,12 +249,15 @@ function ShowSendCommentSection(mainCommentId) {
             But.setAttribute('disabled', 'disabled');
             But.style.opacity = "0.5";
             But.style.cursor = "default";
-            if (isValid = true) {
+            if (isValid = true) { // ОН ВООБЕ КОГДА_НИБУДЬ БУДЕТ РАБОТАТЬ???
 
                 But.removeEventListener('mouseenter', changeColor1, true);
                 But.removeEventListener('mouseleave', changeColor2, true);
-            }
 
+            }
+            console.log("Поле пустое");
+            popupText.style.visibility = "hidden";
+            popupText.style.display = "none";
         }
 
     }
@@ -308,7 +314,10 @@ function ShowSendCommentSection(mainCommentId) {
             But.style.cursor = "pointer";
             But.addEventListener('mouseenter', changeColor1, true);
             But.addEventListener('mouseleave', changeColor2, true);
-  
+
+            popupText.style.visibility = "visible";
+            popupText.style.display = "block";
+
         }
 
 
@@ -329,11 +338,6 @@ function ShowSendCommentSection(mainCommentId) {
                 //function myFunction() {
                 // var popup = document.getElementById("myPopup");
 
-                var popupWrapper = form.querySelector(".button-wrapper");
-
-                /*popupWrapper.style.marginTop = "-100px";*/
-
-                var popupText = popupWrapper.querySelector(".popup .popuptext");
 
                 console.log(popupText);
 
