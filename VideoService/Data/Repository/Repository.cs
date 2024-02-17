@@ -120,12 +120,60 @@ namespace VideoService.Data.Repository
         public Post GetPost(int id)
         {
             // Если полученный id совпадает с найденным в БД, то возвращаем (достаем) эту запись
+
+            //var mainComment = _ctx.Posts.Include(p => p.MainComments).ThenInclude;
+            //var mainComment = myPosts.FirstOrDefault(p => p.Id == id);
+            //return mainComment.Include(mc => mc.AuthorReactions);
+
+            //return _ctx.Posts
+            //.Include(p => p.MainComments) // включаем в запись основные комментарии
+            //.ThenInclude()
+            //   .ThenInclude(mc => mc.SubComments)
+            //   .ThenInclude(mc => mc.AuthorReactions) // ДОБАВИЛ 17.02
+
+
+            //return _ctx.Posts
+            //    //.Include(p => p.MainComments).ThenInclude(mc => mc.AuthorReactions)
+            //    //.Include(p => p.MainComments).ThenInclude(mc => mc.SubComments).ToList()
+            //    //.Include(p => p.MainComments) // включаем в запись основные комментарии
+            //    //   .ThenInclude(mc => mc.SubComments)
+            //    //   .ThenInclude(mc => mc.AuthorReactions) // ДОБАВИЛ 17.02
+            //    .FirstOrDefault(p => p.Id == id);
+
             return _ctx.Posts
-                .Include(p => p.MainComments) // включаем в запись основные комментарии
-                    .ThenInclude(mc => mc.SubComments)
+                .Include(p => p.MainComments).ThenInclude(mc => mc.AuthorReactions)
+                .Include(p => p.MainComments).ThenInclude(mc => mc.SubComments)
+                //.Include(p => p.MainComments) // включаем в запись основные комментарии
+                //   .ThenInclude(mc => mc.SubComments)
+                //   .ThenInclude(mc => mc.AuthorReactions) // ДОБАВИЛ 17.02
                 .FirstOrDefault(p => p.Id == id);
 
         }
+
+
+        //public Post GetPost(int id)
+        //{
+        //    // Если полученный id совпадает с найденным в БД, то возвращаем (достаем) эту запись
+        //    return _ctx.Posts
+        //        .Include(p => p.MainComments) // включаем в запись основные комментарии
+        //           .ThenInclude(mc => mc.SubComments)
+        //        .Include(p => p.MainComments)
+        //           .ThenInclude(mc => mc.AuthorReactions) // ДОБАВИЛ 17.02
+        //        .FirstOrDefault(p => p.Id == id);
+
+        //}
+
+        //public Post GetPost(int id)
+        //{
+        //    return _ctx.Posts.Select(p => new
+        //    {
+        //        Post = p,
+        //        MainComment = p.MainComments,
+        //        //SubComment = MainComment.
+
+        //    }).FirstOrDefault(p => p.Id == id);
+        //}
+
 
         // Удаляем запись
         public void RemovePost(int id) // !!!!!!!!!!!!!!! СДЕЛАТЬ с подтверждением удаления
@@ -165,5 +213,10 @@ namespace VideoService.Data.Repository
         {
             _ctx.SubComments.Add(comment);
         }
+
+        //public void BVC(MainComment mainComment)
+        //{
+        //    _ctx.MainComments.Add()
+        //}
     }
 }

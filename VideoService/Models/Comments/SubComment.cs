@@ -5,5 +5,6 @@
     {
         // Подкомментарий должен содержать Id основного, к которому принадлежит
         public int MainCommentId { get; set; }
+        public virtual MainComment MainComment { get; set; } // !!!!!!!!!!!!!!!!!!!!!!!!!!
     }
 }

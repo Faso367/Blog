@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VideoService.Data;
 
@@ -11,9 +12,11 @@ using VideoService.Data;
 namespace VideoService.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240217140226_author reactions collection in main comment")]
+    partial class authorreactionscollectioninmaincomment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -241,14 +244,9 @@ namespace VideoService.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SubCommentId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("MainCommentId");
-
-                    b.HasIndex("SubCommentId");
 
                     b.ToTable("AuthorReactions");
                 });
@@ -426,10 +424,6 @@ namespace VideoService.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("VideoService.Models.Comments.SubComment", null)
-                        .WithMany("AuthorReactions")
-                        .HasForeignKey("SubCommentId");
-
                     b.Navigation("MainComment");
                 });
 
@@ -442,13 +436,11 @@ namespace VideoService.Migrations
 
             modelBuilder.Entity("VideoService.Models.Comments.SubComment", b =>
                 {
-                    b.HasOne("VideoService.Models.Comments.MainComment", "MainComment")
+                    b.HasOne("VideoService.Models.Comments.MainComment", null)
                         .WithMany("SubComments")
                         .HasForeignKey("MainCommentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("MainComment");
                 });
 
             modelBuilder.Entity("VideoService.Models.Comments.MainComment", b =>
@@ -456,11 +448,6 @@ namespace VideoService.Migrations
                     b.Navigation("AuthorReactions");
 
                     b.Navigation("SubComments");
-                });
-
-            modelBuilder.Entity("VideoService.Models.Comments.SubComment", b =>
-                {
-                    b.Navigation("AuthorReactions");
                 });
 
             modelBuilder.Entity("VideoService.Models.Post", b =>

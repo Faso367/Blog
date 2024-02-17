@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using VideoService.Models.Comments;
 
 namespace VideoService.ViewModels
 {
@@ -16,6 +17,15 @@ namespace VideoService.ViewModels
         public int LikesCount { get; set; } = 0;
         public int DislikesCount { get; set; } = 0;
 
+
+        //public List<ExistenseAuthorReaction> AuthorReactions { get; set; }
+        //public List<ExistenseAuthorReaction> AuthorReactions { get; set; } = new List<ExistenseAuthorReaction>
+        //{
+        //        new ExistenseAuthorReaction {
+        //        ReactionAuthor = "",
+        //        LikeReaction = false,
+        //        DislikeReaction = false }
+        //};
         //public int LikesCount { get; set; }
         //public int DislikesCount { get; set; } 
 

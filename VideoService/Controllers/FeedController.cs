@@ -87,9 +87,18 @@ namespace VideoService.Controllers
                     Author = vm.Author,
                     LikesCount = vm.LikesCount,
                     DislikesCount = vm.DislikesCount,
-                    //AuthorReactions = new List<ExistenseAuthorReaction> { new ExistenseAuthorReaction {} }
-                    
-                    
+
+                    //AuthorReactions = vm.AuthorReactions // !!!!!!!!!!!!!!!!!!!!!!
+
+                    AuthorReactions = new List<ExistenseAuthorReaction> {
+                        new ExistenseAuthorReaction {
+                        ReactionAuthor = "",
+                        LikeReaction = false,
+                        DislikeReaction = false
+                        }
+                    }
+                    //AuthorReactions = vm.AuthorReactions
+
                     //AuthorsAndLikeExistence = vm.AuthorsAndLikeExistence
                 });
 

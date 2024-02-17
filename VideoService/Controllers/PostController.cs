@@ -52,8 +52,8 @@ namespace VideoService.Controllers
                 {
 
                     MainComment? mainComment = post.MainComments.Find(x => x.Id == mainCommentId);
-
-
+                    int mainCommentIndex = post.MainComments.IndexOf(mainComment);
+                    //var i = mainComment.
 
                     if (mainComment != null)
                     {
@@ -61,9 +61,18 @@ namespace VideoService.Controllers
                         foreach (var reaction in mainComment.AuthorReactions)
                         {
                             //if (false && false)
-                            if ( (reaction.LikeReaction == false && reaction.DislikeReaction == false)
-                                || (reaction.ReactionAuthor == currentUserName) ) // !!!!!!!!!!!!!!!!!! Просто не выполняется
+                            if ((reaction.LikeReaction == false && reaction.DislikeReaction == false)
+                                || (reaction.ReactionAuthor == currentUserName)) // !!!!!!!!!!!!!!!!!! Просто не выполняется
                             {
+                                // Переменная нужна, чтобы прога не заходила в else блок после if блока
+                                //int reactionIndex = mainComment.AuthorReactions.IndexOf(reaction);
+                                var likeReaction = reaction.LikeReaction;
+                                var dislikeReaction = reaction.DislikeReaction;
+
+                                //if (reaction.ReactionAuthor == currentUserName)
+                                //{
+                                //    if (reaction.LikeReaction == true) { }
+                                //}
 
                                 // Инкремент
                                 // if (increment)
@@ -73,22 +82,31 @@ namespace VideoService.Controllers
                                 {
 
                                     // Если лайк уже был нажат
-                                    if (reaction.LikeReaction == true)
+                                    if (likeReaction == true)
                                     {
-                                        mainComment.LikesCount--;
+                                        // !!!!!!!!!!!!!!!!
+                                        if (reaction.ReactionAuthor != currentUserName)
+                                            mainComment.LikesCount--;
+
                                         reaction.LikeReaction = false;
                                     }
 
                                     else
                                     {
-                                        mainComment.LikesCount++;
+                                        // !!!!!!!!!!!!!!!!
+                                        if (reaction.ReactionAuthor != currentUserName)
+                                            mainComment.LikesCount++;
+
                                         reaction.LikeReaction = true;
                                     }
 
                                     // Если до этого был нажат дизлайк
-                                    if (reaction.DislikeReaction == true)
+                                    if (dislikeReaction == true)
                                     {
-                                        mainComment.DislikesCount--;
+                                        // !!!!!!!!!!!!!!!!
+                                        if (reaction.ReactionAuthor != currentUserName)
+                                            mainComment.DislikesCount--;
+
                                         reaction.DislikeReaction = false;
                                     }
                                     reaction.ReactionAuthor = currentUserName;
@@ -98,25 +116,38 @@ namespace VideoService.Controllers
                                 if (like == false)
                                 {
                                     // Если дизлайк уже был нажат
-                                    if (reaction.DislikeReaction == true)
+                                    if (dislikeReaction == true)
                                     {
-                                        mainComment.DislikesCount--;
+                                        // !!!!!!!!!!!!!!!!
+                                        if (reaction.ReactionAuthor != currentUserName)
+                                            mainComment.DislikesCount--;
+
                                         reaction.DislikeReaction = false;
                                     }
                                     else
                                     {
-                                        mainComment.DislikesCount++;
+                                        // !!!!!!!!!!!!!!!!
+                                        if (reaction.ReactionAuthor != currentUserName)
+                                            mainComment.DislikesCount++;
+
                                         reaction.DislikeReaction = true;
                                     }
 
                                     // Если до этого был нажат лайк
-                                    if (reaction.LikeReaction == true)
+                                    if (likeReaction == true)
                                     {
-                                        mainComment.LikesCount--;
+                                        // !!!!!!!!!!!!!!!!
+                                        if (reaction.ReactionAuthor != currentUserName)
+                                            mainComment.LikesCount--;
+
                                         reaction.LikeReaction = false;
                                     }
                                     reaction.ReactionAuthor = currentUserName;
                                 }
+
+                                //mainComment.AuthorReactions[reactionIndex] = reaction;
+                                post.MainComments[mainCommentIndex] = mainComment;
+
                                 _repo.UpdatePost(post);
 
                                 _repo.SaveChanges();
