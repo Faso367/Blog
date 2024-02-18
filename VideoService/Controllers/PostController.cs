@@ -85,7 +85,7 @@ namespace VideoService.Controllers
                                     if (likeReaction == true)
                                     {
                                         // !!!!!!!!!!!!!!!!
-                                        if (reaction.ReactionAuthor != currentUserName)
+                                        //if (reaction.ReactionAuthor != currentUserName)
                                             mainComment.LikesCount--;
 
                                         reaction.LikeReaction = false;
@@ -94,7 +94,7 @@ namespace VideoService.Controllers
                                     else
                                     {
                                         // !!!!!!!!!!!!!!!!
-                                        if (reaction.ReactionAuthor != currentUserName)
+                                        //if (reaction.ReactionAuthor != currentUserName)
                                             mainComment.LikesCount++;
 
                                         reaction.LikeReaction = true;
@@ -104,7 +104,7 @@ namespace VideoService.Controllers
                                     if (dislikeReaction == true)
                                     {
                                         // !!!!!!!!!!!!!!!!
-                                        if (reaction.ReactionAuthor != currentUserName)
+                                        //if (reaction.ReactionAuthor != currentUserName)
                                             mainComment.DislikesCount--;
 
                                         reaction.DislikeReaction = false;
@@ -119,7 +119,7 @@ namespace VideoService.Controllers
                                     if (dislikeReaction == true)
                                     {
                                         // !!!!!!!!!!!!!!!!
-                                        if (reaction.ReactionAuthor != currentUserName)
+                                        //if (reaction.ReactionAuthor != currentUserName)
                                             mainComment.DislikesCount--;
 
                                         reaction.DislikeReaction = false;
@@ -127,7 +127,7 @@ namespace VideoService.Controllers
                                     else
                                     {
                                         // !!!!!!!!!!!!!!!!
-                                        if (reaction.ReactionAuthor != currentUserName)
+                                        //if (reaction.ReactionAuthor != currentUserName)
                                             mainComment.DislikesCount++;
 
                                         reaction.DislikeReaction = true;
@@ -137,7 +137,7 @@ namespace VideoService.Controllers
                                     if (likeReaction == true)
                                     {
                                         // !!!!!!!!!!!!!!!!
-                                        if (reaction.ReactionAuthor != currentUserName)
+                                        //if (reaction.ReactionAuthor != currentUserName)
                                             mainComment.LikesCount--;
 
                                         reaction.LikeReaction = false;
