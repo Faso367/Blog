@@ -3,12 +3,27 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Используем строгий синтаксис во избежание ошибок и уязвимостей
     "use sctrict";
+    // Добавляю
+    var wrapper = document.getElementsByClassName("undercomment-buttons");
 
+    for (j = 0; j < wrapper.length; j++) {
+
+        var likeIcon = wrapper[j].querySelector("#like");
+        var dislikeIcon = wrapper[j].querySelector("#dislike");
+
+        if (wrapper[j].querySelector("#likesCount").textContent == 1) {
+            $(likeIcon).css('fontVariationSettings', "'FILL' 1");
+        }
+        else if (wrapper[j].querySelector("#dislikesCount").textContent == 1) {
+            $(dislikeIcon).css('fontVariationSettings', "'FILL' 1");
+        }
+    }
+
+
+
+    // БЫЛО
     ShowSendCommentSection(0);
-
-
     var acc = document.getElementsByClassName("show-answers-but");
-
     var i;
 
     for (i = 0; i < acc.length; i++) {

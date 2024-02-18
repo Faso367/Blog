@@ -19,7 +19,7 @@ namespace VideoService.Models.Comments
 
         public int DislikesCount { get; set; }
 
-        public virtual List<ExistenseAuthorReaction> AuthorReactions { get; set; }
+        //public virtual List<ExistenseAuthorReaction> AuthorReactions { get; set; } ??????????????
         // = new List<ExistenseAuthorReaction>
         //{
         //        new ExistenseAuthorReaction {

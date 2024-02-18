@@ -130,8 +130,27 @@
                         </div>
                     </div>
                     </div>
+                @{
+                    int likeReaction = 0;
+                    int dislikeReaction = 0;
 
+                    foreach (var ar in c.AuthorReactions)
+                    {
+                        if (User.Identity.IsAuthenticated && ar.ReactionAuthor == User.Identity.Name)
+                        {
+                            Func<bool, int> BoolToInt = b => (b == false) ? 0 : 1;
+
+                            likeReaction = BoolToInt(ar.LikeReaction);
+                            dislikeReaction = BoolToInt(ar.DislikeReaction);
+                            //if (ar.LikeReaction == false) likeReaction = 0;
+                            //else if()
+                            //likeReaction = ar.LikeReaction;
+                            //dislikeReaction = ar.DislikeReaction;
+                        }
+                    }
+                }
                 <div class="undercomment-buttons" id="undercomment-buttons(@c.Id)">
+                    
                 @*
                     <div class="popup">
                         <div class="popuptext" id="myPopup">
@@ -142,10 +161,10 @@
 
                 @* <span id="like" class="material-symbols-outlined" onclick="Increment('@Model.Id', '@c.Id', 'true');">thumb_up</span>@c.LikesCount *@
                     <span id="like" class="material-symbols-rounded" onclick="ChangeReactionsCount('@Model.Id', '@c.Id', 'true');">thumb_up</span>
-                    <span id="likesCount" data-likes-count="0">@c.LikesCount</span>
+                    <span id="likesCount" data-likes-count="@likeReaction">@c.LikesCount</span>
 
                     <span id="dislike" class="material-symbols-rounded" onclick="ChangeReactionsCount('@Model.Id', '@c.Id' , 'false');">thumb_down</span>
-                    <span id="dislikesCount" data-dislikes-count="0">@c.DislikesCount</span>
+                    <span id="dislikesCount" data-dislikes-count="@dislikeReaction">@c.DislikesCount</span>
 
                     <span id="answer" onclick="ShowSendCommentSection(@c.Id)">Ответить</span>
 
@@ -153,8 +172,23 @@
             </div>
                 <div class="sendComment" id="sendCommentWrapper(@c.Id)">
                    @* <iframe id="myframe" onload="SendCommentSection(@c.Id)" style="display: none;"/> *@
-                    
+                   
+
                     @{
+                        // bool likeReaction = false;
+                        // bool dislikeReaction = false;
+
+                        // foreach(var ar in c.AuthorReactions)
+                        // {
+                        //     if (User.Identity.IsAuthenticated && ar.ReactionAuthor == User.Identity.Name)
+                        //     {
+                        //         likeReaction = ar.LikeReaction;
+                        //         dislikeReaction = ar.DislikeReaction;
+                        //     }
+                        // }
+                        // <span id="wasLiked">@likeReaction</span>
+                        // <span id="wasDisliked">@dislikeReaction</span>
+
                         await Html.RenderPartialAsync("MainComment",
                             new CommentViewModel { PostId = Model.Id, MainCommentId = c.Id });
                       }
