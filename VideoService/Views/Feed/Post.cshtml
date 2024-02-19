@@ -90,7 +90,8 @@
                     @c.Author <span id="creationTime">
                         <script type="text/javascript">
                             $(document).ready(function () {
-                                $.get("/Post/ShowTimeDifference", { postId: '@Model.Id', mainCommentId: '@c.Id' }, function (text) {
+                                $.get("/Post/ShowTimeDifference", { postId: '@Model.Id', mainCommentId: '@c.Id', subCommentId: '-1' },
+                                function (text) {
                                     var el = document.getElementById(`comment(${@c.Id})`);
                                     el.querySelector("#creationTime").textContent = text;
                                     console.log(text)
@@ -115,7 +116,7 @@
                                         @s
                                 </span>
                                 <br />
-                                <span class="readMoreBut" id="readMoreBut(@c.Id)" onclick="ReadMoreOrLess(@c.Id)">Читать далее</span>
+                                <span class="readMoreBut" id="readMoreBut(@c.Id)" onclick="ReadMoreOrLess(@c.Id, 1)">Читать далее</span>
                             }
                             else
                             {
@@ -194,30 +195,56 @@
                       }
                 </div>
 
-                    @if (c.SubComments.Count > 0)
+                @if (c.SubComments.Count > 0)
+                {
+                    var count = @c.SubComments.Count;
+                    <button class="show-answers-but" id="showAnswersBut">@count @DetermineEnding(@count)</button>
+
+                    <div class="subcomments">
+
+                    @foreach (var sc in c.SubComments)
                     {
+                        <div class="subcomment" id="subcomment(@sc.Id)">
+                            <label>
+                                @* @c.Author <span id="creationTime">@timeDifference</span> *@
+                                @sc.Author <span id="creationTime">
+                                    <script type="text/javascript">
+                                        $(document).ready(function () {
+                                        $.get("/Post/ShowTimeDifference", { postId: '@Model.Id', mainCommentId: '@c.Id', subCommentId: '@sc.Id' },
+                                        function (text) {
+                                            var el = document.getElementById(`subcomment(${@sc.Id})`);
+                                            el.querySelector("#creationTime").textContent = text;
+                                            console.log(text);
+                                            })
+                                        });
+                                    </script>
+                                </span>
+                                @*Comment Author`s name --- @c.Created *@
+                            </label>
 
-                        var count = @c.SubComments.Count;
-                        <button class="show-answers-but">@count @DetermineEnding(@count)</button>
+                            <div class="comment-text">
+                            @{
+                                if (sc.Message.Length > 400)
+                                {
+                                    foreach (char s in sc.Message.Take(400)) { @s; }
+                                    
+                                <span class="dots" id="dots(@sc.Id)">...</span>
+                                <span class="moreText" id="moreText(@sc.Id)">
+                                    @foreach (char s in sc.Message.Skip(400)) { @s; }
 
-                        <div class="subcomment">
-                            @foreach (var sc in c.SubComments)
-                            {
-                                <label>
-                                    @* Subcomment Author`s name  --- @sc.Created *@
-                                @* <span id="author" style="display:inline-block;"> *@
-                                <span id="author">@sc.Author</span>
-                                <span id="created">@sc.Created</span>
-                                </label>
-                                <p>@sc.Message</p>
-
-                                //@sc.Message
-                                //<div class="subcomment-text" id="subcocommentText(@c.Id)">
-                                //    @sc.Message --- @sc.Created
-                                //</div>
+                                </span>
+                                <br />
+                                <span class="readMoreBut" id="readMoreBut(@sc.Id)" onclick="ReadMoreOrLess(@sc.Id, 0)">Читать далее</span>
+                                }
+                                else
+                                {
+                                    @sc.Message;
+                                }
                             }
+                            </div>
                         </div>
-
+                    }
+                    </div>
 
             //await Html.RenderPartialAsync("MainComment",
             //new CommentViewModel { PostId = Model.Id, MainCommentId = c.Id });

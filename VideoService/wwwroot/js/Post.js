@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // БЫЛО
     ShowSendCommentSection(0);
+
     var acc = document.getElementsByClassName("show-answers-but");
     var i;
 
@@ -31,28 +32,78 @@ document.addEventListener("DOMContentLoaded", () => {
 
             this.classList.toggle("active");
 
-            var panel = this.nextElementSibling;
-            if (panel.style.maxHeight) {
-                panel.style.maxHeight = null;
-            } else {
-                panel.style.maxHeight = panel.scrollHeight + "px";
-            }
+            //var subcomments = acc[i].querySelectorAll("subcomment");
 
-            if (panel.style.display === "block") {
-                panel.style.display = "none";
-            } else {
-                panel.style.display = "block";
+            var subcommentsWrapper = this.nextElementSibling;
+            var subcomments = subcommentsWrapper.querySelectorAll(".subcomment");
+
+            for (var j = 0; j < subcomments.length; j++) {
+
+                var panel = subcomments[j];
+
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+
+                if (panel.style.display === "block") {
+                    console.log('do none');
+                    panel.style.display = "none";
+                } else {
+                    console.log('do block');
+                    panel.style.display = "block";
+                }
             }
         });
     }
 
+    //ShowSendCommentSection(0);
+    //var acc = document.getElementsByClassName("show-answers-but");
+    //var i;
+    //for (i = 0; i < acc.length; i++) {
+    //    acc[i].addEventListener("click", function () {
+
+    //        this.classList.toggle("active");
+
+    //        var panel = this.nextElementSibling;
+    //        if (panel.style.maxHeight) {
+    //            panel.style.maxHeight = null;
+    //        } else {
+    //            panel.style.maxHeight = panel.scrollHeight + "px";
+    //        }
+
+    //        if (panel.style.display === "block") {
+    //            panel.style.display = "none";
+    //        } else {
+    //            panel.style.display = "block";
+    //        }
+    //    });
+    //}
+
 });
 
 
-function ReadMoreOrLess(id) {
-    const moreText = document.getElementById('moreText' + '(' + id + ')');
-    const but = document.getElementById('readMoreBut' + '(' + id + ')');
-    const dots = document.getElementById('dots' + '(' + id + ')');
+function ReadMoreOrLess(id, isMainComment) {
+    var comment = '';
+
+    console.log(isMainComment);
+
+    if (isMainComment == 1)
+        comment = document.getElementById(`comment(${id})`);
+    else
+        comment = document.getElementById(`subcomment(${id})`);
+
+
+    const moreText = comment.querySelector('.moreText');
+    const but = comment.querySelector('.readMoreBut');
+    const dots = comment.querySelector('.dots');
+
+    console.log(moreText);
+
+    //const moreText = comment.querySelector('#moreText' + '(' + id + ')');
+    //const but = comment.querySelector('#readMoreBut' + '(' + id + ')');
+    //const dots = comment.querySelector('#dots' + '(' + id + ')');
 
     if (moreText.style.display === 'none'
         || moreText.style.display === '') {

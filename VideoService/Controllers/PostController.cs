@@ -320,24 +320,21 @@ namespace VideoService.Controllers
 
 
         [HttpGet]
-        public ActionResult ShowTimeDifference(int postId, int mainCommentId)
+        public ActionResult ShowTimeDifference(int postId, int mainCommentId, int subCommentId)
         {
-            Console.WriteLine(postId);
+            Console.WriteLine(subCommentId);
 
             if (ModelState.IsValid)
             {
-                //Получаем имя текущего пользователя
-                //string? currentUserName = User.Identity?.Name;
 
                 var post = _repo.GetPost(postId);
-
-                //if (post != null && !currentUserName.IsNullOrEmpty())
                 if (post != null)
                 {
+                    var mainComment = post.MainComments.Find(x => x.Id == mainCommentId);
 
-                    MainComment? mainComment = post.MainComments.Find(x => x.Id == mainCommentId);
-
-                    var s = FindTimeDifferenceAndCovertToWords(mainComment.Created);
+                    string s = (subCommentId == -1)
+                        ? FindTimeDifferenceAndCovertToWords(mainComment.Created)
+                        : FindTimeDifferenceAndCovertToWords(mainComment.SubComments.ToList().Find(x => x.Id == subCommentId).Created);
 
                     Console.WriteLine("Вывод: " + s);
 
@@ -347,6 +344,29 @@ namespace VideoService.Controllers
             }
             return new JsonResult("error");
         }
+
+        //[HttpGet]
+        //public ActionResult ShowTimeDifference(int postId, int mainCommentId, int subCommentId)
+        //{
+        //    Console.WriteLine(postId);
+
+        //    if (ModelState.IsValid)
+        //    {
+
+        //        var post = _repo.GetPost(postId);
+        //        if (post != null)
+        //        {
+        //            var mainComment = post.MainComments.Find(x => x.Id == mainCommentId);
+        //            string s = FindTimeDifferenceAndCovertToWords(mainComment.Created);
+
+        //            Console.WriteLine("Вывод: " + s);
+
+        //            if (mainComment != null)
+        //                return new JsonResult(s);
+        //        }
+        //    }
+        //    return new JsonResult("error");
+        //}
 
         private static string FindTimeDifferenceAndCovertToWords(DateTime postCreatedTime)
         {
