@@ -1,0 +1,12 @@
+﻿@page
+@model IEnumerable<HeaderPostViewModel>
+@{
+}
+<div class="admin-panel">
+<h1>Панель администратора</h1>
+
+@{
+    //await Html.RenderPartialAsync("PostsList", Model);
+        await Html.RenderPartialAsync("PostsList");
+}
+</div>

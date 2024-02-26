@@ -1,0 +1,344 @@
+﻿﻿
+html, body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #111211;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    /*font-family: 'Roboto', Arial, sans-serif;*/
+/*    font-size: 1.4rem;
+    line-height: 2rem;
+    font-weight: 400;*/
+}
+
+a {
+    color: white;
+    text-decoration: none; /*ссылка как обычный текст по умолчанию*/
+}
+
+
+nav {
+    background-color: #222;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+    nav a {
+        display: inline-block;
+        padding: 14px;
+    }
+
+        nav a:hover {
+            /*background-color: #189b67;*/
+            /*background-color: #0d8e5b;*/
+            background-color: #1a7450;
+        }
+/* Dropdown Button */
+.dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-buttons {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+    /* Links inside the dropdown */
+    .dropdown-buttons a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-buttons a:hover {
+            background-color: #ddd;
+        }
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-buttons {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+
+/* Кнопка выпадающего списка */
+/*.themes-btn {*/
+/*background-color: #3498DB;*/
+/*background-color: #222;*/
+/*display: inline-block;
+    color: white;
+    padding: 15px;
+    height: 50px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}*/
+
+/* Кнопка выпадающего меню при наведении и фокусировке */
+/*    .themes-btn:hover, .themes-btn:focus {
+        background-color: #2980B9;
+    }*/
+/*.themes-btn:hover {*/
+/*background-color: #2980B9;*/
+/*background-color: #1a7450;
+    }*/
+/* Контейнер <div> - необходим для размещения выпадающего содержимого */
+/*.themes-block {
+    position: relative;
+    display: inline-block;
+}*/
+
+/* Выпадающее содержимое (скрыто по умолчанию) */
+/*.spisok {
+    display: none;
+    position: absolute;
+    background-color: #222;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}*/
+
+    /* Ссылки внутри выпадающего списка */
+    /*.spisok a {
+        color: white;
+        text-decoration: none;
+        display: block;
+    }*/
+
+        /* Изменение цвета выпадающих ссылок при наведении курсора */
+        /*        .spisok a:hover {
+            background-color: #ddd
+        }*/
+        /* Change color of dropdown links on hover */
+        /*.spisok a:hover {
+            background-color: #1a7450;
+        }*/
+
+/* Show the dropdown menu on hover */
+/*.themes-block:hover .spisok {
+    display: block;
+}*/
+
+
+
+
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+/*.themes-block:hover .themes-btn {
+    background-color: #3e8e41;
+}*/
+
+
+/*.themes-btn:hover .show {
+    display: block;
+}*/
+/* Показать выпадающее меню (используйте JS, чтобы добавить этот класс .dropdown-content содержимого, когда пользователь нажимает на кнопку выпадающего списка) */
+/*.show {
+    display: block;
+}*/
+/*.spisok {
+    visibility: hidden;
+    opacity: 0;
+    z-index: 5;
+    width: 180px;
+}
+
+    .spisok a {
+        background-color: #142127;
+        color: white;
+        font-size: 15px;
+        line-height: 50px;
+        padding: 0 25px;
+    }
+
+.themes:hover .spisok {
+    visibility: visible;
+    opacity: 1;
+}*/
+
+
+
+
+/*---------------------------------------*/
+/*.main-img {
+    position: relative;
+    height: 500px;
+    background-image: url(../_content/static/pushka.webp);
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+    .main-img .title {
+        color: white;
+        font-size: 40px;
+        text-shadow: 0 0 8px black;
+        margin-bottom: 1rem;
+    }
+
+.title {
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 40px;
+    text-shadow: 0 0 8px black;
+    margin-bottom: 1rem;
+}
+
+.search {
+    color: #000;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: pink;
+    font-size: 18px;
+    border-bottom: 2px solid pink;
+}
+
+.submit-btn {
+    display: none;
+}
+
+.search::placeholder {
+    color: pink;
+}*/
+
+/*Для экранов мобильных телефонов (если экран < 768px) появится кнопка Поиск*/
+/*@media screen and (max-width: 768px) {
+    .submit-btn {
+        display: inline-block;
+    }
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    margin: auto;
+}
+
+.post {
+    margin: 5px;
+    position: relative;
+    display: flex;*/ /*фото сможет менять свой размер*/
+    /*height: 400px;
+    box-shadow: 0 0 5px 0 black;
+}
+
+    .post img {
+        width: 100%;
+        object-fit: cover;*/ /*заголовки фото будут подстраиваться под его размер*/
+    /*}
+
+    .post .title {
+        position: absolute;
+        left: 50%;
+        top: 35%;
+        transform: translateX(-50%);
+        color: white;
+        font-size: 40px;
+        text-shadow: 0 0 8px black;
+        margin-bottom: 1rem;
+    }
+
+.post-body {
+    margin: -5px 5px 0;
+    background-color: white;
+    padding: 20px 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.no-shadow {
+    box-shadow: none;
+}
+
+.pages {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 2rem;
+}
+
+    .pages a {*/
+        /*background-color: #189b67;*/
+        /*color: white;
+        border-radius: 50%;
+        border: 1px solid #eee;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        line-height: 50px;
+        width: 50px;
+        margin: 2px;
+        font-weight: 600;
+        font-size: 20px;
+    }*/
+
+        /*Вариант с квадратными кнопками*/
+
+        /*.pages a.active {
+            background-color: #189b67;*/
+            /*background-color: #3ae9a3;*/
+            /*color: whitesmoke;
+        }
+
+        .pages a:hover {*/
+            /*text-shadow: 0 0 8px black;*/
+            /*background-color: #1a7450;
+            text-decoration: none;
+        }*/
+
+
+
+
+/* Применяем при наведении на ссылку*/
+/*
+pages a:hover {
+    background-color: #34ca8e;
+    text-decoration: none;
+}*/
+
+/*Login.cshtml*/
+
+/*.sign-in-form {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-in-form div {
+    max-width: 200px;
+    width: 100%;
+    margin-bottom: 1rem;
+}*/

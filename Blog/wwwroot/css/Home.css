@@ -1,0 +1,39 @@
+.main-img {
+    position: relative;
+    height: 500px;
+    background-image: url(../_content/static/pushka.webp);
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+    .main-img .title {
+        color: white;
+        font-size: 40px;
+        text-shadow: 0 0 8px black;
+        margin-bottom: 1rem;
+    }
+
+.title {
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 40px;
+    text-shadow: 0 0 8px black;
+    margin-bottom: 1rem;
+}
+
+.search {
+    color: #000;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: pink;
+    font-size: 18px;
+    border-bottom: 2px solid pink;
+}

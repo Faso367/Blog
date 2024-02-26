@@ -1,0 +1,85 @@
+﻿<!-- Содержит стартовую страницу, которая отображается при запуске серва + все основные настрйоки-->
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <!-- initial-scale =1.0 сделает сайт более  адаптивным для телефонов -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--ViewBag.Title - заголовок сайта в поисковике-->
+
+    <title>@ViewBag.Title</title> 
+
+    <!-- ViewBag.Description - описание сайта под заголовком в поисковике-->
+    <meta name="description" content="@ViewBag.Description"/> 
+
+    <!--ViewBag.Keywords - список ключевых слов-->
+    <meta name="keywords" content="@ViewBag.Keywords"/>
+    <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
+
+
+    <!-- Подключение шрифта roboto-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+    @*<link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />*@
+    <!--Этот css файл будет использоваться, если мы в режиме разработки-->
+@*    <environment include="Development">
+        <!--asp-append-version="true" указывает, что если мы изменим этот css файл, то он добавится в кеш клиента вместо старого-->
+        <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
+    </environment>*@
+    <!--Этот css файл будет использоваться, если мы уже выкатили сайт-->
+@*    <environment include="Production"> КОГДА ЗАПУСКАЮ САЙТ РАБОТАЕТ ЭТОТ РЕЖИМ
+        <link href="~/css/site.min.css" rel="stylesheet" asp-append-version="true" />
+    </environment>*@
+</head>
+<body>
+    @*<div>*@
+        <nav>
+           <a asp-controller="Home" asp-action="Index">Домой</a>
+
+            <a asp-controller="Feed" asp-action="Index">Лента</a>
+
+            @*РАБОТАЕТ (12.01)*@
+@*        <div class="dropdown">
+            <button class="dropbtn">Темы</button>
+            <div class="dropdown-buttons">
+                <a asp-controller="Home" asp-action="Index" asp-route-category="Programing">Программирование</a>
+                <a asp-controller="Home" asp-action="Index" asp-route-category="Photography">Фотография</a>
+                <a asp-controller="Home" asp-action="Index" asp-route-category="Travel">Путешествия</a>
+            </div>
+        </div>*@
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            @* <a asp-controller="Panel" asp-action="Edit" asp-route-category="Programing">Создать запись</a> *@
+            <a asp-controller="Panel" asp-action="Edit">Создать запись</a>
+            <a asp-controller="Panel" asp-action="UserProfile">Личный кабинет</a>
+
+            // Если авторизовался админ, то показываем ему эту кнопку
+            @if (User.IsInRole("Admin"))
+            {
+                @*<a asp-controller="Home" asp-action="Index" asp-route-category="Panel">Панель администратора</a>*@
+                @* <a asp-controller="Panel" asp-action="Admin" asp-route-category="Panel">Панель администратора</a> *@
+                <a asp-controller="Panel" asp-action="Admin">Панель администратора</a>
+            }
+            <a asp-controller="Auth" asp-action="Logout">Выйти</a>
+        }
+        else
+        {
+            <a asp-controller="Auth" asp-action="Login">Создать запись</a>
+            <a asp-controller="Auth" asp-action="Login">Войти</a>
+        }
+
+        </nav>
+    @*</div>*@
+    <!--Здесь будут отрисовываться остальные наши страницы-->
+    @*<div>*@
+    @RenderBody()
+    @*</div>*@
+     @RenderSection("scripts", false) <!--Подгружаем (рендерим) добавленный JS только для этой страницы html (тк false)-->
+</body>
+</html>

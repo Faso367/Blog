@@ -1,0 +1,52 @@
+﻿@model RegisterViewModel
+
+@{
+}
+
+<link href="~/css/Register.css" rel="stylesheet" />
+<div class="register-body">
+    <div class="ramka">
+        <div class="form-wrapper">
+
+@*            <div class="modal" id="modal-window">
+                <div class="modal-inner">
+
+                </div>
+                <button id="closeModal">Закрыть</button>
+            </div>*@
+
+            <div class="h1-wrapper">Регистрация</div>
+
+            <form class="sign-in-form" asp-controller="Auth" asp-action="Register" method="post">
+                <div class="form-input-container">
+                    <div class="form-group">
+                        <input asp-for="Username" class="name" name="username" placeholder="Имя пользователя" />
+                        <span class="errors"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Email" class="email" name="email" placeholder="Эл. почта" />
+                        <span class="errors"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Password" class="pas" name="password" placeholder="Пароль" />
+                        <span class="errors"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="ConfirmPassword" class="pasConf" name="ConfirmPassword" placeholder="Подтвердите пароль" />
+                        <span class="errors"></span>
+                    </div>
+                    
+                    <input type="submit" value="Зарегистрироваться" id="but" />
+                </div>
+            </form>
+
+            <span class="confirm-policy">Нажимая кнопку «Зарегистрироваться», Вы принимаете условия
+                <a href="https://xn--d1achjhdicc8bh4h.xn--80asehdb/agreement">Пользовательского соглашения</a>
+            </span>
+
+            <a asp-controller="Auth" asp-action="Login"> <p>Войти</p></a>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/RegisterValidation.js"></script>
