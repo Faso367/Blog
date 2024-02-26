@@ -42,10 +42,19 @@
             <textarea id="editor" asp-for="Body"></textarea>
         </div>
         <div class="buttons">
-            <input asp-for="CurrentImage" type="hidden" />
+            <input asp-for="CurrentImageName" type="hidden" />
             <input asp-for="Image" type="file" id="real-life" hidden="hidden" />
             <button type="button" id="custom-button">Выберите файл</button>
-            <span id="custom-text">Файл не выбран</span>
+            <span id="custom-text">
+                @{
+                if (Model.CurrentImageName != "") {
+                    @Model.CurrentImageName
+                }
+                else {
+                        <text>Файл не выбран</text>
+                }
+                }
+                </span>
             <i class="fa-regular fa-folder-open"></i>
         </div>
 

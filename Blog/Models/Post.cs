@@ -12,7 +12,7 @@ namespace Blog.Models
 
         public string Title { get; set; } = " "; // поле для хранения заголовка записи
         public string Body { get; set; } = " "; // поле для хранения тела записи
-        public string Image { get; set; } = " "; // поле для хранения названия фото
+        public string ImageName { get; set; } = " "; // поле для хранения названия фото
         public string Author { get; set; } = " "; // создатель поста
         public string Description { get; set; } = " ";
         public string Tags { get; set; } = " ";

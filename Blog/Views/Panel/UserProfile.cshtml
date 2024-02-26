@@ -13,9 +13,9 @@
 
 <!--получаем на вход коллекцию объектов Post -->
 
-<link href="~/css/UserProfile.css" rel="stylesheet" />
+@* <link href="~/css/UserProfile.css" rel="stylesheet" /> *@
 
-<div class="user-profile">
+<div class="user-profile" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
     <h1>@UserName</h1>
     
     @{ await Html.RenderPartialAsync("PostsList"); }

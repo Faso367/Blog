@@ -29,7 +29,7 @@
 
     @foreach (var post in Model.Posts) // пробегаемся по свойствам модели IndexVM
     {
-        var image_path = $"{base_path}/Image/{post.Image}";
+        var image_path = $"{base_path}/Image/{post.ImageName}";
         // Вызовется метод Post с одним параметром id, заданном в атрибуте asp-route-id
         <a class="post" asp-controller="Post" asp-action="Index" asp-route-postId="@post.Id">
             <img src="@image_path" />

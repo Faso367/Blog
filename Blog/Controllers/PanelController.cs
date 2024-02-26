@@ -29,14 +29,12 @@ namespace Blog.Controllers
         }
         
 
-        public IActionResult Admin()
-        {
-            // List<Post> posts  
-            //var posts = _repo.GetAllPosts(); // Получаем список значений ячеек БД
-            //return View(posts);
+        public IActionResult Admin() =>
+            View(GetHeaderPostViewModelsList());
 
-            return View(GetHeaderPostViewModelsList());
-        }
+        [HttpGet]
+        public IActionResult UserProfile() =>
+            View(GetHeaderPostViewModelsList());
 
         // По умолчанию используется метод Get для отображения View,
         // Если мы хотим использовать Post, то указываем [HttpPost]
@@ -68,10 +66,11 @@ namespace Blog.Controllers
                     Id = post.Id,
                     Title = post.Title,
                     Body = post.Body,
-                    CurrentImage = post.Image, // текущее изображение это последнее добавленное изображение
+                    CurrentImageName = post.ImageName, // текущее изображение это последнее добавленное изображение
                     Description = post.Description,
                     Category = post.Category,
                     Tags = post.Tags,
+                    
                     //Author = post.Author // Мы же не меняем создателя поста, а только его содержимое
                 };
 
@@ -113,14 +112,14 @@ namespace Blog.Controllers
             Console.WriteLine("EDIT VM_" + post.GetType().ToString());
 
             if (vm.Image == null)
-                post.Image = vm.CurrentImage;
+                post.ImageName = vm.CurrentImageName;
             else
             {
-                if (!string.IsNullOrEmpty(vm.CurrentImage))
+                if (!string.IsNullOrEmpty(vm.CurrentImageName))
                 {
-                    _fileManager.RemoveImage(vm.CurrentImage);
+                    _fileManager.RemoveImage(vm.CurrentImageName);
                 }
-                post.Image = await _fileManager.SaveImage(vm.Image);
+                post.ImageName = await _fileManager.SaveImage(vm.Image);
             }
 
             if (post.Id > 0)
@@ -172,33 +171,6 @@ namespace Blog.Controllers
             await _repo.SaveChangesAsync();
             //return RedirectToAction("Index");
             return RedirectToAction("Admin");
-        }
-
-        [HttpGet]
-        public IActionResult UserProfile()
-        {
-            //var posts = _repo.GetAllUserPosts(User.Identity.Name);
-
-            //List<HeaderPostViewModel> list = new();
-
-            //foreach (Post post in posts)
-            //{
-            //    list.Add(new HeaderPostViewModel
-            //    {
-            //        Id = post.Id,
-            //        Author = post.Author,
-            //        Title = post.Title
-            //    });
-            //}
-
-            // Получаем список значений ячеек БД
-            //return View(list); // Получаем список значений ячеек БД
-            //return posts;
-            //var posts = _repo.GetAllPosts(); // Получаем список значений ячеек БД
-            //return View(new PostViewModel());
-
-            return View(GetHeaderPostViewModelsList());
-
         }
 
 
