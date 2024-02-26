@@ -13,6 +13,7 @@ using Blog.Models.Comments;
 using Blog.ViewModels;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Drawing.Printing;
 
 namespace Blog.Controllers
 {
@@ -466,13 +467,23 @@ namespace Blog.Controllers
 
                 TimeSpan timeDifference = DateTime.Now - postCreatedTime;
 
-                //Func<double, int> DoubleToInt = Dtime => Convert.ToInt32(Math.Round(Dtime)) - 1;
+            //Func<double, int> DoubleToInt = Dtime => Convert.ToInt32(Math.Ceiling(Dtime));
+            //Func<double, bool> IsInteger = doubleNumber => doubleNumber == Math.Truncate(doubleNumber) ? true : false;
 
-                int totalDays = Convert.ToInt32(Math.Round(timeDifference.TotalDays)) - 1;
-                int totalHours = Convert.ToInt32(Math.Round(timeDifference.TotalHours)) - 1;
-                int totalMinutes = Convert.ToInt32(Math.Round(timeDifference.TotalMinutes)) - 1;
+            //int totalDays = IsInteger(timeDifference.TotalDays) ? DoubleToInt(timeDifference.TotalDays) : DoubleToInt(timeDifference.TotalDays) - 1;
+            //int totalHours = IsInteger(timeDifference.TotalHours) ? DoubleToInt(timeDifference.TotalHours) : DoubleToInt(timeDifference.TotalHours) - 1;
+            //int totalMinutes = IsInteger(timeDifference.TotalMinutes) ? DoubleToInt(timeDifference.TotalMinutes) : DoubleToInt(timeDifference.TotalMinutes) - 1;
 
-                if (totalDays > 0)
+            // НЕ РАБОТАЕТ
+            //int totalDays = Convert.ToInt32(Math.Round(timeDifference.TotalDays)) - 1;
+            //int totalHours = Convert.ToInt32(Math.Round(timeDifference.TotalHours)) - 1;
+            //int totalMinutes = Convert.ToInt32(Math.Round(timeDifference.TotalMinutes)) - 1;
+
+            int totalDays = Convert.ToInt32(Math.Floor(timeDifference.TotalDays)); // округляем в меньшую сторону
+            int totalHours = Convert.ToInt32(Math.Floor(timeDifference.TotalHours));
+            int totalMinutes = Convert.ToInt32(Math.Floor(timeDifference.TotalMinutes));
+
+            if (totalDays > 0)
                 {
                     if (totalDays > 364)
                         result = CreateCorrectNumeral(totalDays / 365, "year");

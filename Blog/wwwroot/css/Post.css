@@ -49,12 +49,17 @@
 
 /*Секция с основным текстом поста*/
 .post .text-section {
+    margin-top: 30px;
     height: 100%;
     width: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.post .text-section p {
+    max-width: 100%;
 }
 
 #comments-title {
