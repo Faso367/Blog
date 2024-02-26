@@ -302,7 +302,9 @@ function ShowSendCommentSection(mainCommentId) {
 
     const validateElem = (elem) => {
 
-        if (elem.value !== "") { // Это не значит непустое поле!? Видимо это не равно null
+        console.log("validateElem");
+
+        if (elem.value !== "") { // Если поле непустое
 
             But.removeAttribute('disabled');
             But.style.opacity = "1";
@@ -320,7 +322,7 @@ function ShowSendCommentSection(mainCommentId) {
             But.setAttribute('disabled', 'disabled');
             But.style.opacity = "0.5";
             But.style.cursor = "default";
-            if (isValid = true) { // ОН ВООБЕ КОГДА_НИБУДЬ БУДЕТ РАБОТАТЬ???
+            if (isValid = true) { 
 
                 But.removeEventListener('mouseenter', changeColor1, true);
                 But.removeEventListener('mouseleave', changeColor2, true);
@@ -386,8 +388,10 @@ function ShowSendCommentSection(mainCommentId) {
             But.addEventListener('mouseenter', changeColor1, true);
             But.addEventListener('mouseleave', changeColor2, true);
 
-            popupText.style.visibility = "visible";
-            popupText.style.display = "block";
+            if (isAuthenticated != 'True') {
+                popupText.style.visibility = "visible";
+                popupText.style.display = "block";
+            }
 
         }
 
@@ -424,3 +428,10 @@ function ShowSendCommentSection(mainCommentId) {
     
 }
 
+
+function auto_grow(element) {
+    /*element.style.height = "5px";*/
+    element.style.height = "0px";
+    /*element.style.height = (element.scrollHeight) + "px";*/
+    element.style.height = (element.scrollHeight - 5) + "px";
+}

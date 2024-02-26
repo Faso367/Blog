@@ -277,13 +277,14 @@ form {
 
 .input-wrapper {
     width: 80%;
+    
     /*align-self: start;*/
 }
 
 .button-wrapper {
 
     position: absolute;
-    left: 70%;
+    left: 50%;
     width: 200px;
 }
 
@@ -313,6 +314,7 @@ form textarea {
     height: 30px;
     max-height: 500px;
     width: 90%;
+    /*width: 500px;*/
     border: none;
     border-bottom: 1px solid #ccc;
     background-color: #111211;
