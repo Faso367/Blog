@@ -65,11 +65,12 @@ namespace Blog.Controllers
                     // Записываем в VM инфу, которую получили из БД по указанному id
                     Id = post.Id,
                     Title = post.Title,
-                    Body = post.Body,
+                    //Body = post.Body,
                     CurrentImageName = post.ImageName, // текущее изображение это последнее добавленное изображение
                     Description = post.Description,
                     Category = post.Category,
                     Tags = post.Tags,
+                    Link = post.Link
                     
                     //Author = post.Author // Мы же не меняем создателя поста, а только его содержимое
                 };
@@ -101,10 +102,11 @@ namespace Blog.Controllers
             {
                 Id = vm.Id,
                 Title = vm.Title,
-                Body = vm.Body,
+                //Body = vm.Body,
                 Description = vm.Description,
                 Category = vm.Category,
                 Tags = vm.Tags,
+                Link = vm.Link,
                 //Author = vm.Author
                 Author = User.Identity.Name // Получаем имя авторизованного пользователя, который создал этот пост
         };

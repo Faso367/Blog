@@ -85,7 +85,7 @@ namespace Blog.Data.Repository
 
             if (!String.IsNullOrEmpty(search))
                 query = query.Where(x => x.Title.Contains(search)
-                    || x.Body.Contains(search)
+                    //|| x.Body.Contains(search) !!!!!!!!! 27.02
                     || x.Description.Contains(search));
 
             // Раньше это ускоряло получение данных из БД
