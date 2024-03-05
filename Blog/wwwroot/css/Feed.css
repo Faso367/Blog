@@ -1,6 +1,18 @@
+
+.feed-body {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
 .main-img {
     position: relative;
     height: 500px;
+    width: 100%;
     background-image: url(../_content/static/pushka.webp);
     background-position: center;
     background-size: cover;
@@ -17,7 +29,7 @@
         margin-bottom: 1rem;
     }
 
-.title {
+/*.title {
     position: absolute;
     left: 50%;
     top: 35%;
@@ -26,7 +38,7 @@
     font-size: 40px;
     text-shadow: 0 0 8px black;
     margin-bottom: 1rem;
-}
+}*/
 
 .search {
     color: #000;
@@ -53,34 +65,50 @@
     }
 }
 
-.container {
+.posts-container {
     max-width: 800px;
-    width: 100%;
-    margin: auto;
+    width: 80%;
+    /*margin: auto;*/
+    /*margin-top: 5px;*/
+    margin: 5px 10% 0 10%;
 }
 
-.post {
-    margin: 5px;
+.posts-container-image-wrapper {
+    margin-top: 10px;
+    /*    border: 2px solid #13ea79;
+    border-radius: 20px;*/
     position: relative;
     display: flex; /*фото сможет менять свой размер*/
     height: 400px;
     box-shadow: 0 0 5px 0 black;
+    overflow: hidden;
+    border: 2px solid #13ea79;
+    border-radius: 20px;
 }
-
-    .post img {
-        width: 100%;
-        object-fit: cover; /*заголовки фото будут подстраиваться под его размер*/
+    .posts-container-image-wrapper:hover {
+        opacity: 0.9;
+        /*filter: brightness(1.2);*/
     }
 
-    .post .title {
+    .posts-container-image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /*заголовки фото будут подстраиваться под его размер*/
+        /*display: inline;*/
+/*        border: 2px solid #13ea79;
+        border-radius: 20px;*/
+/*        display: block;
+*/    }
+
+    .posts-container-image-wrapper .title {
         position: absolute;
         left: 50%;
-        top: 35%;
-        transform: translateX(-50%);
+        top: 40%;
+        /*transform: translateX(-50%);*/
         color: white;
         font-size: 40px;
         text-shadow: 0 0 8px black;
-        margin-bottom: 1rem;
+        /*margin-bottom: 1rem;*/
     }
 
 .post-body {

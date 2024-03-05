@@ -17,9 +17,12 @@
 
 /*Секция с главным изображением поста*/
 .main-image { /*Блок главного фото поста*/
-    position: relative;
-    width: 100%;
-    height: 655px;
+    /*position: relative;*/
+    width: 70%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-position: center;
     background-size: cover;
 }
@@ -30,22 +33,18 @@
     }
 
     .main-image .title {
-        color: white;
+        position: absolute;
         font-size: 40px;
+        /*justify-content: center;*/
+        /*
+        left: 50%;
+        top: 35%;
+        transform: translateX(-50%);*/
+        color: white;
+        /*font-size: 40px;*/
         text-shadow: 0 0 8px black;
-        margin-bottom: 1rem;
+        /*margin-bottom: 1rem;*/
     }
-
-.title {
-    position: absolute;
-    left: 50%;
-    top: 35%;
-    transform: translateX(-50%);
-    color: white;
-    /*font-size: 40px;*/
-    text-shadow: 0 0 8px black;
-    margin-bottom: 1rem;
-}
 
 /*Секция с основным текстом поста*/
 .post .text-section {

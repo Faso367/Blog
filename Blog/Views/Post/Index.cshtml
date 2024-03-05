@@ -17,7 +17,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 --->
 <link href="~/css/Post.css" rel="stylesheet" />
-<link rel="stylesheet" href="~/css/MainComment.css" />
 <!-- Динамические -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -58,9 +57,9 @@
         }
     </div>
 
-    @*<div class="text-section"> !!!!!!!!! 27.02
-        @Html.Raw(Model.Body) <!--Отображаем тело записи из БД под фото-->
-    </div> *@
+    <div class="text-section"> @*!!!!!!!!! 27.02 *@
+        @Html.Raw(Model.Description) <!--Отображаем тело записи из БД под фото-->
+    </div>
 
     @*@if (User.Identity.IsAuthenticated)
     // Если пользователь авторизовался, то он может создать комментарий
@@ -336,7 +335,7 @@
     }</script>
 
 <script src="~/js/Post.js"></script>
-<script src="~/js/MainComment.js"></script>
+
 @* <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> *@
 
 @*

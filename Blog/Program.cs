@@ -120,6 +120,9 @@ public class Program
             app.UseDeveloperExceptionPage();
             // Для отображения ошибок HTTP
             app.UseStatusCodePages();
+
+            app.UseHsts();
+            app.UseHttpsRedirection();
             app.Run();
         }
         catch (Exception e)
