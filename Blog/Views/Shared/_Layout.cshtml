@@ -38,7 +38,8 @@
 </head>
 <body>
     @*<div>*@
-        <nav>
+    <div class="header">
+        <nav class="header-navigation">
            <a asp-controller="Home" asp-action="Index">Домой</a>
 
             <a asp-controller="Feed" asp-action="Index">Лента</a>
@@ -75,10 +76,33 @@
         }
 
         </nav>
+    </div>
     @*</div>*@
     <!--Здесь будут отрисовываться остальные наши страницы-->
     @*<div>*@
     @RenderBody()
+
+    <div class="footer">
+        <div class="footer-sections">
+            <div class="footer-section">
+                <div class="footer-section-terms-of-use-wrapper">
+                    <a href="https://mail.ru/">Пользовательское соглашение</a>
+                </div>
+                <div class="footer-section-technical-support">
+                    <a href="https://mail.ru/">Техническая поддержка</a>
+                </div>
+                <div class="footer-section-technical-support">
+                    <a href="https://mail.ru/">Отзывы и предложения</a>
+                </div>
+            </div>
+            <div class="footer-section"></div>
+            <div class="footer-section"></div>
+        </div>
+        <div class="footer-mail-wrapper">
+            Напишите нам: helpTg@inbox.ru
+        </div>
+    </div>
+
     @*</div>*@
      @RenderSection("scripts", false) <!--Подгружаем (рендерим) добавленный JS только для этой страницы html (тк false)-->
 </body>
