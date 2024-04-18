@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
             //console.log("valid");
             submitBtn.removeAttribute('disabled');
         }
-    }
+    } // validateElem закончился
 
     for (let elem of form.elements) {
         // Если у элемента class != 'form-check-input' или его тег != button

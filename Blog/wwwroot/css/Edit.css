@@ -172,3 +172,9 @@ input#but {
     input#but:hover {
         background-color: #1aa95d;
     }
+
+span.errors {
+    height: 25px;
+    color: red;
+    font-size: 14px;
+}

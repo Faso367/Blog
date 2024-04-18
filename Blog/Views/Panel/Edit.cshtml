@@ -10,6 +10,7 @@
 <link href="~/lib/trumbowyg-main/dist/ui/trumbowyg.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
 
+
 <div class="edit">
     <h1>Создание поста</h1>
 
@@ -19,15 +20,18 @@
         <input asp-for="Id" type="hidden" /> <!--Сможем увидеть Id через инструменты разработчика в браузере-->
         <div class="input-container" id="groupName">
             <label>Название группы</label>
-            <input asp-for="Title" />
+            <input asp-for="Title" name="groupName"/>
+            <span class="errors"></span>
         </div>
         <div class="input-container" id="description">
             <label>Описание</label>
-            <textarea asp-for="Description"></textarea> <!--Указываем в какое свойство модели будет происходить запись из поля input (в какое поле БД)-->
+            <textarea asp-for="Description" name="description"></textarea> <!--Указываем в какое свойство модели будет происходить запись из поля input (в какое поле БД)-->
+            <span class="errors"></span>
         </div>
         <div class="input-container" id="tags">
             <label>Теги</label>
-            <textarea asp-for="Tags"></textarea> <!--Указываем в какое свойство модели будет происходить запись из поля input (в какое поле БД)-->
+            <textarea asp-for="Tags" name="tags"></textarea> <!--Указываем в какое свойство модели будет происходить запись из поля input (в какое поле БД)-->
+            <span class="errors"></span>
         </div>
         <div class="themes">
             <label>Тема</label>
@@ -48,7 +52,8 @@
         </div>
         <div class="input-container" id="link">
             <label>Ссылка на канал</label>
-            <input asp-for="Link" />
+            <input asp-for="Link" name="link"/>
+            <span class="errors"></span>
         </div>
 @*         <div class="main-text">
             <label>Содержимое</label>
@@ -85,4 +90,6 @@
         $('#editor').trumbowyg();
     </script>
     <script src="~/js/Edit.js"></script>
+    @* <script type="module" src="@Url.Content("~/Scripts/Tutorial.jsx")"></script> *@
+    @* <script src="node_modules\zod"></script> *@
 }
